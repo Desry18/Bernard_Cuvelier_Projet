@@ -12,7 +12,7 @@ public class SingletonDB {
     private String username = "oceane";
     private String password = "Oceane";
 
-    private SingletonDB() throws SQLException {
+    public SingletonDB() throws SQLException {
         try {
             Class.forName("org.postgresql.Driver");
             this.connection = DriverManager.getConnection(url, username, password);
@@ -21,7 +21,6 @@ public class SingletonDB {
         }catch (SQLException e) {
 			e.printStackTrace();
 		}
-
     }
 
     public Connection getConnection() {

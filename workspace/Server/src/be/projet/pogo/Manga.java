@@ -3,7 +3,7 @@ package be.projet.pogo;
 import java.sql.Date;
 
 public class Manga {
-	private String tritre_manga;
+	private String titre_manga;
 	private String edit_manga;
 	private Date date_parution;
 	private int nbr_tome;
@@ -11,11 +11,18 @@ public class Manga {
 	
 	public Manga() {}
 	
-	public String getTritre_manga() {
-		return tritre_manga;
+	public Manga(String titre_manga, String editeur_manga, int nbr_tome2) {
+		// TODO Auto-generated constructor stub
+		this.titre_manga = titre_manga;
+		this.edit_manga=editeur_manga;
+		this.nbr_tome=nbr_tome2;
 	}
-	public void setTritre_manga(String tritre_manga) {
-		this.tritre_manga = tritre_manga;
+
+	public String getTitre_manga() {
+		return titre_manga;
+	}
+	public void setTitre_manga(String tritre_manga) {
+		this.titre_manga = tritre_manga;
 	}
 	public String getEdit_manga() {
 		return edit_manga;
