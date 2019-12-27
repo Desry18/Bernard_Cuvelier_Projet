@@ -9,7 +9,7 @@ public class Manga {
 	private int nbr_tome;
 	private int note_manga;
 	
-	
+	public Manga() {}
 	
 	public String getTritre_manga() {
 		return tritre_manga;
