@@ -14,6 +14,11 @@ public class Utilisateur {
 		this.email = mail;
 	}
 	
+	public Utilisateur(String pseudo1) {
+		// TODO Auto-generated constructor stub
+		this.pseudo=pseudo1;
+	}
+
 	public String getPseudo() {
 		return pseudo;
 	}
