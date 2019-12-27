@@ -39,8 +39,14 @@ public Response nouveauUtil(@FormParam("pseudo") String pseudo,
 		Connection conn = null;
         PreparedStatement statement = null;
         ResultSet resultado = null;
-        String querry ="BEGING"
-        		+ "InsertUtilisateur(email=?,nom_util=?,pseudo=?,mdp=?)"
+        String querry =
+        		"DECLARE" 										
+        		+ "em utilisateur.email%type"
+        		+ "nom utilisateur.nom_util%type"
+        		+ "ps utilisateur.pseudo%type"
+        		+ "pdp utilisateur.pdp%type"
+        		+"BEGING"
+        		+ "InsertUtilisateur(em=?,nom=?,ps=?,pdp=?)"
         		+ "END"
         		+ "/";
         SingletonDB dbt= new SingletonDB();
@@ -49,12 +55,16 @@ public Response nouveauUtil(@FormParam("pseudo") String pseudo,
         try {
             conn = dbt.getConnection();
             statement = conn.prepareStatement(querry);
+            statement.setString(1,email);
+            statement.setString(2,nom_util);
+            statement.setString(3,pseudo);
+            statement.setString(4,mdp);
             resultado = statement.executeQuery();
             
-				String pseudo1 = resultado.getString(1);
-				String mdpe = resultado.getString(1);
 				String emaile = resultado.getString(1);
-				String nom= resultado.getString(1);
+				String nom= resultado.getString(2);
+				String pseudo1 = resultado.getString(3);
+				String mdpe = resultado.getString(4);
 				netP= new Utilisateur(pseudo1,mdpe,emaile,nom);
 
         }catch (SQLException e) {
