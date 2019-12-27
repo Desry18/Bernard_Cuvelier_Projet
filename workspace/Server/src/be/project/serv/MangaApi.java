@@ -66,9 +66,6 @@ public class MangaApi {
 				}
 			}
 		}
-		
-        
-	
 
 		return Response .status(Status.OK)
 				.entity(listmanga)
