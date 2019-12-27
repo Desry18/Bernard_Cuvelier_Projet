@@ -11,10 +11,14 @@ public class SingletonDB {
     private String url = "jdbc:oracle:thin:@//char-oracle11.condorcet.be:1521/xe";
     private String username = "oceane";
     private String password = "Oceane";
-
+    
+    public Connection getConnection() {
+        return connection;
+    }
+    
     public SingletonDB() throws SQLException {
         try {
-            Class.forName("org.postgresql.Driver");
+            Class.forName("oracle.jdbc.driver.OracleDriver");
             this.connection = DriverManager.getConnection(url, username, password);
         } catch (ClassNotFoundException ex) {
             System.out.println("Database Connection Creation Failed : " + ex.getMessage());
@@ -23,9 +27,7 @@ public class SingletonDB {
 		}
     }
 
-    public Connection getConnection() {
-        return connection;
-    }
+  
 
     public static SingletonDB getInstance() throws SQLException {
         if (instance == null) {

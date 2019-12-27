@@ -22,7 +22,7 @@ import be.projet.pogo.Manga;
 @Path("manga")
 public class MangaApi {
 	
-	@Path("allM")
+	@Path("all")
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getAllmangaJson() throws SQLException {
@@ -30,13 +30,13 @@ public class MangaApi {
 		Connection conn = null;
         PreparedStatement statement = null;
         ResultSet resultado = null;
-        String query = "SELECT titre_manga,editeur_manga, nbr_tome FROM manga";
+        String querry = "SELECT titre_manga,editeur_manga, nbr_tome FROM manga";
     	List<Manga> listmanga = new ArrayList<>();
         SingletonDB dbt= new SingletonDB();
         
         try {
             conn = dbt.getConnection();
-            statement = conn.prepareStatement(query);
+            statement = conn.prepareStatement(querry);
             resultado = statement.executeQuery();
             
             

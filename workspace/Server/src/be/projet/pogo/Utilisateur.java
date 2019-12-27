@@ -7,7 +7,12 @@ public class Utilisateur {
 	private String mdp;
 	private String email;
 	
-	public Utilisateur() {}
+	public Utilisateur(String p, String nom, String motdp, String mail) {
+		this.pseudo = p;
+		this.nom_util = nom;
+		this.mdp = motdp;
+		this.email = mail;
+	}
 	
 	public String getPseudo() {
 		return pseudo;

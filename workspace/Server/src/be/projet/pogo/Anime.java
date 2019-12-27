@@ -3,19 +3,24 @@ package be.projet.pogo;
 import java.sql.Date;
 
 public class Anime {
-	private String tritre_anime;
+	private String titre_anime;
 	private String studio_anime;
 	private Date date_sortie_anime;
 	private int nbr_episode;
 	private int note_anime;
 	
-	public Anime() {}
+	public Anime(String t_anime,String stud, int nbr_e) {
+		this.titre_anime = t_anime;
+		this.studio_anime = stud;
+		this.nbr_episode = nbr_e;
+		
+	}
 	
 	public String getTritre_anime() {
-		return tritre_anime;
+		return titre_anime;
 	}
 	public void setTritre_anime(String tritre_anime) {
-		this.tritre_anime = tritre_anime;
+		this.titre_anime = tritre_anime;
 	}
 	public String getStudio_anime() {
 		return studio_anime;
