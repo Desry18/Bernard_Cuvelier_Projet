@@ -50,10 +50,10 @@ public Response nouveauUtil(
         try {
             conn = dbt.getConnection();
             statement = conn.prepareCall ("begin InsertUtilisateur(?,?,?,?); end;");
-            statement.setString(1,"email");
-            statement.setString(2,"nom_util");
-            statement.setString(3,"pseudo");
-            statement.setString(4,"mdp");
+            statement.setString(1,email);
+            statement.setString(2,nom_util);
+            statement.setString(3,pseudo);
+            statement.setString(4,mdp);
             statement.execute ();
            
             /*statement = conn.prepareStatement(querry);
