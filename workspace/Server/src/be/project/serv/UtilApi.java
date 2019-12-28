@@ -39,14 +39,8 @@ public Response nouveauUtil(@FormParam("pseudo") String pseudo,
 		Connection conn = null;
         PreparedStatement statement = null;
         ResultSet resultado = null;
-        String querry =
-        		"DECLARE" 										
-        		+ "em utilisateur.email%type"
-        		+ "nom utilisateur.nom_util%type"
-        		+ "ps utilisateur.pseudo%type"
-        		+ "pdp utilisateur.pdp%type"
-        		+"BEGING"
-        		+ "InsertUtilisateur(em=?,nom=?,ps=?,pdp=?)"
+        String querry ="BEGING"
+        		+ "InsertUtilisateur(?,?,?,?)"
         		+ "END"
         		+ "/";
         SingletonDB dbt= new SingletonDB();
