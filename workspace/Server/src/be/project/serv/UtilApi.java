@@ -19,7 +19,6 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
 import be.projet.dao.SingletonDB;
-import be.projet.pogo.Manga;
 import be.projet.pogo.Utilisateur;
 
 
@@ -30,7 +29,8 @@ public class UtilApi {
 	@Path("changePseudo")
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
-public Response nouveauUtil(@FormParam("pseudo") String pseudo,
+public Response nouveauUtil(
+		@FormParam("pseudo") String pseudo,
 		@FormParam("email") String email,
 		@FormParam("mdp") String mdp,
 		@FormParam("nom_util") String nom_util
@@ -39,7 +39,7 @@ public Response nouveauUtil(@FormParam("pseudo") String pseudo,
 		Connection conn = null;
         PreparedStatement statement = null;
         ResultSet resultado = null;
-        String querry ="BEGING"
+        String querry ="BEGIN"
         		+ "InsertUtilisateur(?,?,?,?)"
         		+ "END"
         		+ "/";
@@ -86,7 +86,7 @@ public Response nouveauUtil(@FormParam("pseudo") String pseudo,
 		}
 	
 	
-	@Path("changePseudo")
+	@Path("changerPseudo")
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
 public Response changerPseudo(@FormParam("pseudo") String pseudo,
@@ -95,7 +95,7 @@ public Response changerPseudo(@FormParam("pseudo") String pseudo,
 		Connection conn = null;
         PreparedStatement statement = null;
         ResultSet resultado = null;
-        String querry ="BEGING"
+        String querry ="BEGIN"
         		+ "updatePseudo(id_util,pseudo)"
         		+ "END"
         		+ "/";
