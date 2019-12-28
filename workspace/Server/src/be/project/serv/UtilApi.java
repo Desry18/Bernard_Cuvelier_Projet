@@ -20,6 +20,8 @@ import javax.ws.rs.core.Response;
 
 import javax.ws.rs.core.Response.Status;
 
+import org.glassfish.jersey.media.multipart.FormDataParam;
+
 import be.projet.dao.SingletonDB;
 import be.projet.pogo.Utilisateur;
 
@@ -33,36 +35,30 @@ public class UtilApi {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 public Response nouveauUtil(
-		@FormParam("pseudo") String pseudo,
-		@FormParam("email") String email,
-		@FormParam("mdp") String mdp,
-		@FormParam("nom_util") String nom_util
+		@FormDataParam("pseudo") String pseudo,
+		@FormDataParam("email") String email,
+		@FormDataParam("mdp") String mdp,
+		@FormDataParam("nom_util") String nom_util
 		) throws SQLException {
 		
 		Connection conn = null;
-		CallableStatement statement = null;
-        /*ResultSet resultado = null;
-        String querry ="BEGIN"
-        		+ "InsertUtilisateur(?,?,?,?)"
-        		+ "END"
-        		+ "/";*/
+		PreparedStatement statement = null;
+        ResultSet resultado = null;
+        String querry ="insert into utilisateur(email, nom_util, pseudo, mdp) " + 
+        		"	values(?,?,?,?)";
         SingletonDB dbt= new SingletonDB();
-        String ret = null ;
+       String ret;
         
         try {
-            conn = dbt.getConnection();
-            statement = conn.prepareCall ("{?= CALL InsertUtilisateur(?,?,?,?)}");
+        	conn = dbt.getConnection();
+            statement = conn.prepareStatement(querry);
+            
             statement.setString(1,email);
             statement.setString(2,nom_util);
             statement.setString(3,pseudo);
             statement.setString(4,mdp);
-            statement.executeUpdate();
-           
-            /*statement = conn.prepareStatement(querry);
-            statement.setString(1,email);
-            statement.setString(2,nom_util);
-            statement.setString(3,pseudo);
-            statement.setString(4,mdp);*/
+           resultado = statement.executeQuery();
+          
              ret="Nouvel utilisateur";
 
         }catch (SQLException e) {
