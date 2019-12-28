@@ -47,8 +47,7 @@ public Response nouveauUtil(
         String querry ="insert into utilisateur(email, nom_util, pseudo, mdp) " + 
         		"	values(?,?,?,?)";
         SingletonDB dbt= new SingletonDB();
-       String ret;
-        
+      
         try {
         	conn = dbt.getConnection();
             statement = conn.prepareStatement(querry);
@@ -59,7 +58,7 @@ public Response nouveauUtil(
             statement.setString(4,mdp);
            resultado = statement.executeQuery();
           
-             ret="Nouvel utilisateur";
+            
 
         }catch (SQLException e) {
 			e.printStackTrace();
@@ -74,7 +73,6 @@ public Response nouveauUtil(
 		}
 
 		return Response .status(200)
-				.entity("Coucou " + pseudo)
 				.build();
 		}
 	
