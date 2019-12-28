@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.ws.rs.Consumes;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -29,6 +30,7 @@ public class UtilApi {
 	
 	@Path("nouveauUser")
 	@POST
+	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 public Response nouveauUtil(
 		@FormParam("pseudo") String pseudo,
@@ -45,11 +47,11 @@ public Response nouveauUtil(
         		+ "END"
         		+ "/";*/
         SingletonDB dbt= new SingletonDB();
-        String ret = null;
+        String ret = null ;
         
         try {
             conn = dbt.getConnection();
-            statement = conn.prepareCall ("{ CALL InsertUtilisateur(?,?,?,?)}");
+            statement = conn.prepareCall ("{?= CALL InsertUtilisateur(?,?,?,?)}");
             statement.setString(1,email);
             statement.setString(2,nom_util);
             statement.setString(3,pseudo);
@@ -75,13 +77,13 @@ public Response nouveauUtil(
 			}
 		}
 
-		return Response .status(Status.OK)
-				.entity(ret)
+		return Response .status(200)
+				.entity("Coucou " + pseudo)
 				.build();
 		}
 	
 	
-	@Path("changerPseudo")
+/*	@Path("changerPseudo")
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
 public Response changerPseudo(@FormParam("pseudo") String pseudo,
@@ -128,7 +130,7 @@ public Response changerPseudo(@FormParam("pseudo") String pseudo,
 				.entity(netP)
 				.build();
 		}
-	
+*/	
 	@Path("all")
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
