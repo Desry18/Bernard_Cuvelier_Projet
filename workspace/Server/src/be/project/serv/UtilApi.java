@@ -1,5 +1,6 @@
 package be.project.serv;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -26,7 +27,7 @@ import be.projet.pogo.Utilisateur;
 public class UtilApi {
 	
 	
-	@Path("changePseudo")
+	@Path("nouveauUser")
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
 public Response nouveauUtil(
@@ -37,29 +38,30 @@ public Response nouveauUtil(
 		) throws SQLException {
 		
 		Connection conn = null;
-        PreparedStatement statement = null;
-        ResultSet resultado = null;
+		CallableStatement statement = null;
+        /*ResultSet resultado = null;
         String querry ="BEGIN"
         		+ "InsertUtilisateur(?,?,?,?)"
         		+ "END"
-        		+ "/";
+        		+ "/";*/
         SingletonDB dbt= new SingletonDB();
-        Utilisateur netP = null;
+        String ret = null;
         
         try {
             conn = dbt.getConnection();
-            statement = conn.prepareStatement(querry);
+            statement = conn.prepareCall ("begin InsertUtilisateur(?,?,?,?); end;");
             statement.setString(1,email);
             statement.setString(2,nom_util);
             statement.setString(3,pseudo);
             statement.setString(4,mdp);
-            resultado = statement.executeQuery();
-            
-				String emaile = resultado.getString(1);
-				String nom= resultado.getString(2);
-				String pseudo1 = resultado.getString(3);
-				String mdpe = resultado.getString(4);
-				netP= new Utilisateur(pseudo1,mdpe,emaile,nom);
+            statement.execute ();
+           
+            /*statement = conn.prepareStatement(querry);
+            statement.setString(1,email);
+            statement.setString(2,nom_util);
+            statement.setString(3,pseudo);
+            statement.setString(4,mdp);*/
+             ret="Nouvel utilisateur";
 
         }catch (SQLException e) {
 			e.printStackTrace();
@@ -71,17 +73,10 @@ public Response nouveauUtil(
 					e.printStackTrace();
 				}
 			}
-			if( resultado!= null) {
-				try {
-					resultado.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
 		}
 
 		return Response .status(Status.OK)
-				.entity(netP)
+				.entity(ret)
 				.build();
 		}
 	
