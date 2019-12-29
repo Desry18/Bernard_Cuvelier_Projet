@@ -23,7 +23,7 @@ import be.projet.pogo.Utilisateur;
 
 
 @Path("utilisateur")
-public class UtilApi {
+public class UtilApi extends RestApplication{
 	
 	
 	@Path("nouveauUser")
@@ -35,40 +35,8 @@ public Response nouveauUtil(
 		@FormParam("email") String email,
 		@FormParam("mdp") String mdp,
 		@FormParam("nom_util") String nom_util
-		) throws SQLException {
+		) {
 		
-		Connection conn = null;
-		PreparedStatement statement = null;
-        ResultSet resultado = null;
-        String querry ="insert into utilisateur(email, nom_util, pseudo, mdp) " + 
-        		"	values(?,?,?,?)";
-        SingletonDB dbt= new SingletonDB();
-      
-        try {
-        	conn = dbt.getConnection();
-            statement = conn.prepareStatement(querry);
-            
-            statement.setString(1,email);
-            statement.setString(2,nom_util);
-            statement.setString(3,pseudo);
-            statement.setString(4,mdp);
-            resultado = statement.executeQuery();
-            statement.executeUpdate();
-            statement.close();
-          
-            
-
-        }catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			if(statement != null) {
-				try {
-					statement.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-		}
 
 		return Response .status(Status.OK)
 				.build();
