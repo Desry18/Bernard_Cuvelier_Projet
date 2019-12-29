@@ -19,27 +19,38 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 import org.glassfish.jersey.media.multipart.FormDataParam;
 import be.projet.dao.SingletonDB;
+import be.projet.dao.UtilisateurDAO;
 import be.projet.pogo.Utilisateur;
 
 
 @Path("utilisateur")
 public class UtilApi extends RestApplication{
+	private Response rep;
+	private Connection conn;
 	
 	
+	@SuppressWarnings("static-access")
 	@Path("nouveauUser")
 	@POST
-	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 public Response nouveauUtil(
 		@FormParam("pseudo") String pseudo,
 		@FormParam("email") String email,
 		@FormParam("mdp") String mdp,
 		@FormParam("nom_util") String nom_util
-		) {
+		) throws SQLException {
+		SingletonDB dbt = new SingletonDB();
+		conn = dbt.getInstance().getConnection();		
+		Utilisateur util = new Utilisateur();
+		util.setEmail(email);
+		util.setMdp(mdp);
+		util.setNom_util(nom_util);
+		util.setPseudo(pseudo);
 		
-
-		return Response .status(Status.OK)
-				.build();
+		boolean ajout = new UtilisateurDAO(conn).create(util);
+		if(ajout) rep = Response.status(Status.OK).build();
+		else rep = Response.status(Response.Status.BAD_REQUEST).entity(util).build();	
+		return rep;
 		}
 	
 	

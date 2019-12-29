@@ -19,6 +19,10 @@ public class Utilisateur {
 		this.pseudo=pseudo1;
 	}
 
+	public Utilisateur() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public String getPseudo() {
 		return pseudo;
 	}
