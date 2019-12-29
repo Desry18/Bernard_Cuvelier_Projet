@@ -7,7 +7,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.ws.rs.Consumes;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
@@ -17,11 +16,8 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-
 import javax.ws.rs.core.Response.Status;
-
 import org.glassfish.jersey.media.multipart.FormDataParam;
-
 import be.projet.dao.SingletonDB;
 import be.projet.pogo.Utilisateur;
 
@@ -35,10 +31,10 @@ public class UtilApi {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 public Response nouveauUtil(
-		@FormDataParam("pseudo") String pseudo,
-		@FormDataParam("email") String email,
-		@FormDataParam("mdp") String mdp,
-		@FormDataParam("nom_util") String nom_util
+		@FormParam("pseudo") String pseudo,
+		@FormParam("email") String email,
+		@FormParam("mdp") String mdp,
+		@FormParam("nom_util") String nom_util
 		) throws SQLException {
 		
 		Connection conn = null;
@@ -56,7 +52,9 @@ public Response nouveauUtil(
             statement.setString(2,nom_util);
             statement.setString(3,pseudo);
             statement.setString(4,mdp);
-           resultado = statement.executeQuery();
+            resultado = statement.executeQuery();
+            statement.executeUpdate();
+            statement.close();
           
             
 
@@ -72,7 +70,7 @@ public Response nouveauUtil(
 			}
 		}
 
-		return Response .status(200)
+		return Response .status(Status.OK)
 				.build();
 		}
 	
