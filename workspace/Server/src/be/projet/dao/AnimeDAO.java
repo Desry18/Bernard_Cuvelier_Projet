@@ -86,12 +86,12 @@ public class AnimeDAO extends DAO<Anime>{
 	}
 
 	@Override
-	public Anime find(String l) {
+	public List<Anime> find(String l) {
 		// TODO Auto-generated method stub
 		PreparedStatement statement = null;
 	    ResultSet resultado = null;
-	    Anime an = new Anime();
-	    String query = "SELECT titre_anime, studio_anime, nbr_episode, id_anime FROM anime WHERE titre_anime LIKE ? + '%'";
+	    List<Anime> listeAnime= new ArrayList<>();
+	    String query = "SELECT titre_anime, studio_anime, nbr_episode, id_anime FROM anime WHERE titre_anime LIKE CONCAT(?, '%')";
 	        try {
 	            statement = connect.prepareStatement(query);	             
 	            statement.setString(1, l);
@@ -102,10 +102,12 @@ public class AnimeDAO extends DAO<Anime>{
 					int nbr_e = resultado.getInt(3);
 					int id = resultado.getInt(4);
 					
+					Anime an = new Anime();
 					an.setId_anime(id);
-					an.setTritre_anime(titre);
+					an.setTitre_anime(titre);
 					an.setStudio_anime(studio);
-					an.setNbr_episode(nbr_e);					
+					an.setNbr_episode(nbr_e);	
+					listeAnime.add(an);
 					
 
 	            }		// TODO Auto-generated method stub
@@ -131,7 +133,7 @@ public class AnimeDAO extends DAO<Anime>{
 				}
 			}
 		
-		return an;
+		return listeAnime;
 	}
 	
 	

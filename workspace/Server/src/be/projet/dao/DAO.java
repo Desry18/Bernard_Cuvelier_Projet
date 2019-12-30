@@ -21,6 +21,6 @@ import java.util.List;
 	  public abstract List<O> getAll();
 	  
 	  public abstract O find(int id);
-	  public abstract O find(String l);
+	  public abstract List<O> find(String l);
 
 	}

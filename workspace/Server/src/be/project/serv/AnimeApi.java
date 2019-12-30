@@ -43,10 +43,10 @@ public class AnimeApi {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		Anime an = new AnimeDAO(conn).find(l);
+		List<Anime> list = new AnimeDAO(conn).find(l);
        
-        if (an != null)
-        	rep = Response .status(Response.Status.OK).entity(an).build();
+        if (list != null)
+        	rep = Response .status(Response.Status.OK).entity(list).build();
         else
         	rep = Response .status(Response.Status.NO_CONTENT).entity(null).build();
         return rep;

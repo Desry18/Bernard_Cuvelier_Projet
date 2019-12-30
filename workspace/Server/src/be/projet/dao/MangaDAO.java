@@ -90,12 +90,12 @@ public class MangaDAO extends DAO<Manga>{
 	}
 
 	@Override
-	public Manga find(String l) {
+	public List<Manga> find(String l) {
 			// TODO Auto-generated method stub
 			PreparedStatement statement = null;
 		    ResultSet resultado = null;
-		    Manga ma = new Manga();
-		    String query = "SELECT titre_manga, editeur_manga, nbr_tome, id_manga FROM manga WHERE titre_manga LIKE ? + '%'";
+	    	List<Manga> listeManga = new ArrayList<>();     
+		    String query = "SELECT titre_manga, editeur_manga, nbr_tome, id_manga FROM manga WHERE titre_manga LIKE CONCAT(?, '%')";
 		        try {
 		            statement = connect.prepareStatement(query);	             
 		            statement.setString(1, l);
@@ -106,10 +106,12 @@ public class MangaDAO extends DAO<Manga>{
 						int nbr_t = resultado.getInt(3);
 						int id = resultado.getInt(4);
 						
+					    Manga ma = new Manga();
 						ma.setId_manga(id);
 						ma.setTitre_manga(titre);
 						ma.setEdit_manga(edit);
-						ma.setNbr_tome(nbr_t);					
+						ma.setNbr_tome(nbr_t);
+						listeManga.add(ma);
 						
 
 		            }		// TODO Auto-generated method stub
@@ -135,6 +137,6 @@ public class MangaDAO extends DAO<Manga>{
 					}
 				}
 			
-			return ma;
+			return listeManga;
 		}
 	}

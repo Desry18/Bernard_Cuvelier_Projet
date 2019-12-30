@@ -22,10 +22,10 @@ public class Anime {
 		// TODO Auto-generated constructor stub
 	}
 
-	public String getTritre_anime() {
+	public String getTitre_anime() {
 		return titre_anime;
 	}
-	public void setTritre_anime(String tritre_anime) {
+	public void setTitre_anime(String tritre_anime) {
 		this.titre_anime = tritre_anime;
 	}
 	public String getStudio_anime() {

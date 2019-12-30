@@ -83,7 +83,7 @@ public class GenreDAO extends DAO<Genre> {
 	}
 
 	@Override
-	public Genre find(String l) {
+	public List<Genre> find(String l) {
 		// TODO Auto-generated method stub
 		return null;
 	}

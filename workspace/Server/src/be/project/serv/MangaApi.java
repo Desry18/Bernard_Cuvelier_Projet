@@ -2,6 +2,8 @@ package be.project.serv;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.List;
+
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -34,10 +36,10 @@ public class MangaApi {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		Manga ma = new MangaDAO(conn).find(l);
+		List<Manga> list = new MangaDAO(conn).find(l);
        
-        if (ma != null)
-        	rep = Response .status(Response.Status.OK).entity(ma).build();
+        if (list != null)
+        	rep = Response .status(Response.Status.OK).entity(list).build();
         else
         	rep = Response .status(Response.Status.NO_CONTENT).entity(null).build();
         return rep;

@@ -168,7 +168,7 @@ public class UtilisateurDAO extends DAO<Utilisateur> {
 		}
 
 	@Override
-	public Utilisateur find(String l) {
+	public List<Utilisateur> find(String l) {
 		// TODO Auto-generated method stub
 		return null;
 	}
