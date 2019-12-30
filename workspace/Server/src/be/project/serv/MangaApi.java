@@ -1,26 +1,14 @@
 package be.project.serv;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
-import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-
-import javax.ws.rs.core.Response.Status;
-
 import be.projet.dao.ConnectDB;
 import be.projet.dao.MangaDAO;
-import be.projet.pojo.Manga;
 
 
 @Path("manga")

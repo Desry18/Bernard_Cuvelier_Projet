@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import be.projet.pojo.Utilisateur;
+import oracle.jdbc.OracleTypes;
 
 public class UtilisateurDAO extends DAO<Utilisateur> {
 	public UtilisateurDAO(Connection conn)
@@ -21,17 +22,17 @@ public class UtilisateurDAO extends DAO<Utilisateur> {
 	public boolean create(Utilisateur util)	
 	{
 		
-		String query = "insert into utilisateur(id, email, nom_util, pseudo, mdp) ";
+		//String query = "insert into utilisateur(email, nom_util, pseudo, mdp) ";
 		PreparedStatement stmt;
+		String query = "INSERT INTO utilisateur (id_util, email, nom_util, pseudo, mdp) VALUES (utilisateur_seq.NEXTVAL, ?, ? ,? ,?)" ;
 		try {
 		stmt = connect.prepareStatement(query);
-		
-		stmt.setInt(1,util.getId());
-		stmt.setString(2,util.getEmail());
-        stmt.setString(3,util.getNom_util());
-        stmt.setString(4,util.getPseudo());
-        stmt.setString(5,util.getMdp());
+		stmt.setString(1,util.getEmail());
+        stmt.setString(2,util.getNom_util());
+        stmt.setString(3,util.getPseudo());
+        stmt.setString(4,util.getMdp());
         stmt.execute();
+        
         return true;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -51,7 +52,7 @@ public class UtilisateurDAO extends DAO<Utilisateur> {
 		CallableStatement statement = null;
 		try {
 			statement = connect.prepareCall("{call updatePseudo(?, ?}");
-			statement.setInt(1, obj.getId());
+			statement.setInt(1, obj.getId_util());
 			statement.setString(2, obj.getPseudo());
 			statement.executeUpdate();
 			
@@ -78,7 +79,7 @@ public class UtilisateurDAO extends DAO<Utilisateur> {
 		//Connection conn = null;
         PreparedStatement statement = null;
         ResultSet resultado = null;
-        String querry = "SELECT email, pseudo, nom_util, mdp FROM utilisateur";
+        String querry = "SELECT email, pseudo, nom_util, mdp, id_util FROM utilisateur";
     	List<Utilisateur> listeUtil = new ArrayList<>();       
         try {
             statement = connect.prepareStatement(querry);
@@ -90,8 +91,9 @@ public class UtilisateurDAO extends DAO<Utilisateur> {
 				String pseudo = resultado.getString(2);
 				String mdp = resultado.getString(4);
 				String nom = resultado.getString(3);
+				int id = resultado.getInt(5);
 				
-				listeUtil.add(new Utilisateur(pseudo, nom, mdp, email));
+				listeUtil.add(new Utilisateur(pseudo, nom, mdp, email, id));
 
         }
         }

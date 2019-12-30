@@ -27,7 +27,6 @@ public class UtilApi extends RestApplication{
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
 public Response nouveauUtil(
-		@FormParam("Id") int Id,
 		@FormParam("pseudo") String pseudo,
 		@FormParam("email") String email,
 		@FormParam("mdp") String mdp,
@@ -40,7 +39,6 @@ public Response nouveauUtil(
 				e.printStackTrace();
 			}
 			Utilisateur util = new Utilisateur();
-			util.setId(Id);
 			util.setEmail(email);
 			util.setMdp(mdp);
 			util.setNom_util(nom_util);
@@ -66,7 +64,7 @@ public Response nouveauUtil(
 			e.printStackTrace();
 		}
 		Utilisateur util = new Utilisateur();
-		util.setId(id_util);
+		util.setId_util(id_util);
         util.setPseudo(pseudo);
         boolean modif = new UtilisateurDAO(conn).update(util);
         if (modif)

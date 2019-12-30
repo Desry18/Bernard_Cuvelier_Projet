@@ -32,8 +32,11 @@ public class MangaDAO extends DAO<Manga>{
 				String edit = resultado.getString(2);
 				int nbr_t = resultado.getInt(3);
 				
-				
-				listeManga.add(new Manga(titre, edit, nbr_t));
+				Manga m = new Manga();
+				m.setTitre_manga(titre);
+				m.setEdit_manga(edit);
+				m.setNbr_tome(nbr_t);
+				listeManga.add(m);
 
         }
         }

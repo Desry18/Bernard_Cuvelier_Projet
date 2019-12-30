@@ -6,7 +6,15 @@ public class Utilisateur {
 	private String nom_util;
 	private String mdp;
 	private String email;
-	private int Id;
+	private int id_util;
+	
+	public Utilisateur(String p, String nom, String motdp, String mail, int id2) {
+		this.pseudo = p;
+		this.nom_util = nom;
+		this.mdp = motdp;
+		this.email = mail;
+		this.setId_util(id2);
+	}
 	
 	public Utilisateur(String p, String nom, String motdp, String mail) {
 		this.pseudo = p;
@@ -49,12 +57,12 @@ public class Utilisateur {
 		this.email = email;
 	}
 
-	public int getId() {
-		return Id;
+	public int getId_util() {
+		return id_util;
 	}
 
-	public void setId(int id) {
-		Id = id;
+	public void setId_util(int id_util) {
+		this.id_util = id_util;
 	}
 	
 
