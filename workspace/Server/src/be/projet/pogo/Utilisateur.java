@@ -6,7 +6,6 @@ public class Utilisateur {
 	private String nom_util;
 	private String mdp;
 	private String email;
-	private int Id;
 	
 	public Utilisateur(String p, String nom, String motdp, String mail) {
 		this.pseudo = p;
@@ -18,10 +17,6 @@ public class Utilisateur {
 	public Utilisateur(String pseudo1) {
 		// TODO Auto-generated constructor stub
 		this.pseudo=pseudo1;
-	}
-
-	public Utilisateur() {
-		// TODO Auto-generated constructor stub
 	}
 
 	public String getPseudo() {
@@ -47,14 +42,6 @@ public class Utilisateur {
 	}
 	public void setEmail(String email) {
 		this.email = email;
-	}
-
-	public int getId() {
-		return Id;
-	}
-
-	public void setId(int id) {
-		Id = id;
 	}
 	
 

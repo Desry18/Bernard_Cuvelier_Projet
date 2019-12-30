@@ -1,95 +1,180 @@
 package be.project.serv;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.ws.rs.Consumes;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
-import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+
 import javax.ws.rs.core.Response.Status;
-import be.projet.dao.ConnectDB;
-import be.projet.dao.UtilisateurDAO;
+
+import org.glassfish.jersey.media.multipart.FormDataParam;
+
+import be.projet.dao.SingletonDB;
 import be.projet.pogo.Utilisateur;
 
 
 @Path("utilisateur")
-public class UtilApi extends RestApplication{
-	private Response rep;
-	private Connection conn;
+public class UtilApi {
 	
 	
-	@Path("nouvelUtilisateur")
+	@Path("nouveauUser")
 	@POST
+	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 public Response nouveauUtil(
-		@FormParam("Id") int Id,
-		@FormParam("pseudo") String pseudo,
-		@FormParam("email") String email,
-		@FormParam("mdp") String mdp,
-		@FormParam("nom_util") String nom_util
-		) {
-			try {
-				conn = ConnectDB.getInstance().getConnection();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+		@FormDataParam("pseudo") String pseudo,
+		@FormDataParam("email") String email,
+		@FormDataParam("mdp") String mdp,
+		@FormDataParam("nom_util") String nom_util
+		) throws SQLException {
+		
+		Connection conn = null;
+		PreparedStatement statement = null;
+        ResultSet resultado = null;
+        String querry ="insert into utilisateur(email, nom_util, pseudo, mdp) " + 
+        		"	values(?,?,?,?)";
+        SingletonDB dbt= new SingletonDB();
+      
+        try {
+        	conn = dbt.getConnection();
+            statement = conn.prepareStatement(querry);
+            
+            statement.setString(1,email);
+            statement.setString(2,nom_util);
+            statement.setString(3,pseudo);
+            statement.setString(4,mdp);
+            statement.executeUpdate();
+          
+            
+
+        }catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if(statement != null) {
+				try {
+					statement.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
 			}
-			Utilisateur util = new Utilisateur();
-			util.setId(Id);
-			util.setEmail(email);
-			util.setMdp(mdp);
-			util.setNom_util(nom_util);
-			util.setPseudo(pseudo);		
-			boolean ajout = new UtilisateurDAO(conn).create(util);
-			if(ajout) rep = Response.status(Status.OK).build();
-			else rep = Response.status(Response.Status.BAD_REQUEST).entity(util).build();	
-			return rep;
+		}
+
+		return Response .status(200)
+				.build();
 		}
 	
-
-	@Path("changerPseudo")
-	@PUT
+	
+/*	@Path("changerPseudo")
+	@POST
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response changerPseudo(
-		@FormParam("pseudo") String pseudo,
-		@FormParam("id") int id_util) {
+public Response changerPseudo(@FormParam("pseudo") String pseudo,
+		@QueryParam("id_util") int id_util) throws SQLException {
 		
+		Connection conn = null;
+        PreparedStatement statement = null;
+        ResultSet resultado = null;
+        String querry ="BEGIN"
+        		+ "updatePseudo(id_util,pseudo)"
+        		+ "END"
+        		+ "/";
+        SingletonDB dbt= new SingletonDB();
+        Utilisateur netP = null;
+        
         try {
-			conn = ConnectDB.getInstance().getConnection();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+            conn = dbt.getConnection();
+            statement = conn.prepareStatement(querry);
+            resultado = statement.executeQuery();
+            
+				String pseudo1 = resultado.getString(1);
+				netP= new Utilisateur(pseudo1);
+
+        }catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			if(statement != null) {
+				try {
+					statement.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if( resultado!= null) {
+				try {
+					resultado.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
 		}
-		Utilisateur util = new Utilisateur();
-		util.setId(id_util);
-        util.setPseudo(pseudo);
-        boolean modif = new UtilisateurDAO(conn).update(util);
-        if (modif)
-        	rep = Response .status(Response.Status.OK).entity(true).build();
-        else
-        	rep = Response .status(Response.Status.BAD_REQUEST).entity(null).build();
-        return rep;
-	}
 
- 
-
-	@Path("getAll")
+		return Response .status(Status.OK)
+				.entity(netP)
+				.build();
+		}
+*/	
+	@Path("all")
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response getAllUtilJson() {
-		try {
-			conn = ConnectDB.getInstance().getConnection();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+	public Response getAllUtilJson() throws SQLException {
+		
+		Connection conn = null;
+        PreparedStatement statement = null;
+        ResultSet resultado = null;
+        String querry = "SELECT email, pseudo, nom_util, mdp FROM utilisateur";
+    	List<Utilisateur> listeUtil = new ArrayList<>();
+        SingletonDB dbt= new SingletonDB();
+        
+        try {
+            conn = dbt.getConnection();
+            statement = conn.prepareStatement(querry);
+            resultado = statement.executeQuery();
+            
+            
+            while (resultado.next()) {
+				String email = resultado.getString(1);
+				String pseudo = resultado.getString(2);
+				String mdp = resultado.getString(4);
+				String nom = resultado.getString(3);
+				
+				listeUtil.add(new Utilisateur(pseudo, nom, mdp, email));
+
+        }
+        }catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			if(statement != null) {
+				try {
+					statement.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if( resultado!= null) {
+				try {
+					resultado.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
 		}
-		rep = Response.status(Response.Status.OK).entity(new UtilisateurDAO(conn).getAll()).build();
-		return rep;
+		
+        
+		return Response .status(Status.OK)
+				.entity(listeUtil)
+				.build();
 		}
 	}
 
