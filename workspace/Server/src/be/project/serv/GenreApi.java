@@ -66,6 +66,11 @@ public class GenreApi {
 		
         
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+	
+
+>>>>>>> parent of 1f08b0f... FullDAO
 =======
 	
 

@@ -26,6 +26,10 @@ import be.projet.pogo.Manga;
 public class MangaApi {
 	
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+	
+>>>>>>> parent of 1f08b0f... FullDAO
 =======
 	
 >>>>>>> parent of 1f08b0f... FullDAO

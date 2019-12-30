@@ -8,7 +8,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
+=======
+>>>>>>> parent of 1f08b0f... FullDAO
 =======
 >>>>>>> parent of 1f08b0f... FullDAO
 import javax.ws.rs.Consumes;
@@ -23,11 +26,14 @@ import javax.ws.rs.core.Response;
 
 import javax.ws.rs.core.Response.Status;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 import org.glassfish.jersey.media.multipart.FormDataParam;
 
 import be.projet.dao.SingletonDB;
 =======
+=======
+>>>>>>> parent of 1f08b0f... FullDAO
 import org.glassfish.jersey.media.multipart.FormDataParam;
 import be.projet.dao.SingletonDB;
 import be.projet.dao.UtilisateurDAO;
@@ -40,6 +46,10 @@ public class UtilApi {
 	
 	
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+	@SuppressWarnings("static-access")
+>>>>>>> parent of 1f08b0f... FullDAO
 =======
 	@SuppressWarnings("static-access")
 >>>>>>> parent of 1f08b0f... FullDAO
@@ -48,6 +58,7 @@ public class UtilApi {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 public Response nouveauUtil(
+<<<<<<< HEAD
 <<<<<<< HEAD
 		@FormDataParam("pseudo") String pseudo,
 		@FormDataParam("email") String email,
@@ -90,6 +101,8 @@ public Response nouveauUtil(
 				.build();
 		}
 =======
+=======
+>>>>>>> parent of 1f08b0f... FullDAO
 		@FormParam("pseudo") String pseudo,
 		@FormParam("email") String email,
 		@FormParam("mdp") String mdp,
