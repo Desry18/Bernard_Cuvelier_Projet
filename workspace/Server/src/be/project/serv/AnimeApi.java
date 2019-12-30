@@ -17,14 +17,18 @@ import javax.ws.rs.core.Response;
 
 import javax.ws.rs.core.Response.Status;
 
-import be.projet.dao.SingletonDB;
+import be.projet.dao.AnimeDAO;
+import be.projet.dao.ConnectDB;
+import be.projet.dao.MangaDAO;
 import be.projet.pogo.Anime;
 import be.projet.pogo.Manga;
 
 
 @Path("anime")
 public class AnimeApi {
-	
+	private Response rep;
+	private Connection conn;
+/*
 	@Path("find")
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
@@ -38,7 +42,7 @@ public Response findAnime(@QueryParam("let") String let) throws SQLException {
         		+ "END"
         		+ "/";
     	List<Anime> listanime = new ArrayList<>();
-        SingletonDB dbt= new SingletonDB();
+        ConnectDB dbt= new ConnectDB();
         
         try {
             conn = dbt.getConnection();
@@ -77,59 +81,20 @@ public Response findAnime(@QueryParam("let") String let) throws SQLException {
 				.entity(listanime)
 				.build();
 		}
-	
-	@Path("all")
+*/
+	@Path("getAll")
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response getAllAnimeJson() throws SQLException {
-		
-		Connection conn = null;
-        PreparedStatement statement = null;
-        ResultSet resultado = null;
-        String querry = "SELECT titre_anime, studio_anime, nbr_episode FROM anime";
-    	List<Anime> listeAnime = new ArrayList<>();
-        SingletonDB dbt= new SingletonDB();
-        
-        try {
-            conn = dbt.getConnection();
-            statement = conn.prepareStatement(querry);
-            resultado = statement.executeQuery();
-            
-            
-            while (resultado.next()) {
-				String titre_anime = resultado.getString(1);
-				String studio_anime = resultado.getString(2);
-				int nbr_ep = resultado.getInt(3);
-				
-				listeAnime.add(new Anime(titre_anime, studio_anime, nbr_ep));
-
-        }
-        }catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			if(statement != null) {
-				try {
-					statement.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-			if( resultado!= null) {
-				try {
-					resultado.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-		}
-		
-        
-	
-
-		return Response .status(Status.OK)
-				.entity(listeAnime)
-				.build();
-		}
+	public Response getAllMangaJson() {
+	try {
+		conn = ConnectDB.getInstance().getConnection();
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	rep = Response.status(Response.Status.OK).entity(new AnimeDAO(conn).getAll()).build();
+	return rep;
+	}
 	}
 
 
