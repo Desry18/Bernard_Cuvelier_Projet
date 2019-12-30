@@ -51,9 +51,8 @@ public class UtilisateurDAO extends DAO<Utilisateur> {
 	public boolean update(Utilisateur obj) {
 		CallableStatement statement = null;
 		try {
-			statement = connect.prepareCall("{call updatePseudo(?, ?}");
-			statement.setInt(1, obj.getId_util());
-			statement.setString(2, obj.getPseudo());
+			statement = connect.prepareCall("SELECT id_util, pseudo FROM utilisateur WHERE id_Util = ?");
+			statement.setString(1, obj.getPseudo());
 			statement.executeUpdate();
 			
 		} catch (SQLException e) {
@@ -118,4 +117,53 @@ public class UtilisateurDAO extends DAO<Utilisateur> {
 		}
 		return listeUtil;
 	}
-}
+
+	@Override
+	public Utilisateur find(int id) {
+	        PreparedStatement statement = null;
+	        ResultSet resultado = null;
+			Utilisateur util = new Utilisateur();
+
+	        String query = "SELECT email, pseudo, nom_util, mdp, id_util FROM utilisateur WHERE id_util = ?";
+	        try {
+	            statement = connect.prepareStatement(query);
+	            resultado = statement.executeQuery();        
+	            
+	            while (resultado.next()) {
+					String email = resultado.getString(1);
+					String pseudo = resultado.getString(2);
+					String mdp = resultado.getString(4);
+					String nom = resultado.getString(3);
+					int id1 = resultado.getInt(5);					
+					util.setEmail(email);
+					util.setPseudo(pseudo);
+					util.setMdp(mdp);
+					util.setNom_util(nom);
+					util.setId_util(id1);
+					
+					
+
+	            }		// TODO Auto-generated method stub
+	        }
+	        catch (SQLException e) {
+				e.printStackTrace();
+			}
+	        finally {
+				if(statement != null) {
+					try {
+						statement.close();
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}
+				}
+				if( resultado!= null) {
+					try {
+						resultado.close();
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}
+				}
+			}
+			return util;
+		}
+	}

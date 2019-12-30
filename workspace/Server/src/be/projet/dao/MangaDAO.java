@@ -20,7 +20,7 @@ public class MangaDAO extends DAO<Manga>{
 		//Connection conn = null;
         PreparedStatement statement = null;
         ResultSet resultado = null;
-        String querry = "SELECT titre_manga, editeur_manga, nbr_tome FROM manga";
+        String querry = "SELECT titre_manga, editeur_manga, nbr_tome, id_manga FROM manga";
     	List<Manga> listeManga = new ArrayList<>();       
         try {
             statement = connect.prepareStatement(querry);
@@ -31,11 +31,13 @@ public class MangaDAO extends DAO<Manga>{
 				String titre = resultado.getString(1);
 				String edit = resultado.getString(2);
 				int nbr_t = resultado.getInt(3);
+				int id = resultado.getInt(4);
 				
 				Manga m = new Manga();
 				m.setTitre_manga(titre);
 				m.setEdit_manga(edit);
 				m.setNbr_tome(nbr_t);
+				m.setId_manga(id);
 				listeManga.add(m);
 
         }

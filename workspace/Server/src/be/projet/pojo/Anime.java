@@ -8,11 +8,13 @@ public class Anime {
 	private Date date_sortie_anime;
 	private int nbr_episode;
 	private int note_anime;
+	private int id_anime;
 	
-	public Anime(String t_anime,String stud, int nbr_e) {
+	public Anime(String t_anime,String stud, int nbr_e, int id) {
 		this.titre_anime = t_anime;
 		this.studio_anime = stud;
 		this.nbr_episode = nbr_e;
+		this.id_anime = id;
 		
 	}
 	
@@ -45,6 +47,14 @@ public class Anime {
 	}
 	public void setNote_anime(int note_anime) {
 		this.note_anime = note_anime;
+	}
+
+	public int getId_anime() {
+		return id_anime;
+	}
+
+	public void setId_anime(int id_anime) {
+		this.id_anime = id_anime;
 	}
 	
 	

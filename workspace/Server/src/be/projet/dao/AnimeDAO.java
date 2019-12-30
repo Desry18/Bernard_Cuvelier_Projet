@@ -21,7 +21,7 @@ public class AnimeDAO extends DAO<Anime>{
 		//Connection conn = null;
         PreparedStatement statement = null;
         ResultSet resultado = null;
-        String querry = "SELECT titre_anime, studio_anime, nbr_episode FROM anime";
+        String querry = "SELECT titre_anime, studio_anime, nbr_episode, id_anime FROM anime";
     	List<Anime> listeAnime = new ArrayList<>();       
         try {
             statement = connect.prepareStatement(querry);
@@ -32,9 +32,9 @@ public class AnimeDAO extends DAO<Anime>{
 				String titre = resultado.getString(1);
 				String stud = resultado.getString(2);
 				int nbr_e = resultado.getInt(3);
+				int id = resultado.getInt(4);				
 				
-				
-				listeAnime.add(new Anime(titre, stud, nbr_e));
+				listeAnime.add(new Anime(titre, stud, nbr_e, id));
 
         }
         }

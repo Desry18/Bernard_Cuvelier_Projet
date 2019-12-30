@@ -37,21 +37,20 @@ public class GenreDAO extends DAO<Genre> {
 	@Override
 	public List<Genre> getAll() {
 		
-		//Connection conn = null;
         PreparedStatement statement = null;
         ResultSet resultado = null;
-        String querry = "SELECT libel_genre FROM genre";
+        String query = "SELECT id_util, libel_genre FROM genre";
     	List<Genre> listeGenre = new ArrayList<>();       
         try {
-            statement = connect.prepareStatement(querry);
+            statement = connect.prepareStatement(query);
             resultado = statement.executeQuery();
             
             
             while (resultado.next()) {
 				String lbl = resultado.getString(1);
+				int id = resultado.getInt(2);
 				
-				
-				listeGenre.add(new Genre(lbl));
+				listeGenre.add(new Genre(lbl, id));
 
         }
         }

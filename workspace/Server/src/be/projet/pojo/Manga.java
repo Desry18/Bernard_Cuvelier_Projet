@@ -8,6 +8,7 @@ public class Manga {
 	private Date date_parution;
 	private int nbr_tome;
 	private int note_manga;
+	private int id_manga;
 	
 	public Manga() {}
 	
@@ -47,6 +48,14 @@ public class Manga {
 	}
 	public void setNote_manga(int note_manga) {
 		this.note_manga = note_manga;
+	}
+
+	public int getId_manga() {
+		return id_manga;
+	}
+
+	public void setId_manga(int id_manga) {
+		this.id_manga = id_manga;
 	}
 	
 	

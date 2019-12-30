@@ -19,4 +19,6 @@ import java.util.List;
 	  //public abstract T find(int id);
 
 	  public abstract List<O> getAll();
+	  
+	  public abstract O find(int id);
 	}
