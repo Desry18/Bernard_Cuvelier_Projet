@@ -65,8 +65,6 @@ public class GenreApi {
 		}
 		
         
-	
-
 		return Response .status(Status.OK)
 				.entity(listeGenre)
 				.build();

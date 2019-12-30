@@ -56,7 +56,7 @@ public Response nouveauUtil(
             statement.setString(2,nom_util);
             statement.setString(3,pseudo);
             statement.setString(4,mdp);
-           resultado = statement.executeQuery();
+            statement.executeUpdate();
           
             
 

@@ -25,7 +25,6 @@ import be.projet.pogo.Manga;
 @Path("manga")
 public class MangaApi {
 	
-	
 	@Path("find")
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
