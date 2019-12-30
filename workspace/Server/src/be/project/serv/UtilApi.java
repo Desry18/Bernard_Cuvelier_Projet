@@ -2,13 +2,13 @@ package be.project.serv;
 
 import java.sql.Connection;
 import java.sql.SQLException;
-
 import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
@@ -50,12 +50,11 @@ public Response nouveauUtil(
 		}
 	
 
-	@Path("changerPseudo")
-	@PUT
+	@Path("recupUtil")
+	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response changerPseudo(
-		@FormParam("pseudo") String pseudo,
-		@FormParam("id") int id_util) {
+	public Response recupUtilById(
+		@QueryParam("id") int id_util) {
 		
         try {
 			conn = ConnectDB.getInstance().getConnection();
@@ -63,14 +62,12 @@ public Response nouveauUtil(
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		Utilisateur util = new Utilisateur();
-		util.setId_util(id_util);
-        util.setPseudo(pseudo);
-        boolean modif = new UtilisateurDAO(conn).update(util);
-        if (modif)
-        	rep = Response .status(Response.Status.OK).entity(true).build();
+		Utilisateur util = new UtilisateurDAO(conn).find(id_util);
+       
+        if (util != null)
+        	rep = Response .status(Response.Status.OK).entity(util).build();
         else
-        	rep = Response .status(Response.Status.BAD_REQUEST).entity(null).build();
+        	rep = Response .status(Response.Status.NO_CONTENT).entity(null).build();
         return rep;
 	}
 

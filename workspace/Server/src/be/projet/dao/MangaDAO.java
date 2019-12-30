@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import be.projet.pojo.Anime;
 import be.projet.pojo.Manga;
 
 public class MangaDAO extends DAO<Manga>{	
@@ -81,4 +82,59 @@ public class MangaDAO extends DAO<Manga>{
 		// TODO Auto-generated method stub
 		return false;
 	}
-}
+
+	@Override
+	public Manga find(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Manga find(String l) {
+			// TODO Auto-generated method stub
+			PreparedStatement statement = null;
+		    ResultSet resultado = null;
+		    Manga ma = new Manga();
+		    String query = "SELECT titre_manga, editeur_manga, nbr_tome, id_manga FROM manga WHERE titre_manga LIKE ? + '%'";
+		        try {
+		            statement = connect.prepareStatement(query);	             
+		            statement.setString(1, l);
+		            resultado = statement.executeQuery(); 
+		            while (resultado.next()) {
+						String titre = resultado.getString(1);
+						String edit = resultado.getString(2);
+						int nbr_t = resultado.getInt(3);
+						int id = resultado.getInt(4);
+						
+						ma.setId_manga(id);
+						ma.setTitre_manga(titre);
+						ma.setEdit_manga(edit);
+						ma.setNbr_tome(nbr_t);					
+						
+
+		            }		// TODO Auto-generated method stub
+		        }
+		        catch (SQLException e) {
+					e.printStackTrace();
+					
+				}
+		        finally {
+					if(statement != null) {
+						try {
+							statement.close();
+						} catch (SQLException e) {
+							e.printStackTrace();
+						}
+					}
+					if( resultado!= null) {
+						try {
+							resultado.close();
+						} catch (SQLException e) {
+							e.printStackTrace();
+						}
+					}
+				}
+			
+			return ma;
+		}
+	}

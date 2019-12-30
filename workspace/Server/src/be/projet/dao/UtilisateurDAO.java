@@ -126,20 +126,19 @@ public class UtilisateurDAO extends DAO<Utilisateur> {
 
 	        String query = "SELECT email, pseudo, nom_util, mdp, id_util FROM utilisateur WHERE id_util = ?";
 	        try {
-	            statement = connect.prepareStatement(query);
-	            resultado = statement.executeQuery();        
-	            
+	            statement = connect.prepareStatement(query);	             
+	            statement.setInt(1, id);
+	            resultado = statement.executeQuery(); 
 	            while (resultado.next()) {
 					String email = resultado.getString(1);
 					String pseudo = resultado.getString(2);
 					String mdp = resultado.getString(4);
 					String nom = resultado.getString(3);
-					int id1 = resultado.getInt(5);					
 					util.setEmail(email);
 					util.setPseudo(pseudo);
 					util.setMdp(mdp);
 					util.setNom_util(nom);
-					util.setId_util(id1);
+					util.setId_util(id);
 					
 					
 
@@ -147,6 +146,7 @@ public class UtilisateurDAO extends DAO<Utilisateur> {
 	        }
 	        catch (SQLException e) {
 				e.printStackTrace();
+				
 			}
 	        finally {
 				if(statement != null) {
@@ -166,4 +166,10 @@ public class UtilisateurDAO extends DAO<Utilisateur> {
 			}
 			return util;
 		}
+
+	@Override
+	public Utilisateur find(String l) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	}

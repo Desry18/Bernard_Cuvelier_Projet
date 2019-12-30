@@ -18,6 +18,10 @@ public class Anime {
 		
 	}
 	
+	public Anime() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public String getTritre_anime() {
 		return titre_anime;
 	}

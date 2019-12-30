@@ -20,66 +20,38 @@ import javax.ws.rs.core.Response.Status;
 import be.projet.dao.AnimeDAO;
 import be.projet.dao.ConnectDB;
 import be.projet.dao.MangaDAO;
+import be.projet.dao.UtilisateurDAO;
 import be.projet.pojo.Anime;
 import be.projet.pojo.Manga;
+import be.projet.pojo.Utilisateur;
 
 
 @Path("anime")
 public class AnimeApi {
 	private Response rep;
 	private Connection conn;
-/*
-	@Path("find")
-	@POST
+
+	@Path("recupAnimeByTitre")
+	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-public Response findAnime(@QueryParam("let") String let) throws SQLException {
+	public Response recupAnimeByTitre(
+		@QueryParam("lettre") String l) {
 		
-		Connection conn = null;
-        PreparedStatement statement = null;
-        ResultSet resultado = null;
-        String querry ="BEGING"
-        		+ "trouveranime.afficher_anime(let)"
-        		+ "END"
-        		+ "/";
-    	List<Anime> listanime = new ArrayList<>();
-        ConnectDB dbt= new ConnectDB();
-        
         try {
-            conn = dbt.getConnection();
-            statement = conn.prepareStatement(querry);
-            resultado = statement.executeQuery();
-            
-            
-            while (resultado.next()) {
-				String titre_anime = resultado.getString(1);
-				String studio_anime = resultado.getString(2);
-				int nbr_episode = resultado.getInt(3);
-				
-				listanime.add(new Anime(titre_anime, studio_anime, nbr_episode));
-        }
-        }catch (SQLException e) {
+			conn = ConnectDB.getInstance().getConnection();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} finally {
-			if(statement != null) {
-				try {
-					statement.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-			if( resultado!= null) {
-				try {
-					resultado.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
 		}
-		return Response .status(Status.OK)
-				.entity(listanime)
-				.build();
-		}
-*/
+		Anime an = new AnimeDAO(conn).find(l);
+       
+        if (an != null)
+        	rep = Response .status(Response.Status.OK).entity(an).build();
+        else
+        	rep = Response .status(Response.Status.NO_CONTENT).entity(null).build();
+        return rep;
+	}
+
 	@Path("getAll")
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
