@@ -50,9 +50,11 @@ public class UtilisateurDAO extends DAO<Utilisateur> {
 	@Override
 	public boolean update(Utilisateur obj) {
 		CallableStatement statement = null;
+		String query = "UPDATE utilisateur SET pseudo = ? WHERE id_util = ?";
 		try {
-			statement = connect.prepareCall("SELECT id_util, pseudo FROM utilisateur WHERE id_Util = ?");
+			statement = connect.prepareCall(query);
 			statement.setString(1, obj.getPseudo());
+			statement.setInt(2, obj.getId_util());
 			statement.executeUpdate();
 			
 		} catch (SQLException e) {

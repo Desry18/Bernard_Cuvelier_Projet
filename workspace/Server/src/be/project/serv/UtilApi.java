@@ -23,6 +23,32 @@ public class UtilApi extends RestApplication{
 	private Connection conn;
 	
 	
+	@Path("ChangerPseudo")
+	@PUT
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response changerPseudo(
+			@QueryParam("id") int id,
+			@FormParam("pseudo") String pseudo
+			) {
+		try {
+			conn = ConnectDB.getInstance().getConnection();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		Utilisateur util = new Utilisateur();
+		util.setId_util(id);
+		util.setPseudo(pseudo);
+		
+		boolean ajout = new UtilisateurDAO(conn).update(util);
+		if (ajout)
+			rep = Response.status(Response.Status.OK).entity(true).build();
+		else
+			rep = Response.status(Response.Status.BAD_REQUEST).entity(null).build();	
+		
+		return rep;
+	}
+	
 	@Path("nouvelUtilisateur")
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
