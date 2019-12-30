@@ -14,7 +14,7 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 import be.projet.dao.ConnectDB;
 import be.projet.dao.UtilisateurDAO;
-import be.projet.pogo.Utilisateur;
+import be.projet.pojo.Utilisateur;
 
 
 @Path("utilisateur")
@@ -37,28 +37,7 @@ public Response nouveauUtil(
 				conn = ConnectDB.getInstance().getConnection();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();     
-        try {
-        	conn = dbt.getConnection();
-            statement = conn.prepareStatement(querry);
-            
-            statement.setString(1,email);
-            statement.setString(2,nom_util);
-            statement.setString(3,pseudo);
-            statement.setString(4,mdp);
-           resultado = statement.executeQuery();
-          
-            
-
-        }catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			if(statement != null) {
-				try {
-					statement.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
+				e.printStackTrace();
 			}
 			Utilisateur util = new Utilisateur();
 			util.setId(Id);
@@ -71,7 +50,6 @@ public Response nouveauUtil(
 			else rep = Response.status(Response.Status.BAD_REQUEST).entity(util).build();	
 			return rep;
 		}
- }
 	
 
 	@Path("changerPseudo")
@@ -114,5 +92,3 @@ public Response nouveauUtil(
 		return rep;
 		}
 	}
-
-

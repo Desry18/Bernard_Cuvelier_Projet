@@ -20,4 +20,3 @@ import java.util.List;
 
 	  public abstract List<O> getAll();
 	}
-

@@ -1,16 +1,13 @@
 package be.projet.dao;
 
 import java.sql.CallableStatement;
-//import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
-import be.projet.pogo.Genre;
-import be.projet.pogo.Utilisateur;
+import be.projet.pojo.Genre;
 
 public class GenreDAO extends DAO<Genre> {
 	public GenreDAO(Connection conn)

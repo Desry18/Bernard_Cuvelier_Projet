@@ -29,14 +29,5 @@ public class GenreApi {
 		}
 		rep = Response.status(Response.Status.OK).entity(new GenreDAO(conn).getAll()).build();
 		return rep;
-		
-        
-	
-
-		return Response .status(Status.OK)
-				.entity(listeGenre)
-				.build();
 		}
 	}
-
-

@@ -1,4 +1,4 @@
-package be.projet.pogo;
+package be.projet.pojo;
 
 public class Utilisateur {
 	

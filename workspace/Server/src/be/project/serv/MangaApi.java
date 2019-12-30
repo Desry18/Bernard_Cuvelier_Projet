@@ -19,9 +19,8 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
 import be.projet.dao.ConnectDB;
-import be.projet.dao.GenreDAO;
 import be.projet.dao.MangaDAO;
-import be.projet.pogo.Manga;
+import be.projet.pojo.Manga;
 
 
 @Path("manga")
@@ -29,10 +28,6 @@ public class MangaApi {
 	private Response rep;
 	private Connection conn;
 /*
-=======
-	
-	
->>>>>>> parent of 140559d... i
 	@Path("find")
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
@@ -60,7 +55,6 @@ public Response findManga(@FormParam("let") String let) throws SQLException {
 				int nbr_tome = resultado.getInt(3);
 				
 				listmanga.add(new Manga(titre_manga, editeur_manga, nbr_tome));
-
         }
         }catch (SQLException e) {
 			e.printStackTrace();
@@ -80,7 +74,6 @@ public Response findManga(@FormParam("let") String let) throws SQLException {
 				}
 			}
 		}
-
 		return Response .status(Status.OK)
 				.entity(listmanga)
 				.build();
@@ -101,5 +94,3 @@ public Response findManga(@FormParam("let") String let) throws SQLException {
 	return rep;
 	}
 }
-
-

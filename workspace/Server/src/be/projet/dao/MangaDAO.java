@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import be.projet.pogo.Manga;
+import be.projet.pojo.Manga;
 
 public class MangaDAO extends DAO<Manga>{	
 	public MangaDAO(Connection conn) {
@@ -77,4 +77,3 @@ public class MangaDAO extends DAO<Manga>{
 		return false;
 	}
 }
-

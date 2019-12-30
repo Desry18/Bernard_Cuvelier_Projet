@@ -7,8 +7,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import be.projet.pogo.Anime;
-import be.projet.pogo.Manga;
+import be.projet.pojo.Anime;
+import be.projet.pojo.Manga;
 
 public class AnimeDAO extends DAO<Anime>{	
 	public AnimeDAO(Connection conn) {

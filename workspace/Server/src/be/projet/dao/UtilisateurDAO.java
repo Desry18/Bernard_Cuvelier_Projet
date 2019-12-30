@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import be.projet.pogo.Utilisateur;
+import be.projet.pojo.Utilisateur;
 
 public class UtilisateurDAO extends DAO<Utilisateur> {
 	public UtilisateurDAO(Connection conn)
