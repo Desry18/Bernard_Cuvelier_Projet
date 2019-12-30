@@ -65,6 +65,11 @@ public class GenreApi {
 		}
 		
         
+<<<<<<< HEAD
+=======
+	
+
+>>>>>>> parent of 1f08b0f... FullDAO
 		return Response .status(Status.OK)
 				.entity(listeGenre)
 				.build();

@@ -25,6 +25,10 @@ import be.projet.pogo.Manga;
 @Path("manga")
 public class MangaApi {
 	
+<<<<<<< HEAD
+=======
+	
+>>>>>>> parent of 1f08b0f... FullDAO
 	@Path("find")
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
