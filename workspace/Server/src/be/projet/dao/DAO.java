@@ -22,5 +22,7 @@ import java.util.List;
 	  
 	  public abstract O find(int id);
 	  public abstract List<O> find(String l);
+	  public abstract List<O> findall(int id);
+	  
 
 	}

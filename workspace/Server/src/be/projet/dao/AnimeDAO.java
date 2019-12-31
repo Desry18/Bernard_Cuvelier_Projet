@@ -136,5 +136,7 @@ public class AnimeDAO extends DAO<Anime>{
 		return listeAnime;
 	}
 	
-	
+	 public List<Anime> findall(int id){
+		 return null;
+	 }
 }

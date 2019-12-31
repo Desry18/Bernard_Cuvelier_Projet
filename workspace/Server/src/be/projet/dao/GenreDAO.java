@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import be.projet.pojo.Genre;
+import be.projet.pojo.Utilisateur;
 
 public class GenreDAO extends DAO<Genre> {
 	public GenreDAO(Connection conn)
@@ -87,4 +88,8 @@ public class GenreDAO extends DAO<Genre> {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	 public List<Genre> findall(int id){
+		 return null;
+	 }
 }

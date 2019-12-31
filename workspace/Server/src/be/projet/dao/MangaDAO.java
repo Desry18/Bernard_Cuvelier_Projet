@@ -9,6 +9,7 @@ import java.util.List;
 
 import be.projet.pojo.Anime;
 import be.projet.pojo.Manga;
+import be.projet.pojo.Utilisateur;
 
 public class MangaDAO extends DAO<Manga>{	
 	public MangaDAO(Connection conn) {
@@ -139,4 +140,8 @@ public class MangaDAO extends DAO<Manga>{
 			
 			return listeManga;
 		}
+	
+	 public List<Manga> findall(int id){
+		 return null;
+	 }
 	}

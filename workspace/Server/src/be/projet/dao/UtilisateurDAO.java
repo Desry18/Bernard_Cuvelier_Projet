@@ -174,4 +174,7 @@ public class UtilisateurDAO extends DAO<Utilisateur> {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	 public List<Utilisateur> findall(int id){
+		 return null;
+	 }
 	}
