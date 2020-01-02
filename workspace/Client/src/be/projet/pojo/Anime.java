@@ -4,6 +4,8 @@ import java.sql.Date;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
+import be.projet.dao.AnimeDAO;
+
 public class Anime {
 	
 	private String titre_anime;
@@ -72,5 +74,11 @@ public class Anime {
 		this.id_anime = id_anime;
 	}
 	
+	public boolean createAPost() {
+	    return new AnimeDAO().create(this);
+	  }
 
+	  public boolean deleteAPost() {
+	    return new AnimeDAO().delete(this);
+	  }
 }

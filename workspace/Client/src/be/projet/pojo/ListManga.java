@@ -1,5 +1,7 @@
 package be.projet.pojo;
 
+import be.projet.dao.ListMangaDAO;
+
 public class ListManga {
 	private int id_manga;
 	private int id_util;
@@ -33,5 +35,11 @@ public class ListManga {
 		this.titre_manga = titre_manga;
 	}
 	
-
+	public boolean createMangalist() {
+	    return new ListMangaDAO().create(this);
+	  }
+	
+	public boolean deleteMangalist() {
+	    return new ListMangaDAO().delete(this);
+	  }
 }

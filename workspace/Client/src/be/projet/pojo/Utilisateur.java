@@ -1,5 +1,9 @@
 package be.projet.pojo;
 
+import java.util.List;
+
+import be.projet.dao.UtilisateurDAO;
+
 public class Utilisateur {
 	private String pseudo;
 	private String nom_util;
@@ -40,6 +44,33 @@ public class Utilisateur {
 		this.id_util = id_util;
 	}
 	
+	public boolean log(String pseudo, String mdp) {
+	    List<Utilisateur> util = new UtilisateurDAO().getAll();
+	    for (int i = 0; i < util.size(); i++) {
+	      if (util.get(i).getPseudo().equals(pseudo)) {
+	        if (util.get(i).getMdp().equals(mdp)) {
+	          this.pseudo = util.get(i).getPseudo();
+	          this.mdp = util.get(i).getMdp();
+	          this.id_util = util.get(i).getId_util();
+	          this.nom_util = util.get(i).getNom_util();
+	          this.email= util.get(i).getEmail();
+	          return true;
+	        }
+	      }
+	    }
+	    return false;
+	  }
 	
+	 public boolean enregistrer(
+		      String email,
+		      String nom,
+		      String pseudo,
+		      String mdp) {
+		    this.email = email;
+		    this.nom_util = nom;
+		    this.pseudo = pseudo;
+		    this.mdp = mdp;
+		    return new UtilisateurDAO().create(this);
+		  }
 
 }

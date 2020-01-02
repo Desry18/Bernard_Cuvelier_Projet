@@ -1,8 +1,12 @@
 package be.projet.pojo;
 
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+
+import be.projet.dao.MangaDAO;
 
 /**
  * @author pc
@@ -15,7 +19,9 @@ public class Manga {
 	
 	@JsonDeserialize(using = EditData.class)
 	private Date date_parution;
+	
 	private int nbr_tome;
+	
 	private int note_manga;
 	private int id_manga;
 	
@@ -55,6 +61,23 @@ public class Manga {
 	public void setId_manga(int id_manga) {
 		this.id_manga = id_manga;
 	}
+	
+	public List<Manga> searchAUser(String keyword) {
+	    List<Manga> manga = new MangaDAO().getAll();
+	    List<Manga> result = new ArrayList<>();
+	    for (int i = 0; i < manga.size(); i++) {
+	      if (manga.get(i).titre_manga.contains(keyword)) result.add(manga.get(i));
+	    }
+	    return result;
+	  }
+	
+	public boolean createManga() {
+	    return new MangaDAO().create(this);
+	  }
+
+	  public boolean deleteManga() {
+	    return new MangaDAO().delete(this);
+	  }
 	
 	
 }
