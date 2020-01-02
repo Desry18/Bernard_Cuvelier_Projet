@@ -1,0 +1,26 @@
+package be.projet.dao;
+
+import java.util.List;
+
+import com.sun.jersey.api.client.Client;
+import com.sun.jersey.api.client.WebResource;
+
+abstract class DAO<O> {
+	  final WebResource webResource;
+
+	DAO() {
+  Client client = Client.create();
+  webResource = client.resource("http://localhost:9090/Server/rest/");
+	 }
+
+	  public abstract boolean create(O obj);
+
+	  public abstract boolean delete(O obj);
+
+	  public abstract boolean update(O obj);
+
+	  //public abstract T find(int id);
+
+	  public abstract List<O> getAll();
+	  public abstract List<O> getAll(O obj);
+	}

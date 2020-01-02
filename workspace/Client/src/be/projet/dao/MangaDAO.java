@@ -1,0 +1,99 @@
+package be.projet.dao;
+
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.sun.jersey.core.util.MultivaluedMapImpl;
+
+import be.projet.pojo.Manga;
+
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.MultivaluedMap;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+
+public class MangaDAO extends DAO<Manga>{	
+	public MangaDAO() {
+		super();
+		
+	}
+
+	public List<Manga> getAll() {
+		String response =
+        webResource.path("manga/getAll").accept(MediaType.APPLICATION_JSON).get(String.class);
+    ObjectMapper mapper = new ObjectMapper();
+    List<Manga> mag = new ArrayList<>();
+    try {
+      mag = mapper.readValue(response, new TypeReference<List<Manga>>() {});
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+    return mag;
+	}
+
+	@Override
+	public boolean create(Manga g) {
+		MultivaluedMap<String, String> params = new MultivaluedMapImpl();
+		params.add("titre_manga", String.valueOf(g.getTitre_manga()));
+		params.add("editeur_manga", String.valueOf(g.getEdit_manga()));
+		params.add("nbr_tome",String.valueOf(g.getNbr_tome()));
+		params.add("date_parution", dateFormat.format(g.getDate_parution()));
+		String response =
+        webResource
+            .path("manga/nouveauManga")
+            .accept(MediaType.APPLICATION_JSON)
+            .type("application/x-www-form-urlencoded")
+            .post(String.class, params);
+    ObjectMapper mapper = new ObjectMapper();
+    Boolean done = false;
+    try {
+      done = mapper.readValue(response, new TypeReference<Boolean>() {});
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+    return done;
+	}
+
+	@Override
+	public boolean delete(Manga g) {
+		String response =
+        webResource
+            .path("utilisateur/suppManga?id=" + g.getId_manga())
+            .accept(MediaType.APPLICATION_JSON)
+            .delete(String.class);
+    ObjectMapper mapper = new ObjectMapper();
+    Boolean done = false;
+    try {
+      done = mapper.readValue(response, new TypeReference<Boolean>() {});
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+    return done;
+	}
+
+	@Override
+	public boolean update(Manga g) {
+	MultivaluedMap<String, String> params = new MultivaluedMapImpl();
+		params.add("nbr_tome", String.valueOf(g.getNbr_tome()));
+		String response =
+        webResource
+            .path("manga/plusTome?id=" + g.getId_manga())
+            .accept(MediaType.APPLICATION_JSON)
+            .delete(String.class);
+    ObjectMapper mapper = new ObjectMapper();
+    Boolean done = false;
+    try {
+      done = mapper.readValue(response, new TypeReference<Boolean>() {});
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+    return done;
+	}
+
+	@Override
+	public List<Manga> getAll(Manga obj) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+}
