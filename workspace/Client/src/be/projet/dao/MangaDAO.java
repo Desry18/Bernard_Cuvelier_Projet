@@ -9,6 +9,8 @@ import be.projet.pojo.Manga;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.MultivaluedMap;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,6 +37,7 @@ public class MangaDAO extends DAO<Manga>{
 	@Override
 	public boolean create(Manga g) {
 		MultivaluedMap<String, String> params = new MultivaluedMapImpl();
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");
 		params.add("titre_manga", String.valueOf(g.getTitre_manga()));
 		params.add("editeur_manga", String.valueOf(g.getEdit_manga()));
 		params.add("nbr_tome",String.valueOf(g.getNbr_tome()));

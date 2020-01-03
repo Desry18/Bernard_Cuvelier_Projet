@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -64,14 +65,41 @@ public class AnimeDAO extends DAO<Anime>{
 
 	@Override
 	public boolean create(Anime obj) {
-		// TODO Auto-generated method stub
-		return false;
+		PreparedStatement stmt;
+		String query = "insert into anime(titre_anime,studio_anime, date_sortie_anime, nbr_episode,note_anime) values(?,?,?,?,?);" ;
+		try {
+		stmt = connect.prepareStatement(query);
+		stmt.setString(1,obj.getTitre_anime());
+        stmt.setString(2,obj.getStudio_anime());
+        stmt.setDate(3,java.sql.Date.valueOf(
+              obj.getDate_sortie_anime().toInstant().atZone(ZoneId.of("Europe/Brussels")).toLocalDate()));
+        stmt.setInt(4,obj.getNbr_episode());
+        stmt.setInt(5,obj.getId_anime());
+        stmt.execute();
+        
+        return true;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
 	}
 
 	@Override
-	public boolean delete(Anime obj) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean delete(Anime g) {
+		PreparedStatement stmt;
+		String query = "Delete FROM anime where id_anime= ?" ;
+		try {
+		stmt = connect.prepareStatement(query);
+		stmt.setInt(1,g.getId_anime());    
+        stmt.execute();
+        
+        return true;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
 	}
 
 	@Override

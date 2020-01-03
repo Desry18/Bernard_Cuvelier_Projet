@@ -12,7 +12,7 @@ import java.util.Date;
 
 public class EditData extends JsonDeserializer<Date>  {
 	
-	private final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z[UTC]'");
+	private final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'Z[UTC]'");
 	
 	@Override
 	  public Date deserialize(

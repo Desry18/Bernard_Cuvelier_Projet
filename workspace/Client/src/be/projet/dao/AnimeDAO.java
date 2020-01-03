@@ -9,6 +9,8 @@ import be.projet.pojo.Anime;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.MultivaluedMap;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,6 +37,7 @@ public class AnimeDAO extends DAO<Anime>{
 	@Override
 	public boolean create(Anime g) {
 		MultivaluedMap<String, String> params = new MultivaluedMapImpl();
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");
 		params.add("titre_anime", String.valueOf(g.getTitre_anime()));
 		params.add("studio_anime", String.valueOf(g.getStudio_anime()));
 		params.add("nbr_episode", String.valueOf(g.getNbr_episode()));

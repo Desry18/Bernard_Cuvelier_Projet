@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -68,14 +69,41 @@ public class MangaDAO extends DAO<Manga>{
 
 	@Override
 	public boolean create(Manga obj) {
-		// TODO Auto-generated method stub
-		return false;
+		PreparedStatement stmt;
+		String query = "insert into manga(titre_manga,editeur_manga, date_parution, nbr_tome,note_manga) values(?,?,?,?,?);" ;
+		try {
+		stmt = connect.prepareStatement(query);
+		stmt.setString(1,obj.getTitre_manga());
+        stmt.setString(2,obj.getEdit_manga());
+        stmt.setDate(3,java.sql.Date.valueOf(
+              obj.getDate_parution().toInstant().atZone(ZoneId.of("Europe/Brussels")).toLocalDate()));
+        stmt.setInt(4,obj.getNbr_tome());
+        stmt.setInt(5,obj.getNote_manga());
+        stmt.execute();
+        
+        return true;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
 	}
 
 	@Override
-	public boolean delete(Manga obj) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean delete(Manga g) {
+		PreparedStatement stmt;
+		String query = "Delete FROM manga where id_manga= ?" ;
+		try {
+		stmt = connect.prepareStatement(query);
+		stmt.setInt(1,g.getId_manga());    
+        stmt.execute();
+        
+        return true;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
 	}
 
 	@Override
