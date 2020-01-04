@@ -7,7 +7,7 @@
 <title>Connexion</title>
 </head>
 <body>
-	<form action="LogUtil" method="POST">
+	<form action="log" method="POST">
 		<table border="1">
 			<tr>
 			    <td>Pseudo : </td>

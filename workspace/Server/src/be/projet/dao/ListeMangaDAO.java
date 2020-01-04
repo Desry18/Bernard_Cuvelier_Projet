@@ -66,7 +66,7 @@ public class ListeMangaDAO  extends DAO<ListeManga> {
 		
         PreparedStatement statement = null;
         ResultSet resultado = null;
-        String query = "SELECT titre_manga, l.id_manga, id_util FROM listemanga l INNER JOIN  manga m ON l.ID_manga = m.ID_manga INNER JOIN utilisateur u ON l.id_util= u.id_util WHERE l.ID_util=?";
+        String query = "SELECT titre_manga, l.id_manga, l.id_util FROM listemanga l INNER JOIN  manga m ON l.ID_manga = m.ID_manga INNER JOIN utilisateur u ON l.id_util= u.id_util WHERE l.ID_util=?";
     	List<ListeManga> listemanga = new ArrayList<>();       
         try {
             statement = connect.prepareStatement(query);

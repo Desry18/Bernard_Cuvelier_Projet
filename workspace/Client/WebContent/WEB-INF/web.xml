@@ -8,7 +8,7 @@
   </servlet>
   <servlet-mapping>
   	<servlet-name>LogUtil</servlet-name>
-  	<url-pattern>/log/*</url-pattern>
+  	<url-pattern>/log</url-pattern>
   </servlet-mapping>
   <servlet>
   	<servlet-name>LogOut</servlet-name>
@@ -16,7 +16,7 @@
   </servlet>
   <servlet-mapping>
   	<servlet-name>Logout</servlet-name>
-  	<url-pattern>/logout/*</url-pattern>
+  	<url-pattern>/logout</url-pattern>
   </servlet-mapping>
   <servlet>
   	<servlet-name>NewUtil</servlet-name>
@@ -24,7 +24,7 @@
   </servlet>
   <servlet-mapping>
   	<servlet-name>NewUtil</servlet-name>
-  	<url-pattern>/newutil/*</url-pattern>
+  	<url-pattern>/newutil</url-pattern>
   </servlet-mapping>
   <servlet>
   	<servlet-name>AddManga</servlet-name>
@@ -32,6 +32,6 @@
   </servlet>
   <servlet-mapping>
   	<servlet-name>AddManga</servlet-name>
-  	<url-pattern>/addmanga/*</url-pattern>
+  	<url-pattern>/addmanga</url-pattern>
   </servlet-mapping>
 </web-app>
