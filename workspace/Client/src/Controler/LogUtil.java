@@ -43,15 +43,15 @@ public class LogUtil extends HttpServlet{
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String pseudo;
-	    String mdp;
+		String pseudo = null;
+	    String mdp = null;
 	    if (request.getParameter("valider") != null) {
 	      pseudo = request.getParameter("pseudo");
 	      mdp = request.getParameter("mdp");
 	      Utilisateur u = new Utilisateur();
 	      if (u.log(pseudo, mdp)) {
-	        HttpSession session = request.getSession();
-	        session.setAttribute("util", u);
+	        //HttpSession session = request.getSession();
+	        //session.setAttribute("util", u);
 		 	//response.sendRedirect("/Test2.html");
 	        getServletContext().getRequestDispatcher("/vues\\UtilisateurIndex.jsp").forward(request, response);
 	      } else {
