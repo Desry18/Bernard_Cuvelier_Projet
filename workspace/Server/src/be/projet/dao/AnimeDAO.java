@@ -105,8 +105,29 @@ public class AnimeDAO extends DAO<Anime>{
 
 	@Override
 	public boolean update(Anime obj) {
-		// TODO Auto-generated method stub
-		return false;
+		CallableStatement statement = null;
+		//String query = "UPDATE manga SET  nbr_tome = ? WHERE id_manga = ?";
+		try {
+			statement = connect.prepareCall("{? = call updateNbrEpisode(?,?)}");
+			statement.setInt(1, obj.getId_anime());
+			statement.setInt(2, obj.getNbr_episode());
+			statement.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
+		finally {
+			if(statement != null) {
+				try {
+					statement.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}			
+			}
+		}
+		return true;
 	}
 
 	@Override

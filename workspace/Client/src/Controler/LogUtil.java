@@ -16,8 +16,8 @@ import be.projet.pojo.Utilisateur;
 /**
  * Servlet implementation class LogUtil
  */
-//@WebServlet("/LogUtil")
-public class LogUtil extends javax.servlet.http.HttpServlet{
+//@WebServlet("/log")
+public class LogUtil extends HttpServlet{
 	private static final long serialVersionUID = 1L;
 	String urlReussite = null;
 	String urlErr = null;
@@ -52,12 +52,11 @@ public class LogUtil extends javax.servlet.http.HttpServlet{
 	      if (u.log(pseudo, mdp)) {
 	        HttpSession session = request.getSession();
 	        session.setAttribute("util", u);
-		 	//response.sendRedirect("/Vues/UtilisateurIndex.jsp");
-	        getServletContext().getRequestDispatcher(urlReussite).forward(request, response);
+		 	//response.sendRedirect("/Test2.html");
+	        getServletContext().getRequestDispatcher("/vues\\UtilisateurIndex.jsp").forward(request, response);
 	      } else {
-			 	//response.sendRedirect("Index.jsp");
-
-	    	  getServletContext().getRequestDispatcher(urlErr).forward(request, response);
+			 //response.sendRedirect("/Test2.html");
+	    	  getServletContext().getRequestDispatcher("/vues\\Index.jsp").forward(request, response);
 	      }
 	    }
 	}

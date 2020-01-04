@@ -1,5 +1,6 @@
 package be.projet.dao;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -111,8 +112,30 @@ public class MangaDAO extends DAO<Manga>{
 
 	@Override
 	public boolean update(Manga obj) {
-		// TODO Auto-generated method stub
-		return false;
+		CallableStatement statement = null;
+		//String query = "UPDATE manga SET  nbr_tome = ? WHERE id_manga = ?";
+		try {
+			statement = connect.prepareCall("{? = call updateTome(?,?)}");
+			statement.setInt(1, obj.getId_manga());
+			statement.setInt(2, obj.getNbr_tome());
+			
+			statement.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
+		finally {
+			if(statement != null) {
+				try {
+					statement.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}			
+			}
+		}
+		return true;
 	}
 
 	@Override
