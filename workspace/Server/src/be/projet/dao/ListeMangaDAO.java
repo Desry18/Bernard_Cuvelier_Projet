@@ -70,14 +70,12 @@ public class ListeMangaDAO  extends DAO<ListeManga> {
     	List<ListeManga> listemanga = new ArrayList<>();       
         try {
             statement = connect.prepareStatement(query);
-            resultado = statement.executeQuery();
             statement.setInt(1, id);
+            resultado = statement.executeQuery();
             while (resultado.next()) {
 				String lbl = resultado.getString(1);
-				int id_m = resultado.getInt(2);
-				int id_u= resultado.getInt(3);
-				
-				listemanga.add(new ListeManga(lbl,id_m, id_u));
+				int id_m = resultado.getInt(2);				
+				listemanga.add(new ListeManga(lbl,id_m, id));
 
         }
         }

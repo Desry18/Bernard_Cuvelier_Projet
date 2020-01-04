@@ -59,7 +59,7 @@ public Response recupMangaByTitre(
 }
 
 @Path("getAllById")
-@POST
+@GET
 @Produces(MediaType.APPLICATION_JSON)
 public Response getAllIDJson(@QueryParam("id") int id) {
 

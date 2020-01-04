@@ -62,7 +62,7 @@ public class MangaApi {
 	}
 	
 	@Path("getById")
-	@POST
+	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getbyId(
 		@QueryParam("id") int id) {
@@ -73,10 +73,10 @@ public class MangaApi {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		Manga list = new MangaDAO(conn).find(id);
+		Manga mang = new MangaDAO(conn).find(id);
        
-        if (list != null)
-        	rep = Response .status(Response.Status.OK).entity(list).build();
+        if (mang != null)
+        	rep = Response .status(Response.Status.OK).entity(mang).build();
         else
         	rep = Response .status(Response.Status.NO_CONTENT).entity(null).build();
         return rep;

@@ -117,9 +117,9 @@ public class MangaDAO extends DAO<Manga>{
 
 	@Override
 	public Manga find(int id) {
-		 PreparedStatement statement = null;
+		 	PreparedStatement statement = null;
 	        ResultSet resultado = null;
-			Manga util = new Manga();
+			Manga manga = new Manga();
 
 	        String query = "SELECT titre_manga, editeur_manga, nbr_tome,date_parution,id_manga  FROM manga WHERE id_manga = ?";
 	        try {
@@ -128,16 +128,14 @@ public class MangaDAO extends DAO<Manga>{
 	            resultado = statement.executeQuery(); 
 	            while (resultado.next()) {
 					String titre = resultado.getString(1);
-					String studio = resultado.getString(2);
-					int nbr_t = resultado.getInt(4);
-					Timestamp date = resultado.getTimestamp(5);
-					int id_a = resultado.getInt(6);
-					
-					util.setTitre_manga(titre);
-					util.setEdit_manga(studio);
-					util.setNbr_tome(nbr_t);
-					util.setDate_parution(date);
-					util.setId_manga(id_a);
+					String edit = resultado.getString(2);
+					int nbr_t = resultado.getInt(3);
+					Timestamp date = resultado.getTimestamp(4);					
+					manga.setTitre_manga(titre);
+					manga.setEdit_manga(edit);
+					manga.setNbr_tome(nbr_t);
+					manga.setDate_parution(date);
+					manga.setId_manga(id);
 				
 					
 					
@@ -164,7 +162,7 @@ public class MangaDAO extends DAO<Manga>{
 					}
 				}
 			}
-			return util;
+			return manga;
 	}
 
 	@Override
