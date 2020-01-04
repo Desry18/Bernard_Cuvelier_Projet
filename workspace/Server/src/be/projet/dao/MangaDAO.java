@@ -11,6 +11,7 @@ import java.util.List;
 import java.sql.Timestamp;
 
 import be.projet.pojo.Manga;
+import be.projet.pojo.Utilisateur;
 
 public class MangaDAO extends DAO<Manga>{	
 	public MangaDAO(Connection conn) {
@@ -72,7 +73,7 @@ public class MangaDAO extends DAO<Manga>{
 	@Override
 	public boolean create(Manga obj) {
 		PreparedStatement stmt;
-		String query = "insert into manga(titre_manga,editeur_manga, date_parution, nbr_tome,note_manga) values(?,?,?,?,?);" ;
+		String query = "insert into manga(id_manga,titre_manga,editeur_manga, date_parution, nbr_tome,note_manga) values(manga_seq.NEXTVAL,?,?,?,?,?);" ;
 		try {
 		stmt = connect.prepareStatement(query);
 		stmt.setString(1,obj.getTitre_manga());
@@ -116,8 +117,54 @@ public class MangaDAO extends DAO<Manga>{
 
 	@Override
 	public Manga find(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		 PreparedStatement statement = null;
+	        ResultSet resultado = null;
+			Manga util = new Manga();
+
+	        String query = "SELECT titre_manga, editeur_manga, nbr_tome,date_parution,id_manga  FROM manga WHERE id_manga = ?";
+	        try {
+	            statement = connect.prepareStatement(query);	             
+	            statement.setInt(1, id);
+	            resultado = statement.executeQuery(); 
+	            while (resultado.next()) {
+					String titre = resultado.getString(1);
+					String studio = resultado.getString(2);
+					int nbr_t = resultado.getInt(4);
+					Timestamp date = resultado.getTimestamp(5);
+					int id_a = resultado.getInt(6);
+					
+					util.setTitre_manga(titre);
+					util.setEdit_manga(studio);
+					util.setNbr_tome(nbr_t);
+					util.setDate_parution(date);
+					util.setId_manga(id_a);
+				
+					
+					
+
+	            }		// TODO Auto-generated method stub
+	        }
+	        catch (SQLException e) {
+				e.printStackTrace();
+				
+			}
+	        finally {
+				if(statement != null) {
+					try {
+						statement.close();
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}
+				}
+				if( resultado!= null) {
+					try {
+						resultado.close();
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}
+				}
+			}
+			return util;
 	}
 
 	@Override

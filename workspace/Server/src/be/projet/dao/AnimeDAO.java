@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
@@ -66,7 +67,7 @@ public class AnimeDAO extends DAO<Anime>{
 	@Override
 	public boolean create(Anime obj) {
 		PreparedStatement stmt;
-		String query = "insert into anime(titre_anime,studio_anime, date_sortie_anime, nbr_episode,note_anime) values(?,?,?,?,?);" ;
+		String query = "insert into anime(id_anime,titre_anime,studio_anime, date_sortie_anime, nbr_episode,note_anime) values(anime_seq.NEXTVAL,?,?,?,?,?);" ;
 		try {
 		stmt = connect.prepareStatement(query);
 		stmt.setString(1,obj.getTitre_anime());
@@ -135,7 +136,7 @@ public class AnimeDAO extends DAO<Anime>{
 					an.setTitre_anime(titre);
 					an.setStudio_anime(studio);
 					an.setNbr_episode(nbr_e);	
-					listeAnime.add(an);
+					listeAnime.add(an); 
 					
 
 	            }		// TODO Auto-generated method stub
@@ -165,6 +166,51 @@ public class AnimeDAO extends DAO<Anime>{
 	}
 	
 	 public List<Anime> findall(int id){
-		 return null;
+		 PreparedStatement statement = null;
+	        ResultSet resultado = null;
+	        String querry = "SELECT titre_anime, studio_anime, nbr_episode, date_sortie_anime, id_anime FROM manga m INNER JOIN anime a ON m.id_manga= a.id_manga WHERE a.id_manga = ?";
+	    	List<Anime> listanime = new ArrayList<>();       
+	        try {
+	            statement = connect.prepareStatement(querry);
+	            resultado = statement.executeQuery();
+	            statement.setInt(1, id);
+	            
+	            while (resultado.next()) {
+					String titre = resultado.getString(1);
+					String studio = resultado.getString(2);
+					int nbr_e= resultado.getInt(3);
+					Timestamp date = resultado.getTimestamp(5);
+					int id_a= resultado.getInt(5);
+					
+					Anime m = new Anime();
+					m.setTitre_anime(titre);
+					m.setStudio_anime(studio);
+					m.setNbr_episode(nbr_e);
+					m.setDate_sortie_anime(date);
+					m.setId_anime(id_a);
+					listanime.add(m);
+
+	        }
+	        }
+	        catch (SQLException e) {
+				e.printStackTrace();
+				return null;
+			} finally {
+				if(statement != null) {
+					try {
+						statement.close();
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}
+				}
+				if( resultado!= null) {
+					try {
+						resultado.close();
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}
+				}
+			}
+			return listanime;
 	 }
-}
+	 }

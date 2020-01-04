@@ -65,4 +65,25 @@ public class AnimeApi {
 	rep = Response.status(Response.Status.OK).entity(new AnimeDAO(conn).getAll()).build();
 	return rep;
 	}
+	
+	@Path("getAllById")
+	@POST
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response getAllIDJson(@QueryParam("id") int id) {
+
+        try {
+			conn = ConnectDB.getInstance().getConnection();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		List<Anime> list = new AnimeDAO(conn).findall(id);
+       
+        if (list != null)
+        	rep = Response .status(Response.Status.OK).entity(list).build();
+        else
+        	rep = Response .status(Response.Status.NO_CONTENT).entity(null).build();
+        return rep;
+	}
+	
 	}

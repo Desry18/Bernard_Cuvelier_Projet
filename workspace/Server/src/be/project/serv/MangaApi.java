@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
@@ -59,4 +60,26 @@ public class MangaApi {
 	rep = Response.status(Response.Status.OK).entity(new MangaDAO(conn).getAll()).build();
 	return rep;
 	}
+	
+	@Path("getById")
+	@POST
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response getbyId(
+		@QueryParam("id") int id) {
+		
+        try {
+			conn = ConnectDB.getInstance().getConnection();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		Manga list = new MangaDAO(conn).find(id);
+       
+        if (list != null)
+        	rep = Response .status(Response.Status.OK).entity(list).build();
+        else
+        	rep = Response .status(Response.Status.NO_CONTENT).entity(null).build();
+        return rep;
+	}
+	
 }

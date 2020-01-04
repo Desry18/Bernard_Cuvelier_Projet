@@ -11,21 +11,21 @@
 		<table border="1">
 			<tr>
 			    <td>Pseudo : </td>
-			    <td><input type="text" name="Pseudo" id="pseudo"
+			    <td><input type="text" name="pseudo" id="pseudo"
 			value="" size="20"/></td>
 			</tr>
 			<tr>
 			    <td>Mot de passe : </td>
-			    <td><input type="text" name="motdepasse" id="mdp"
+			    <td><input type="text" name="mdp" id="mdp"
 			value="" size="20"/></td>
 			</tr>
 				<tr>
-			    <td>Email</td>
-			    <td><input type="text" name="Email" id="mail"
+			    <td>Email : </td>
+			    <td><input type="text" name="email" id="email"
 			value="" size="20"/></td>
 			</tr>	<tr>
-			    <td>Nom</td>
-			    <td><input type="text" name="Nom" id="nom"
+			    <td>Nom: </td>
+			    <td><input type="text" name="nom" id="nom"
 			value="" size="20"/></td>
 			</tr>
 			<tr>

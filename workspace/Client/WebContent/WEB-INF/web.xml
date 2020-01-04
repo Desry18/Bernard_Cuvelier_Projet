@@ -3,21 +3,35 @@
   <display-name>Client</display-name>
 
 	<servlet>
-		<servlet-name>LogUtil</servlet-name>
-		<servlet-class>Controler.LogUtil</servlet-class>
-		
-		<init-param>
-			<param-name>urlReussite</param-name>
-			<param-value>/vues\\UtilisateurIndex.jsp</param-value>
-		</init-param>
-		<init-param>
-			<param-name>urlechec</param-name>
-			<param-value>/vues\\Index.jsp</param-value>
-		</init-param>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>LogUtil</servlet-name>
-		<url-pattern>/LogUtil</url-pattern>
-	</servlet-mapping>
-  
+  	<servlet-name>LogUtil</servlet-name>
+  	<servlet-class>Controler.LogUtil</servlet-class> 
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>LogUtil</servlet-name>
+  	<url-pattern>/log/*</url-pattern>
+  </servlet-mapping>
+  <servlet>
+  	<servlet-name>LogOut</servlet-name>
+  	<servlet-class>Controler.LogOut</servlet-class> 
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>Logout</servlet-name>
+  	<url-pattern>/logout/*</url-pattern>
+  </servlet-mapping>
+  <servlet>
+  	<servlet-name>NewUtil</servlet-name>
+  	<servlet-class>Controler.NewUtil</servlet-class> 
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>NewUtil</servlet-name>
+  	<url-pattern>/newutil/*</url-pattern>
+  </servlet-mapping>
+  <servlet>
+  	<servlet-name>AddManga</servlet-name>
+  	<servlet-class>Controler.AddManga</servlet-class> 
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>AddManga</servlet-name>
+  	<url-pattern>/addmanga/*</url-pattern>
+  </servlet-mapping>
 </web-app>
