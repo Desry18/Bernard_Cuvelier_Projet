@@ -1,18 +1,20 @@
 package be.projet.pojo;
 
-public class ListManga {
+public class ListeManga {
 	
 	private int id_manga;
 	private int id_util;
 	private String titre_manga;
 	
-	public ListManga(int id_m, int id_u) {
+	public ListeManga(int id_m, int id_u) {
 		this.id_manga=id_m;
-		this.id_manga=id_u;
+		this.id_util=id_u;
 	}
 	
-	public ListManga(String ti) {
+	public ListeManga(String ti, int id_m, int id_u) {
 		this.titre_manga=ti;
+		this.id_manga = id_m;
+		this.id_util = id_u;
 	}
 
 	public int getId_manga() {

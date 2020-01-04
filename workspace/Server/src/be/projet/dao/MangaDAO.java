@@ -1,16 +1,16 @@
 package be.projet.dao;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
+import java.sql.Timestamp;
 
-import be.projet.pojo.Anime;
 import be.projet.pojo.Manga;
-import be.projet.pojo.Utilisateur;
 
 public class MangaDAO extends DAO<Manga>{	
 	public MangaDAO(Connection conn) {
@@ -23,7 +23,7 @@ public class MangaDAO extends DAO<Manga>{
 		//Connection conn = null;
         PreparedStatement statement = null;
         ResultSet resultado = null;
-        String querry = "SELECT titre_manga, editeur_manga, nbr_tome, id_manga FROM manga";
+        String querry = "SELECT titre_manga, editeur_manga, nbr_tome, id_manga,date_parution FROM manga";
     	List<Manga> listeManga = new ArrayList<>();       
         try {
             statement = connect.prepareStatement(querry);
@@ -35,12 +35,14 @@ public class MangaDAO extends DAO<Manga>{
 				String edit = resultado.getString(2);
 				int nbr_t = resultado.getInt(3);
 				int id = resultado.getInt(4);
+				Timestamp date = resultado.getTimestamp(5);
 				
 				Manga m = new Manga();
 				m.setTitre_manga(titre);
 				m.setEdit_manga(edit);
 				m.setNbr_tome(nbr_t);
 				m.setId_manga(id);
+				m.setDate_parution(date);
 				listeManga.add(m);
 
         }

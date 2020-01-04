@@ -7,16 +7,17 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import be.projet.pojo.ListManga;
+import be.projet.pojo.ListeManga;
+import be.projet.pojo.Utilisateur;
 
-public class ListMangaDAO  extends DAO<ListManga> {
-	public ListMangaDAO(Connection conn)
+public class ListeMangaDAO  extends DAO<ListeManga> {
+	public ListeMangaDAO(Connection conn)
 	{
 		super(conn);
 	}
 	
 	@Override
-	public boolean create(ListManga li)	
+	public boolean create(ListeManga li)	
 	{
 		PreparedStatement stmt;
 		String query = "INSERT INTO listmanga (id_manga,ID_util) VALUES (?, ? )" ;
@@ -36,7 +37,7 @@ public class ListMangaDAO  extends DAO<ListManga> {
 	}
 
 	@Override
-	public boolean delete(ListManga li) {
+	public boolean delete(ListeManga li) {
 		PreparedStatement stmt;
 		String query = "Delete FROM listmanga where id_manga= ? AND id_util=?" ;
 		try {
@@ -55,26 +56,28 @@ public class ListMangaDAO  extends DAO<ListManga> {
 	}
 
 	@Override
-	public boolean update(ListManga g) {
+	public boolean update(ListeManga g) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public List<ListManga> findall(int id) {
+	public List<ListeManga> findall(int id) {
 		
         PreparedStatement statement = null;
         ResultSet resultado = null;
-        String query = "SELECT Titre_manga FROM LISTEMANGA l INNER JOIN MANGA m ON l.ID_manga = m.ID_manga WHERE ID_util=?";
-    	List<ListManga> listemanga = new ArrayList<>();       
+        String query = "SELECT titre_manga, l.id_manga, id_util FROM listemanga l INNER JOIN  manga m ON l.ID_manga = m.ID_manga WHERE ID_util=?";
+    	List<ListeManga> listemanga = new ArrayList<>();       
         try {
             statement = connect.prepareStatement(query);
             resultado = statement.executeQuery();
-            
+            statement.setInt(1, id);
             while (resultado.next()) {
 				String lbl = resultado.getString(1);
+				int id_m = resultado.getInt(2);
+				int id_u= resultado.getInt(3);
 				
-				listemanga.add(new ListManga(lbl));
+				listemanga.add(new ListeManga(lbl,id_m, id_u));
 
         }
         }
@@ -101,22 +104,58 @@ public class ListMangaDAO  extends DAO<ListManga> {
 	}
 	
 	@Override
-	public List<ListManga> find(String l) {
+	public List<ListeManga> find(String l) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 	
 	@Override
-	public ListManga find(int id) {
+	public ListeManga find(int id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<ListManga> getAll() {
+	public List<ListeManga> getAll() {		
+	        PreparedStatement statement = null;
+	        ResultSet resultado = null;
+	        String querry = "SELECT id_manga, id_util FROM listemanga";
+	    	List<ListeManga> listeManga = new ArrayList<>();       
+	        try {
+	            statement = connect.prepareStatement(querry);
+	            resultado = statement.executeQuery();
+	            
+	            
+	            while (resultado.next()) {
+					int id = resultado.getInt(1);
+					int id2 = resultado.getInt(2);
+					
+					listeManga.add(new ListeManga(id, id2));
+
+	        }
+	        }
+	        catch (SQLException e) {
+				e.printStackTrace();
+				return null;
+			} finally {
+				if(statement != null) {
+					try {
+						statement.close();
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}
+				}
+				if( resultado!= null) {
+					try {
+						resultado.close();
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}
+				}
+			}
+			return listeManga;
+		}
 		// TODO Auto-generated method stub
-		return null;
-	}
 }
 
 

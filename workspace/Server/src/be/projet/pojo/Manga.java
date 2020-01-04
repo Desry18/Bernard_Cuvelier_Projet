@@ -1,11 +1,12 @@
 package be.projet.pojo;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 
 public class Manga {
 	private String titre_manga;
 	private String edit_manga;
-	private Date date_parution;
+	private Timestamp date_parution;
 	private int nbr_tome;
 	private int note_manga;
 	private int id_manga;
@@ -31,11 +32,11 @@ public class Manga {
 	public void setEdit_manga(String edit_manga) {
 		this.edit_manga = edit_manga;
 	}
-	public Date getDate_parution() {
+	public Timestamp getDate_parution() {
 		return date_parution;
 	}
-	public void setDate_parution(Date date_parution) {
-		this.date_parution = date_parution;
+	public void setDate_parution(Timestamp timestamp) {
+		this.date_parution = timestamp;
 	}
 	public int getNbr_tome() {
 		return nbr_tome;
