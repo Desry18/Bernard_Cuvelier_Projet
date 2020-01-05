@@ -25,7 +25,7 @@ public class AnimeDAO extends DAO<Anime>{
 		//Connection conn = null;
         PreparedStatement statement = null;
         ResultSet resultado = null;
-        String querry = "SELECT titre_anime, studio_anime, nbr_episode, id_anime FROM anime";
+        String querry = "SELECT titre_anime, studio_anime, nbr_episode, id_anime, date_sortie_anime, note_anime FROM anime";
     	List<Anime> listeAnime = new ArrayList<>();       
         try {
             statement = connect.prepareStatement(querry);
@@ -36,9 +36,11 @@ public class AnimeDAO extends DAO<Anime>{
 				String titre = resultado.getString(1);
 				String stud = resultado.getString(2);
 				int nbr_e = resultado.getInt(3);
-				int id = resultado.getInt(4);				
+				int id = resultado.getInt(4);	
+				String date = resultado.getString(5);
+				int note = resultado.getInt(6);
 				
-				listeAnime.add(new Anime(titre, stud, nbr_e, id));
+				listeAnime.add(new Anime(titre, stud, nbr_e, id, date, note));
 
         }
         }
@@ -72,8 +74,7 @@ public class AnimeDAO extends DAO<Anime>{
 		stmt = connect.prepareStatement(query);
 		stmt.setString(1,obj.getTitre_anime());
         stmt.setString(2,obj.getStudio_anime());
-        stmt.setDate(3,java.sql.Date.valueOf(
-              obj.getDate_sortie_anime().toInstant().atZone(ZoneId.of("Europe/Brussels")).toLocalDate()));
+        stmt.setString(3,obj.getDate_sortie_anime());
         stmt.setInt(4,obj.getNbr_episode());
         stmt.setInt(5,obj.getId_anime());
         stmt.execute();
@@ -141,7 +142,7 @@ public class AnimeDAO extends DAO<Anime>{
 		PreparedStatement statement = null;
 	    ResultSet resultado = null;
 	    List<Anime> listeAnime= new ArrayList<>();
-	    String query = "SELECT titre_anime, studio_anime, nbr_episode, id_anime FROM anime WHERE titre_anime LIKE CONCAT(?, '%')";
+	    String query = "SELECT titre_anime, studio_anime, nbr_episode, id_anime, date_sortie_anime, note_anime FROM anime WHERE titre_anime LIKE CONCAT(?, '%')";
 	        try {
 	            statement = connect.prepareStatement(query);	             
 	            statement.setString(1, l);
@@ -151,12 +152,16 @@ public class AnimeDAO extends DAO<Anime>{
 					String studio = resultado.getString(2);
 					int nbr_e = resultado.getInt(3);
 					int id = resultado.getInt(4);
+					String date = resultado.getString(5);
+					int note = resultado.getInt(6);
 					
 					Anime an = new Anime();
 					an.setId_anime(id);
 					an.setTitre_anime(titre);
 					an.setStudio_anime(studio);
 					an.setNbr_episode(nbr_e);	
+					an.setDate_sortie_anime(date);
+					an.setNote_anime(note);
 					listeAnime.add(an); 
 					
 
@@ -187,14 +192,14 @@ public class AnimeDAO extends DAO<Anime>{
 	}
 	
 
-	 public List<Anime> findAn(Manga id){
+	 public List<Anime> findAn(Manga ma){
 		 PreparedStatement statement = null;
 	        ResultSet resultado = null;
-	        String query = "SELECT titre_anime, studio_anime, nbr_episode, date_sortie_anime, id_anime FROM manga m INNER JOIN anime a ON m.id_manga= a.id_manga WHERE a.id_manga = ?";
+	        String query = "SELECT titre_anime, studio_anime, nbr_episode, date_sortie_anime, id_anime, note_anime FROM manga m INNER JOIN anime a ON m.id_manga= a.id_manga WHERE a.id_manga = ?";
 	    	List<Anime> listanime = new ArrayList<>();       
 	        try {
 	            statement = connect.prepareStatement(query);
-	            statement.setInt(1, id.getId_manga());
+	            statement.setInt(1, ma.getId_manga());
 
 	            resultado = statement.executeQuery();
 	            
@@ -202,13 +207,15 @@ public class AnimeDAO extends DAO<Anime>{
 					String titre = resultado.getString(1);
 					String studio = resultado.getString(2);
 					int nbr_e= resultado.getInt(3);
-					Timestamp date = resultado.getTimestamp(4);					
+					String date = resultado.getString(4);	
+					int note = resultado.getInt(6);
 					Anime m = new Anime();
 					m.setTitre_anime(titre);
 					m.setStudio_anime(studio);
 					m.setNbr_episode(nbr_e);
 					m.setDate_sortie_anime(date);
-					m.setId_anime(id.getId_manga());
+					m.setId_anime(ma.getId_manga());
+					m.setNote_anime(note);
 					listanime.add(m);
 
 	        }

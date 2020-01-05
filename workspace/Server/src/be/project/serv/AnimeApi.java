@@ -97,7 +97,7 @@ public class AnimeApi {
 public Response nouveauAnime(
 		@FormParam("titre_anime") String titre,
 		@FormParam("studio_anime") String studio,
-		@FormParam("date_sortie_anime") Timestamp date_p,
+		@FormParam("date_sortie_anime") String date_p,
 		@FormParam("nbr_episode") int nbr_e,
 		@FormParam("note_anime") int note
 		) {

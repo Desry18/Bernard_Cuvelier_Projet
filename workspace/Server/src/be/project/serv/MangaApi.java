@@ -94,7 +94,7 @@ public class MangaApi {
 public Response nouveauManga(
 		@FormParam("titre_manga") String titre,
 		@FormParam("edit_manga") String edit,
-		@FormParam("date_parution") Timestamp date_p,
+		@FormParam("date_parution") String date_p,
 		@FormParam("nbr_tome") int nbr_t,
 		@FormParam("note_manga") int note
 		) {

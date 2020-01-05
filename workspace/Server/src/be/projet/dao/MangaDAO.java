@@ -37,7 +37,7 @@ public class MangaDAO extends DAO<Manga>{
 				String edit = resultado.getString(2);
 				int nbr_t = resultado.getInt(3);
 				int id = resultado.getInt(4);
-				Timestamp date = resultado.getTimestamp(5);
+				String date = resultado.getString(5);
 				
 				Manga m = new Manga();
 				m.setTitre_manga(titre);
@@ -79,8 +79,7 @@ public class MangaDAO extends DAO<Manga>{
 		stmt = connect.prepareStatement(query);
 		stmt.setString(1,obj.getTitre_manga());
         stmt.setString(2,obj.getEdit_manga());
-        stmt.setDate(3,java.sql.Date.valueOf(
-              obj.getDate_parution().toInstant().atZone(ZoneId.of("Europe/Brussels")).toLocalDate()));
+        stmt.setString(3,obj.getDate_parution());
         stmt.setInt(4,obj.getNbr_tome());
         stmt.setInt(5,obj.getNote_manga());
         stmt.execute();
@@ -144,7 +143,7 @@ public class MangaDAO extends DAO<Manga>{
 	        ResultSet resultado = null;
 			Manga manga = new Manga();
 
-	        String query = "SELECT titre_manga, editeur_manga, nbr_tome,date_parution,id_manga  FROM manga WHERE id_manga = ?";
+	        String query = "SELECT titre_manga, editeur_manga, nbr_tome,date_parution,id_manga, note_manga FROM manga WHERE id_manga = ?";
 	        try {
 	            statement = connect.prepareStatement(query);	             
 	            statement.setInt(1, id);
@@ -153,12 +152,14 @@ public class MangaDAO extends DAO<Manga>{
 					String titre = resultado.getString(1);
 					String edit = resultado.getString(2);
 					int nbr_t = resultado.getInt(3);
-					Timestamp date = resultado.getTimestamp(4);					
+					String date = resultado.getString(4);
+					int note = resultado.getInt(6);
 					manga.setTitre_manga(titre);
 					manga.setEdit_manga(edit);
 					manga.setNbr_tome(nbr_t);
 					manga.setDate_parution(date);
 					manga.setId_manga(id);
+					manga.setNote_manga(note);
 				
 					
 					
@@ -194,7 +195,7 @@ public class MangaDAO extends DAO<Manga>{
 			PreparedStatement statement = null;
 		    ResultSet resultado = null;
 	    	List<Manga> listeManga = new ArrayList<>();     
-		    String query = "SELECT titre_manga, editeur_manga, nbr_tome, id_manga FROM manga WHERE titre_manga LIKE CONCAT(?, '%')";
+		    String query = "SELECT titre_manga, editeur_manga, nbr_tome, id_manga, date_parution, note_manga FROM manga WHERE titre_manga LIKE CONCAT(?, '%')";
 		        try {
 		            statement = connect.prepareStatement(query);	             
 		            statement.setString(1, l);
@@ -204,12 +205,15 @@ public class MangaDAO extends DAO<Manga>{
 						String edit = resultado.getString(2);
 						int nbr_t = resultado.getInt(3);
 						int id = resultado.getInt(4);
-						
+						String date = resultado.getString(5);
+						int note = resultado.getInt(6);
 					    Manga ma = new Manga();
 						ma.setId_manga(id);
 						ma.setTitre_manga(titre);
 						ma.setEdit_manga(edit);
 						ma.setNbr_tome(nbr_t);
+						ma.setDate_parution(date);
+						ma.setNote_manga(note);
 						listeManga.add(ma);
 						
 

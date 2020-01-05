@@ -6,17 +6,18 @@ import java.sql.Timestamp;
 public class Anime {
 	private String titre_anime;
 	private String studio_anime;
-	private Timestamp date_sortie_anime;
+	private String date_sortie_anime;
 	private int nbr_episode;
 	private int note_anime;
 	private int id_anime;
 	
-	public Anime(String t_anime,String stud, int nbr_e, int id) {
-		this.titre_anime = t_anime;
+	public Anime(String titre, String stud, int nbr_e, int id, String date, int note) {
+		this.titre_anime = titre;
 		this.studio_anime = stud;
 		this.nbr_episode = nbr_e;
 		this.id_anime = id;
-		
+		this.date_sortie_anime = date;
+		this.note_anime = note;
 	}
 	
 	public Anime() {
@@ -35,10 +36,10 @@ public class Anime {
 	public void setStudio_anime(String studio_anime) {
 		this.studio_anime = studio_anime;
 	}
-	public Timestamp getDate_sortie_anime() {
+	public String getDate_sortie_anime() {
 		return date_sortie_anime;
 	}
-	public void setDate_sortie_anime(Timestamp date) {
+	public void setDate_sortie_anime(String date) {
 		this.date_sortie_anime = date;
 	}
 	public int getNbr_episode() {
