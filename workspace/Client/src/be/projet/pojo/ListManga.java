@@ -1,5 +1,7 @@
 package be.projet.pojo;
 
+import java.util.List;
+
 import be.projet.dao.ListMangaDAO;
 
 public class ListManga {
@@ -11,6 +13,8 @@ public class ListManga {
 		this.id_manga=id_m;
 		this.id_manga=id_u;
 	}
+	
+	public ListManga() {}
 	
 	public ListManga(String ti) {
 		this.titre_manga=ti;
@@ -42,4 +46,7 @@ public class ListManga {
 	public boolean deleteMangalist() {
 	    return new ListMangaDAO().delete(this);
 	  }
+	public List<ListManga> getAllme(int i){
+		return new ListMangaDAO().getById(i);
+	}
 }

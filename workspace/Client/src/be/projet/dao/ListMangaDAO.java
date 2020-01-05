@@ -1,6 +1,7 @@
 package be.projet.dao;
 
 import be.projet.pojo.ListManga;
+import be.projet.pojo.Utilisateur;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -55,9 +56,9 @@ public class ListMangaDAO extends DAO<ListManga> {
     return done;
 	}
 
-	public List<ListManga> getAll(ListManga g) {
+	public List<ListManga> getById(int i) {
 		String response =
-        webResource.path("listmanga/getAll?id_util"+g.getId_util()).accept(MediaType.APPLICATION_JSON).get(String.class);
+        webResource.path("listmanga/getAllById?id_util"+i).accept(MediaType.APPLICATION_JSON).get(String.class);
     ObjectMapper mapper = new ObjectMapper();
     List<ListManga> mag = new ArrayList<>();
     try {
@@ -76,6 +77,12 @@ public class ListMangaDAO extends DAO<ListManga> {
 
 	@Override
 	public List<ListManga> getAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<ListManga> getAll(ListManga obj) {
 		// TODO Auto-generated method stub
 		return null;
 	}

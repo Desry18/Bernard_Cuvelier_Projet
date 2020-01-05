@@ -18,7 +18,14 @@
   	<servlet-name>NewUtil</servlet-name>
   	<url-pattern>/NewUtil</url-pattern>
   </servlet-mapping>  
-  
+  <servlet>
+  	<servlet-name>test1</servlet-name>
+  	<servlet-class>Controler.test1</servlet-class> 
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>test1</servlet-name>
+  	<url-pattern>/test1</url-pattern>
+  </servlet-mapping>  
   <servlet>
   	<servlet-name>GetAllManga</servlet-name>
   	<servlet-class>Controler.GetAllManga</servlet-class> 
@@ -27,4 +34,5 @@
   	<servlet-name>GetAllManga</servlet-name>
   	<url-pattern>/GetAllManga</url-pattern>
   </servlet-mapping>  
+
 </web-app>

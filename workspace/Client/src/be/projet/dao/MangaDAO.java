@@ -99,4 +99,10 @@ public class MangaDAO extends DAO<Manga>{
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public List<Manga> getById(int i) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

@@ -1,7 +1,6 @@
 package Controler;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -11,19 +10,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import be.projet.pojo.Manga;
-import be.projet.pojo.Utilisateur;
 
 /**
- * Servlet implementation class GetAllManga
+ * Servlet implementation class test1
  */
-//@WebServlet("/GetAllManga")
-public class GetAllManga extends HttpServlet {
+//@WebServlet("/test1")
+public class test1 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public GetAllManga() {
+    public test1() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,17 +30,8 @@ public class GetAllManga extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		
 		response.getWriter().append("Served at: ").append(request.getContextPath());
-		Manga tableManga = new Manga();
-		List <Manga> listeAllManga = tableManga.getAllManga();
-		request.setAttribute("AllManga", listeAllManga);
-    	getServletContext().getRequestDispatcher("/vues\\AllManga.jsp").forward(request, response);
-		/*response.setContentType("text/HTML");
-		response.setCharacterEncoding("UTF-8");
-		PrintWriter out = response.getWriter();*/
-				
+    	getServletContext().getRequestDispatcher("/vues\\myManga.jsp").forward(request, response);
 	}
 
 	/**

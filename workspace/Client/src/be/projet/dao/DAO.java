@@ -23,4 +23,5 @@ abstract class DAO<O> {
 
 	  public abstract List<O> getAll();
 	  public abstract List<O> getAll(O obj);
+	  public abstract List<O> getById(int i);
 	}

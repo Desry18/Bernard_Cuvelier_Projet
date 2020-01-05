@@ -79,5 +79,11 @@ public class Utilisateur {
 		  List<Utilisateur> list = new UtilisateurDAO().getAll();
 		  return list;
 	  }
+	 
+	 public List<Manga> getAll()
+	  {
+		  
+		 return new MangaDAO().getAll();
+	  }
 
 }

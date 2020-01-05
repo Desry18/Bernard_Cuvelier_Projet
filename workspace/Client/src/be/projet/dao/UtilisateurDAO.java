@@ -101,4 +101,10 @@ public class UtilisateurDAO extends DAO<Utilisateur> {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public List<Utilisateur> getById(int i) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

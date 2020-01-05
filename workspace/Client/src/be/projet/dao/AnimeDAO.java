@@ -116,4 +116,10 @@ public class AnimeDAO extends DAO<Anime>{
 	    return util;
 		 }
 
+	@Override
+	public List<Anime> getById(int i) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
