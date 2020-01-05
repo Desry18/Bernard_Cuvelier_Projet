@@ -8,16 +8,14 @@ import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
-
-import be.projet.dao.AnimeDAO;
 import be.projet.dao.ConnectDB;
 import be.projet.dao.ListeMangaDAO;
-import be.projet.pojo.Anime;
 import be.projet.pojo.ListeManga;
 
 @Path("listeManga")
@@ -60,10 +58,10 @@ public Response recupMangaByTitre(
     return rep;
 }
 
-@Path("getAllById")
+@Path("getAllById/{id}")
 @GET
 @Produces(MediaType.APPLICATION_JSON)
-public Response getAllIDJson(@QueryParam("id") int id) {
+public Response getAllIDJson(@PathParam("id") int id) {
 
     try {
 		conn = ConnectDB.getInstance().getConnection();
@@ -80,12 +78,12 @@ public Response getAllIDJson(@QueryParam("id") int id) {
     return rep;
 }
 
-@Path("nouvelListeM")
+@Path("nouvelListeM/{id_manga}/{id_util}")
 @POST
 @Produces(MediaType.APPLICATION_JSON)
 public Response nouvelListeM(
-	@QueryParam("id_manga") int im,
-	@QueryParam("id_util") int ia
+	@PathParam("id_manga") int im,
+	@PathParam("id_util") int ia
 	) {
 		try {
 			conn = ConnectDB.getInstance().getConnection();

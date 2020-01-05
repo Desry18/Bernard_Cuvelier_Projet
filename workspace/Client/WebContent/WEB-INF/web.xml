@@ -42,5 +42,14 @@
   	<servlet-name>GetAllManga</servlet-name>
   	<url-pattern>/GetAllManga</url-pattern>
   </servlet-mapping>  
+  
+    <servlet>
+  	<servlet-name>GetAllAnime</servlet-name>
+  	<servlet-class>Controler.GetAllAnime</servlet-class> 
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>GetAllAnime</servlet-name>
+  	<url-pattern>/GetAllAnime</url-pattern>
+  </servlet-mapping> 
 
 </web-app>

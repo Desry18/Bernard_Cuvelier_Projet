@@ -18,7 +18,7 @@ public class Manga {
 
 	private String titre_manga;
 	private String edit_manga;	
-	private Timestamp date_parution;	
+	private String date_parution;	
 	private int nbr_tome;	
 	private int note_manga;
 	private int id_manga;
@@ -35,10 +35,10 @@ public class Manga {
 	public void setEdit_manga(String edit_manga) {
 		this.edit_manga = edit_manga;
 	}
-	public Timestamp getDate_parution() {
+	public String getDate_parution() {
 		return date_parution;
 	}
-	public void setDate_parution(Timestamp date_parution) {
+	public void setDate_parution(String date_parution) {
 		this.date_parution = date_parution;
 	}
 	public int getNbr_tome() {
@@ -80,8 +80,8 @@ public class Manga {
 	  public List<Manga> getAllManga()
 	  {
 		  
-		  List<Manga> list = new MangaDAO().getAll();
-		  return list;
+		  return new MangaDAO().getAll();
+		  
 	  }
 	
 	  public List<Anime> getMeManga(Manga m){

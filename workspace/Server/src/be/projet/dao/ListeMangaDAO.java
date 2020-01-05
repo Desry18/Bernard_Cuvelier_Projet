@@ -20,7 +20,7 @@ public class ListeMangaDAO  extends DAO<ListeManga> {
 	public boolean create(ListeManga li)	
 	{
 		PreparedStatement stmt;
-		String query = "INSERT INTO listmanga (id_manga,ID_util) VALUES (?, ? )" ;
+		String query = "INSERT INTO listemanga (id_manga,id_util) VALUES (?, ?)" ;
 		try {
 		stmt = connect.prepareStatement(query);
 		stmt.setInt(1,li.getId_manga());

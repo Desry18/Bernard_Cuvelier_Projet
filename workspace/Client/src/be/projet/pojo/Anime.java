@@ -6,15 +6,13 @@ import java.util.List;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 import be.projet.dao.AnimeDAO;
+import be.projet.dao.MangaDAO;
 
 public class Anime {
 	
 	private String titre_anime;
 	private String studio_anime;
-	
-	@JsonDeserialize(using = EditData.class)
-	private Date date_sortie_anime;
-	
+	private String date_sortie_anime;
 	private int nbr_episode;
 	private int note_anime;
 	private int id_anime;
@@ -47,11 +45,11 @@ public class Anime {
 		this.studio_anime = studio_anime;
 	}
 
-	public Date getDate_sortie_anime() {
+	public String getDate_sortie_anime() {
 		return date_sortie_anime;
 	}
 
-	public void setDate_sortie_anime(Date date_sortie_anime) {
+	public void setDate_sortie_anime(String date_sortie_anime) {
 		this.date_sortie_anime = date_sortie_anime;
 	}
 
@@ -89,4 +87,11 @@ public class Anime {
 	public List<Anime> findi(String l){
 		return new AnimeDAO().find(l);
 	}
+	
+	 public List<Anime> getAllAnime()
+	  {
+		  
+		  return new AnimeDAO().getAll();
+		  
+	  }
 }
