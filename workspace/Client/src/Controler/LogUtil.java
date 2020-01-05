@@ -1,6 +1,7 @@
 package Controler;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
@@ -45,20 +46,21 @@ public class LogUtil extends HttpServlet{
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String pseudo = null;
 	    String mdp = null;
-	    //if (request.getParameter("valider") != null) {
+	    if (request.getParameter("valider") != null) {
 	      pseudo = request.getParameter("pseudo");
 	      mdp = request.getParameter("mdp");
 	      Utilisateur u = new Utilisateur();
 	      if (u.log(pseudo, mdp)) {
-	        //HttpSession session = request.getSession();
-	        //session.setAttribute("util", u);
+	        HttpSession session = request.getSession();
+	        session.setAttribute("util", u);
 		 	//response.sendRedirect("/Test2.html");
-	        getServletContext().getRequestDispatcher("/vues\\UtilisateurIndex.jsp").forward(request, response);
+	        
+	    	getServletContext().getRequestDispatcher("/vues\\UtilisateurIndex.jsp").forward(request, response);
 	      } else {
 			 //response.sendRedirect("/Test2.html");
 	    	  getServletContext().getRequestDispatcher("/vues\\Index.jsp").forward(request, response);
 	      }
-	    
+	    }
 	}
 
 	/**

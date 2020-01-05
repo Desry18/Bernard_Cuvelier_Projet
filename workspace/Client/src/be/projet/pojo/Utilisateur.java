@@ -2,6 +2,7 @@ package be.projet.pojo;
 
 import java.util.List;
 
+import be.projet.dao.MangaDAO;
 import be.projet.dao.UtilisateurDAO;
 
 public class Utilisateur {
@@ -72,5 +73,11 @@ public class Utilisateur {
 		    this.mdp = mdp;
 		    return new UtilisateurDAO().create(this);
 		  }
+	 public List<Utilisateur> getAllUtil()
+	  {
+		  
+		  List<Utilisateur> list = new UtilisateurDAO().getAll();
+		  return list;
+	  }
 
 }

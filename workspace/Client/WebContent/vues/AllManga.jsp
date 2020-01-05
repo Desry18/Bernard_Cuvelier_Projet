@@ -7,8 +7,11 @@
 <title>Insert title here</title>
 </head>
 <body>
-<p>Coucou ${ util.nom_util }</p>
-
+<h1>Tous les manga : </h1>
+<p>
+	${AllManga.get(0).getTitre_manga()}
+</p>
+	
 <%@ include file = "menu.jsp" %>
 
 </body>

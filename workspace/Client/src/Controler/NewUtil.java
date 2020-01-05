@@ -13,7 +13,7 @@ import be.projet.pojo.Utilisateur;
 /**
  * Servlet implementation class NewUtil
  */
-@WebServlet("/NewUtil")
+//@WebServlet("/NewUtil")
 public class NewUtil extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -35,23 +35,25 @@ public class NewUtil extends HttpServlet {
 	    String pseudo;
 	    String mdp;
 	   
-	    if (request.getParameter("submit") != null) {
+	    if (request.getParameter("valider") != null) {
 	      email = request.getParameter("email");
 	      nom = request.getParameter("nom_util");
 	      pseudo = request.getParameter("pseudo");
 	      mdp = request.getParameter("mdp");
 	      if (email != null && nom != null && pseudo != null && mdp != null) {
 	        Utilisateur u = new Utilisateur();
-	        if (u.enregistrer(email,nom, pseudo,mdp)) {
+	        if (!u.enregistrer(email,nom, pseudo,mdp)) {
 	          HttpSession session = request.getSession();
-	          session.setAttribute("user", u);
-	          response.sendRedirect("/ok_bommer/Activity/");
+	          session.setAttribute("util", u);
+		        getServletContext().getRequestDispatcher("/vues\\UtilisateurIndex.jsp").forward(request, response);
 	        } else {
-	          response.sendRedirect("/ok_bommer/Index/");
+	        	getServletContext().getRequestDispatcher("/vues\\Index.jsp").forward(request, response);
 	        }
-	      } else {
-	        response.sendRedirect("/ok_bommer/Index/");
 	      }
+	        else {
+	        	getServletContext().getRequestDispatcher("/vues\\Index.jsp").forward(request, response);
+
+	        }
 	    }
 	}
 
