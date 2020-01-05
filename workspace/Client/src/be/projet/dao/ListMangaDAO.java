@@ -22,7 +22,7 @@ public class ListMangaDAO extends DAO<ListManga> {
 	public boolean delete(ListManga g) {
 		String response =
         webResource
-            .path("listmanga/suppListManga?id_manga=" + g.getId_manga()+"?id_util="+g.getId_util() )
+            .path("listmanga/delListM?id_manga=" + g.getId_manga()+"?id_util="+g.getId_util() )
             .accept(MediaType.APPLICATION_JSON)
             .delete(String.class);
     ObjectMapper mapper = new ObjectMapper();
@@ -41,7 +41,7 @@ public class ListMangaDAO extends DAO<ListManga> {
 		params.add("id_util", String.valueOf(g.getId_util()));
 		String response =
         webResource
-            .path("listmanga/createlistmanga")
+            .path("listmanga/nouvelListeM")
             .accept(MediaType.APPLICATION_JSON)
             .type("application/x-www-form-urlencoded")
             .post(String.class, params);

@@ -62,7 +62,7 @@ public class MangaDAO extends DAO<Manga>{
 	public boolean delete(Manga g) {
 		String response =
         webResource
-            .path("utilisateur/suppManga?id=" + g.getId_manga())
+            .path("utilisateur/delmanga?id=" + g.getId_manga())
             .accept(MediaType.APPLICATION_JSON)
             .delete(String.class);
     ObjectMapper mapper = new ObjectMapper();
@@ -81,7 +81,7 @@ public class MangaDAO extends DAO<Manga>{
 		params.add("nbr_tome", String.valueOf(g.getNbr_tome()));
 		String response =
         webResource
-            .path("manga/plusTome?id=" + g.getId_manga())
+            .path("manga/ChangerNbTome?id=" + g.getId_manga())
             .accept(MediaType.APPLICATION_JSON)
             .delete(String.class);
     ObjectMapper mapper = new ObjectMapper();

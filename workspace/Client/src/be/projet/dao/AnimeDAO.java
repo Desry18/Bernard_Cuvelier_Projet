@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sun.jersey.core.util.MultivaluedMapImpl;
 
 import be.projet.pojo.Anime;
+import be.projet.pojo.Manga;
 
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.MultivaluedMap;
@@ -44,7 +45,7 @@ public class AnimeDAO extends DAO<Anime>{
 		params.add("date_sortie_anime", dateFormat.format(g.getDate_sortie_anime()));
 		String response =
         webResource
-            .path("anime/createanime")
+            .path("anime/nouvelanime")
             .accept(MediaType.APPLICATION_JSON)
             .type("application/x-www-form-urlencoded")
             .post(String.class, params);
@@ -62,7 +63,7 @@ public class AnimeDAO extends DAO<Anime>{
 	public boolean delete(Anime g) {
 		String response =
         webResource
-            .path("anime/suppAnime?id=" + g.getId_anime())
+            .path("anime/delanime?id=" + g.getId_anime())
             .accept(MediaType.APPLICATION_JSON)
             .delete(String.class);
     ObjectMapper mapper = new ObjectMapper();
@@ -81,7 +82,7 @@ public class AnimeDAO extends DAO<Anime>{
 		params.add("nbr_episode", String.valueOf(g.getNbr_episode()));
 		String response =
         webResource
-            .path("anime/plusEpisode?id=" + g.getId_anime())
+            .path("anime/ChangerNbEp?id=" + g.getId_anime())
             .accept(MediaType.APPLICATION_JSON)
             .delete(String.class);
     ObjectMapper mapper = new ObjectMapper();
@@ -100,4 +101,19 @@ public class AnimeDAO extends DAO<Anime>{
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	public List<Anime> findall(Manga id){
+
+		 String response =
+	        webResource.path("anime/getAllById?id="+id.getId_manga()).accept(MediaType.APPLICATION_JSON).get(String.class);
+	    ObjectMapper mapper = new ObjectMapper();
+	    List<Anime> util = new ArrayList<>();
+	    try {
+	      util = mapper.readValue(response, new TypeReference<List<Anime>>() {});
+	    } catch (IOException e) {
+	      e.printStackTrace();
+	    }
+	    return util;
+		 }
+
 }

@@ -186,14 +186,15 @@ public class AnimeDAO extends DAO<Anime>{
 		return listeAnime;
 	}
 	
-	 public List<Anime> findall(int id){
+
+	 public List<Anime> findAn(Manga id){
 		 PreparedStatement statement = null;
 	        ResultSet resultado = null;
 	        String query = "SELECT titre_anime, studio_anime, nbr_episode, date_sortie_anime, id_anime FROM manga m INNER JOIN anime a ON m.id_manga= a.id_manga WHERE a.id_manga = ?";
 	    	List<Anime> listanime = new ArrayList<>();       
 	        try {
 	            statement = connect.prepareStatement(query);
-	            statement.setInt(1, id);
+	            statement.setInt(1, id.getId_manga());
 
 	            resultado = statement.executeQuery();
 	            
@@ -207,7 +208,7 @@ public class AnimeDAO extends DAO<Anime>{
 					m.setStudio_anime(studio);
 					m.setNbr_episode(nbr_e);
 					m.setDate_sortie_anime(date);
-					m.setId_anime(id);
+					m.setId_anime(id.getId_manga());
 					listanime.add(m);
 
 	        }
@@ -233,4 +234,10 @@ public class AnimeDAO extends DAO<Anime>{
 			}
 			return listanime;
 	 }
+
+	@Override
+	public List<Anime> findall(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	 }
