@@ -60,7 +60,7 @@ public class ListeMangaDAO extends DAO<ListeManga> {
 	}
 
 	public List<ListeManga> getById(int i) {
-		String url = "listeManga/getAllById?id=" +i ;
+		String url = "listeManga/getAllById/"+i ;
 		/*String urlf = null;
 		try {
 			urlf = URLDecoder.decode(url,"UTF-8");
