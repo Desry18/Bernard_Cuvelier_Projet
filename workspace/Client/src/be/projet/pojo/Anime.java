@@ -1,6 +1,7 @@
 package be.projet.pojo;
 
 import java.sql.Date;
+import java.util.List;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
@@ -24,6 +25,10 @@ public class Anime {
 		this.nbr_episode = nbr_e;
 		this.id_anime = id;
 		
+	}
+
+	public Anime() {
+		// TODO Auto-generated constructor stub
 	}
 
 	public String getTitre_anime() {
@@ -81,4 +86,7 @@ public class Anime {
 	  public boolean deleteAPost() {
 	    return new AnimeDAO().delete(this);
 	  }
+	public List<Anime> findi(String l){
+		return new AnimeDAO().find(l);
+	}
 }

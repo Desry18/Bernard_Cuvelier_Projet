@@ -5,6 +5,8 @@ import java.util.List;
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.WebResource;
 
+import be.projet.pojo.Anime;
+
 abstract class DAO<O> {
 	  final WebResource webResource;
 
@@ -24,4 +26,5 @@ abstract class DAO<O> {
 	  public abstract List<O> getAll();
 	  public abstract List<O> getAll(O obj);
 	  public abstract List<O> getById(int i);
+	  public abstract List<O> find(String l);
 	}

@@ -93,4 +93,11 @@ public class GenreDAO extends DAO<Genre> {
 	public List<Genre> getById(int i) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+
+	@Override
+	public List<Genre> find(String l) {
+		// TODO Auto-generated method stub
+		return null;
 	}}

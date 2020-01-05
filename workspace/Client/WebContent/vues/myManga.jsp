@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ page import="be.projet.pojo.Utilisateur" %> 
-<%@ page import="be.projet.pojo.ListeManga" %>  
+<%@ page import="be.projet.pojo.ListeManga" %> 
 <%@ page import="java.util.List" %> 
 <%@ page import="java.util.ArrayList" %>
 <!DOCTYPE html>
@@ -33,7 +33,7 @@
         if (lmanga != null) {
             if (lmanga.size() >= 1) {
                 for (int i = 0; i < lmanga.size(); i++) {
-                   ListManga m = lmanga.get(i);
+                   ListeManga m = lmanga.get(i);
                     out.println( m.getTitre_manga());
                     out.println("<a type=\"button\" href=\"/ok_borber/Consultermanga?id=" + m.getId_manga() + "\">Consulter</a>");
           

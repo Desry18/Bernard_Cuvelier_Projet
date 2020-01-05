@@ -121,5 +121,18 @@ public class AnimeDAO extends DAO<Anime>{
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	public List<Anime> find(String i){
 
+		 String response =
+	        webResource.path("anime/recupAnimeByTitre"+"?"+"lettre="+i).accept(MediaType.APPLICATION_JSON).get(String.class);
+	    ObjectMapper mapper = new ObjectMapper();
+	    List<Anime> util = new ArrayList<>();
+	    try {
+	      util = mapper.readValue(response, new TypeReference<List<Anime>>() {});
+	    } catch (IOException e) {
+	      e.printStackTrace();
+	    }
+	    return util;
+		 }
 }

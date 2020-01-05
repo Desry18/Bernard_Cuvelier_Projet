@@ -7,6 +7,7 @@ import java.util.List;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
+import be.projet.dao.AnimeDAO;
 import be.projet.dao.MangaDAO;
 
 /**
@@ -83,5 +84,7 @@ public class Manga {
 		  return list;
 	  }
 	
-	
+	  public List<Anime> getMeManga(Manga m){
+			return new AnimeDAO().findall(this);
+		}
 }
