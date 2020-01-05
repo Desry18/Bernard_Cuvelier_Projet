@@ -37,10 +37,10 @@ public class AddManga extends HttpServlet {
 		      id = request.getParameter("id");
 		      if (session.getAttribute("util") != null) {
 		        util = (Utilisateur) session.getAttribute("util");
-		        //util.addMangaList(Integer.parseInt(id));
-		        response.sendRedirect("/ok_bommer/Activity/");
-		      } else response.sendRedirect("/ok_bommer/Index/");
-		    } else response.sendRedirect("/ok_bommer/Activity/");
+		        util.ajouterAMaList(Integer.parseInt(id));
+		        response.sendRedirect("/vues/menu/");
+		      } else response.sendRedirect("/vues/menu/");
+		    } else response.sendRedirect("/vues/menu/");
 	}
 
 	/**

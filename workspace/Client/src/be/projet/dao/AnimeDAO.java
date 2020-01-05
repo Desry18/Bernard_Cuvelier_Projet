@@ -102,10 +102,11 @@ public class AnimeDAO extends DAO<Anime>{
 		return null;
 	}
 	
-	public List<Anime> findall(Manga id){
+	public List<Anime> findall(Manga i){
+		String url = "anime/getAllById/"+i.getId_manga() ;
 
 		 String response =
-	        webResource.path("anime/getAllById?id="+id.getId_manga()).accept(MediaType.APPLICATION_JSON).get(String.class);
+	        webResource.path(url).accept(MediaType.APPLICATION_JSON).get(String.class);
 	    ObjectMapper mapper = new ObjectMapper();
 	    List<Anime> util = new ArrayList<>();
 	    try {
@@ -135,4 +136,10 @@ public class AnimeDAO extends DAO<Anime>{
 	    }
 	    return util;
 		 }
+
+	@Override
+	public Anime find(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

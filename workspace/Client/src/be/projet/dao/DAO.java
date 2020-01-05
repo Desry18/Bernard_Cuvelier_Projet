@@ -21,7 +21,7 @@ abstract class DAO<O> {
 
 	  public abstract boolean update(O obj);
 
-	  //public abstract T find(int id);
+	  public abstract O find(int id);
 
 	  public abstract List<O> getAll();
 	  public abstract List<O> getAll(O obj);

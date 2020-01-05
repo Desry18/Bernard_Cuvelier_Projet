@@ -18,7 +18,6 @@ import java.util.List;
 public class MangaDAO extends DAO<Manga>{	
 	public MangaDAO() {
 		super();
-		
 	}
 
 	public List<Manga> getAll() {
@@ -110,5 +109,25 @@ public class MangaDAO extends DAO<Manga>{
 	public List<Manga> find(String l) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public Manga find(int id) {
+		MultivaluedMap<String, String> params = new MultivaluedMapImpl();
+	    params.add("id", String.valueOf(id));
+	    String response =
+	        webResource
+	            .queryParams(params)
+	            .path("manga/getById")
+	            .accept(MediaType.APPLICATION_JSON)
+	            .get(String.class);
+	    ObjectMapper mapper = new ObjectMapper();
+	    Manga l = new Manga();
+	    try {
+	      l = mapper.readValue(response, new TypeReference<Manga>() {});
+	    } catch (IOException e) {
+	      e.printStackTrace();
+	    }
+	    return l;
 	}
 }

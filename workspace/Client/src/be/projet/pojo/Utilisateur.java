@@ -85,5 +85,9 @@ public class Utilisateur {
 		  
 		 return new MangaDAO().getAll();
 	  }
+	 public boolean ajouterAMaList(int i) {
+		Manga m= new MangaDAO().find(i);
+		return m.test();
+	 }
 
 }
