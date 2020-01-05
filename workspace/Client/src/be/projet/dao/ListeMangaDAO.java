@@ -1,6 +1,6 @@
 package be.projet.dao;
 
-import be.projet.pojo.ListManga;
+import be.projet.pojo.ListeManga;
 import be.projet.pojo.Utilisateur;
 
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -10,20 +10,23 @@ import com.sun.jersey.core.util.MultivaluedMapImpl;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.MultivaluedMap;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ListMangaDAO extends DAO<ListManga> {
-	public ListMangaDAO()
+public class ListeMangaDAO extends DAO<ListeManga> {
+	public ListeMangaDAO()
 	{
 		super();
 	}
 
 	@Override
-	public boolean delete(ListManga g) {
+	public boolean delete(ListeManga g) {
 		String response =
         webResource
-            .path("listmanga/delListM?id_manga=" + g.getId_manga()+"?id_util="+g.getId_util() )
+            .path("listeManga/delListM?id_m" + g.getId_manga()+"&id_u="+g.getId_util() )
             .accept(MediaType.APPLICATION_JSON)
             .delete(String.class);
     ObjectMapper mapper = new ObjectMapper();
@@ -36,13 +39,13 @@ public class ListMangaDAO extends DAO<ListManga> {
     return done;
 	}
 
-	public boolean create(ListManga g) {
+	public boolean create(ListeManga g) {
 		MultivaluedMap<String, String> params = new MultivaluedMapImpl();
 		params.add("id_manga", String.valueOf(g.getId_manga()));
 		params.add("id_util", String.valueOf(g.getId_util()));
 		String response =
         webResource
-            .path("listmanga/nouvelListeM")
+            .path("listeManga/nouvelListeM")
             .accept(MediaType.APPLICATION_JSON)
             .type("application/x-www-form-urlencoded")
             .post(String.class, params);
@@ -56,13 +59,22 @@ public class ListMangaDAO extends DAO<ListManga> {
     return done;
 	}
 
-	public List<ListManga> getById(int i) {
+	public List<ListeManga> getById(int i) {
+		String url = "listeManga/getAllById?id=" +i ;
+		/*String urlf = null;
+		try {
+			urlf = URLDecoder.decode(url,"UTF-8");
+		} catch (UnsupportedEncodingException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		*/
 		String response =
-        webResource.path("listmanga/getAllById?id_util"+i).accept(MediaType.APPLICATION_JSON).get(String.class);
+        webResource.path(url).accept(MediaType.APPLICATION_JSON).get(String.class);
     ObjectMapper mapper = new ObjectMapper();
-    List<ListManga> mag = new ArrayList<>();
+    List<ListeManga> mag = new ArrayList<>();
     try {
-      mag = mapper.readValue(response, new TypeReference<List<ListManga>>() {});
+      mag = mapper.readValue(response, new TypeReference<List<ListeManga>>() {});
     } catch (IOException e) {
       e.printStackTrace();
     }
@@ -70,19 +82,29 @@ public class ListMangaDAO extends DAO<ListManga> {
 		
 	}
 	@Override
-	public boolean update(ListManga g) {
+	public boolean update(ListeManga g) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public List<ListManga> getAll() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	public List<ListeManga> getAll() {
+		
+		String response =
+		        webResource.path("listeManga/getAll").accept(MediaType.APPLICATION_JSON).get(String.class);
+		    ObjectMapper mapper = new ObjectMapper();
+		    List<ListeManga> lm = new ArrayList<>();
+		    try {
+		      lm = mapper.readValue(response, new TypeReference<List<ListeManga>>() {});
+		    } catch (IOException e) {
+		      e.printStackTrace();
+		    }
+		    return lm;
+				}
+	
 
 	@Override
-	public List<ListManga> getAll(ListManga obj) {
+	public List<ListeManga> getAll(ListeManga obj) {
 		// TODO Auto-generated method stub
 		return null;
 	}

@@ -2,21 +2,21 @@ package be.projet.pojo;
 
 import java.util.List;
 
-import be.projet.dao.ListMangaDAO;
+import be.projet.dao.ListeMangaDAO;
 
-public class ListManga {
+public class ListeManga {
 	private int id_manga;
 	private int id_util;
 	private String titre_manga;
 	
-	public ListManga(int id_m, int id_u) {
+	public ListeManga(int id_m, int id_u) {
 		this.id_manga=id_m;
 		this.id_manga=id_u;
 	}
 	
-	public ListManga() {}
+	public ListeManga() {}
 	
-	public ListManga(String ti) {
+	public ListeManga(String ti) {
 		this.titre_manga=ti;
 	}
 	
@@ -40,13 +40,18 @@ public class ListManga {
 	}
 	
 	public boolean createMangalist() {
-	    return new ListMangaDAO().create(this);
+	    return new ListeMangaDAO().create(this);
 	  }
 	
 	public boolean deleteMangalist() {
-	    return new ListMangaDAO().delete(this);
+	    return new ListeMangaDAO().delete(this);
 	  }
-	public List<ListManga> getAllme(int i){
-		return new ListMangaDAO().getById(i);
+	public List<ListeManga> getAllme(int i){
+		return new ListeMangaDAO().getById(i);
+	}
+	
+	public List<ListeManga> getAllListeManga()
+	{
+		return new ListeMangaDAO().getAll();
 	}
 }

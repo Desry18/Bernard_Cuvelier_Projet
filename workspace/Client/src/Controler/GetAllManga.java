@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import be.projet.pojo.ListeManga;
 import be.projet.pojo.Manga;
 import be.projet.pojo.Utilisateur;
 
@@ -33,16 +34,21 @@ public class GetAllManga extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
-		response.getWriter().append("Served at: ").append(request.getContextPath());
 		Manga tableManga = new Manga();
 		List <Manga> listeAllManga = tableManga.getAllManga();
 		request.setAttribute("AllManga", listeAllManga);
-    	getServletContext().getRequestDispatcher("/vues\\AllManga.jsp").forward(request, response);
-		/*response.setContentType("text/HTML");
+    	//getServletContext().getRequestDispatcher("/vues\\AllManga.jsp").forward(request, response);
+		response.setContentType("text/HTML");
 		response.setCharacterEncoding("UTF-8");
-		PrintWriter out = response.getWriter();*/
-				
+		PrintWriter out = response.getWriter();
+		ListeManga lm = new ListeManga();
+		List <ListeManga> lmall = lm.getAllListeManga();
+		Utilisateur u = new Utilisateur();
+		List<Utilisateur> ul = u.getAllUtil();
+		out.println("test liste manga : " + lmall.get(0).getId_manga() + "Test liste utilisateur : " + ul.get(4).getPseudo());
+
+		
+		
 	}
 
 	/**

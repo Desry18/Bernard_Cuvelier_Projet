@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ page import="be.projet.pojo.Utilisateur" %> 
-<%@ page import="be.projet.pojo.ListManga" %>  
+<%@ page import="be.projet.pojo.ListeManga" %>  
 <%@ page import="java.util.List" %> 
 <%@ page import="java.util.ArrayList" %>
 <!DOCTYPE html>
@@ -27,8 +27,8 @@
 
     <%
     	int k= u.getId_util();
-    ListManga ma = new ListManga();
-        List<ListManga> lmanga = ma.getAllme(k);
+    ListeManga ma = new ListeManga();
+        List<ListeManga> lmanga = ma.getAllme(k);
 		
         if (lmanga != null) {
             if (lmanga.size() >= 1) {
