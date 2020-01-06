@@ -111,13 +111,11 @@ public class MangaDAO extends DAO<Manga>{
 
 	@Override
 	public boolean update(Manga obj) {
-		CallableStatement statement = null;
-		//String query = "UPDATE manga SET  nbr_tome = ? WHERE id_manga = ?";
+		PreparedStatement statement = null;
+		String query = "UPDATE manga SET  note_manga =note_manga+1 WHERE id_manga = ?";
 		try {
-			statement = connect.prepareCall("{? = call updateTome(?,?)}");
+			statement = connect.prepareStatement(query);
 			statement.setInt(1, obj.getId_manga());
-			statement.setInt(2, obj.getNbr_tome());
-			
 			statement.executeUpdate();
 			
 		} catch (SQLException e) {

@@ -9,7 +9,18 @@
   	<servlet-name>LogUtil</servlet-name>
   	<url-pattern>/log</url-pattern>
   </servlet-mapping>  
-  
+   <servlet>
+  	<servlet-name>LogOut</servlet-name>
+  	<servlet-class>Controler.LogOut</servlet-class> 
+  	 <init-param>
+  <param-name>urlAnime</param-name>
+  <param-value>/Connexion.html</param-value>
+  </init-param>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>LogOut</servlet-name>
+  	<url-pattern>/logout</url-pattern>
+  </servlet-mapping>  
   <servlet>
   	<servlet-name>NewUtil</servlet-name>
   	<servlet-class>Controler.NewUtil</servlet-class> 
@@ -58,5 +69,21 @@
   <servlet-mapping>
   	<servlet-name>AddManga</servlet-name>
   	<url-pattern>/AddManga/*</url-pattern>
+  </servlet-mapping> 
+  <servlet>
+  	<servlet-name>ConsulterAnime</servlet-name>
+  	<servlet-class>Controler.ConsulterAnime</servlet-class> 
+  	 <init-param>
+  <param-name>urlAnime</param-name>
+  <param-value>/vues/Animes.jsp</param-value>
+  </init-param>
+  <init-param>
+  <param-name>allManga</param-name>
+  <param-value>/vues/AllManga.jsp</param-value>
+  </init-param>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>ConsulterAnime</servlet-name>
+  	<url-pattern>/ConsulterAnime/*</url-pattern>
   </servlet-mapping> 
 </web-app>

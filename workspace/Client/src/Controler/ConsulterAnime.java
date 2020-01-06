@@ -10,24 +10,28 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import be.projet.pojo.Utilisateur;
+
 /**
- * Servlet implementation class LogOut
+ * Servlet implementation class ConsulterAnime
  */
-@WebServlet("/LogOut")
-public class LogOut extends HttpServlet {
+@WebServlet("/ConsulterAnime")
+public class ConsulterAnime extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       String urlco=null;
+     String urlAnime=null;
+     String allManga=null;
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LogOut() {
+    public ConsulterAnime() {
         super();
         // TODO Auto-generated constructor stub
     }
     
     public void init() {
     	ServletConfig config=getServletConfig();
-    	urlco=(String)config.getInitParameter("conn");
+    	urlAnime=(String)config.getInitParameter("urlAnime");
+    	allManga=(String)config.getInitParameter("allManga");
     	 	
     }
 	/**
@@ -35,9 +39,19 @@ public class LogOut extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		HttpSession session = request.getSession(false);
-	    session.invalidate();
-	    getServletContext().getRequestDispatcher(urlco).forward(request, response);
+		response.getWriter().append("Served at: ").append(request.getContextPath());
+		String id;
+	    Utilisateur util;
+	    HttpSession session = request.getSession();
+	    if (request.getParameter("id") != null) {
+	      id = request.getParameter("id");
+	      if (session.getAttribute("util") != null) {
+	        util = (Utilisateur) session.getAttribute("util");
+	        util.consulterA(Integer.parseInt(id));
+			request.setAttribute("anime", util);
+			getServletContext().getRequestDispatcher(urlAnime).forward(request, response);
+	      }getServletContext().getRequestDispatcher(allManga).forward(request, response);
+	    }getServletContext().getRequestDispatcher(allManga).forward(request, response);
 	}
 
 	/**

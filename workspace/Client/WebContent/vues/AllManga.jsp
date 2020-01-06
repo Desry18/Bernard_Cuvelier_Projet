@@ -24,9 +24,9 @@
                     out.println("<td>");
                     out.println(m.getTitre_manga() + " </td><td>" + m.getEdit_manga() + " </td> <td>" + m.getNote_manga());
                     out.println("</td>");
-                    out.println("<td><a type=\"button\" href=\"/ok_borber/Consultermanga?id=" + m.getId_manga()+ "\">Consulter</a></td>");           
-                    out.println("<td><a type=\"button\" class=\"btn btn-primary\" href=\"AddManga/" + m.getId_manga() + "\">Ajouter à ma liste</a></td>");
-                    out.println("<td><a type=\"button\" class=\"btn btn-primary\" href=\"/ok_bomer/AddNote?id=" + m.getId_manga() + "\">Ajouter un point!</a></td>");
+                    out.println("<td><a type=\"button\" class=\"btn btn-primary\" href=\"ConsulterAnime/" + m.getId_manga() + "\">Consulter</a></td>");
+                    out.println("<td><a type=\"button\" class=\"btn btn-primary\" href=\"AddAnime/" + m.getId_manga() + "\">Ajouter a ma liste</a></td>");
+                    out.println("<td><a type=\"button\" class=\"btn btn-primary\" href=\"AddNote/" + m.getId_manga() + "\">Ajouter un point!</a></td>");
                 	out.println("</tr>");
 
                 }

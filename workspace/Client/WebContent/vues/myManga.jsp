@@ -35,9 +35,9 @@
                 for (int i = 0; i < lmanga.size(); i++) {
                    ListeManga m = lmanga.get(i);
                     out.println( m.getTitre_manga());
-                    out.println("<a type=\"button\" href=\"/ok_borber/Consultermanga?id=" + m.getId_manga() + "\">Consulter</a>");
+                    out.println("<a type=\"button\" href=\"ConsulterAnime/" + m.getId_manga() + "\">Consulter</a>");
           
-                    out.println("<a type=\"button\" href=\"/ok_bomer/AddNote?id=" + m.getId_manga() + "\">Ajouter un point!</a>");
+                    out.println("<a type=\"button\" href=\"/ddNote/" + m.getId_manga() + "\">Ajouter un point!</a>");
                   
                 }
             }

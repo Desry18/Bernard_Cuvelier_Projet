@@ -76,11 +76,10 @@ public class MangaDAO extends DAO<Manga>{
 
 	@Override
 	public boolean update(Manga g) {
-	MultivaluedMap<String, String> params = new MultivaluedMapImpl();
-		params.add("nbr_tome", String.valueOf(g.getNbr_tome()));
+
 		String response =
         webResource
-            .path("manga/ChangerNbTome?id=" + g.getId_manga())
+            .path("manga/upDate/" + g.getId_manga())
             .accept(MediaType.APPLICATION_JSON)
             .delete(String.class);
     ObjectMapper mapper = new ObjectMapper();

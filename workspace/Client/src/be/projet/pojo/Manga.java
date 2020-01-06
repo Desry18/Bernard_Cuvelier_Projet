@@ -83,9 +83,7 @@ public class Manga {
 		  return new MangaDAO().getAll();
 		  
 	  }
-	  public List<Anime> getMeManga(Manga m){
-			return new AnimeDAO().findall(this);
-		}
+	  
 	  public boolean test() {
 		  ListeManga l=new ListeManga();
 		  return l.createMangalist();

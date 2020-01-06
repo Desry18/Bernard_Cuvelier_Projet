@@ -102,8 +102,8 @@ public class AnimeDAO extends DAO<Anime>{
 		return null;
 	}
 	
-	public List<Anime> findall(Manga i){
-		String url = "anime/getAllById/"+i.getId_manga() ;
+	public List<Anime> findall(int i){
+		String url = "anime/getAllById/"+i;
 
 		 String response =
 	        webResource.path(url).accept(MediaType.APPLICATION_JSON).get(String.class);

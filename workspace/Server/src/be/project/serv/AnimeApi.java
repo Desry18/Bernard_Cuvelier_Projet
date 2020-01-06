@@ -82,9 +82,7 @@ public class AnimeApi {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-        Manga a = new Manga();
-        a.setId_manga(id);
-		List<Anime> list = new AnimeDAO(conn).findAn(a);
+		List<Anime> list = new AnimeDAO(conn).findAn(id);
        
         if (list != null)
         	rep = Response .status(Response.Status.OK).entity(list).build();

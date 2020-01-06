@@ -163,4 +163,30 @@ public Response deletemanga(
 		return rep;
 	}
 	
+	@Path("upDate/{id}")
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response updateNote(
+		@PathParam("id") int id) {
+		
+        try {
+			conn = ConnectDB.getInstance().getConnection();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        Manga ma= new Manga();
+        ma.getId_manga();
+        
+		boolean mang = new MangaDAO(conn).update(ma);
+       
+		if (mang)
+			rep = Response.status(Response.Status.OK).entity(true).build();
+		else
+			rep = Response.status(Response.Status.BAD_REQUEST).entity(null).build();	
+		
+		return rep;
+	}
+	
+	
 }
