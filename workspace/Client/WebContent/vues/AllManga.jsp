@@ -23,7 +23,7 @@
                     Manga m = lmanga.get(i);
                 	int id = m.getId_manga();
                     out.println("<td>");
-                    out.println(m.getTitre_manga() + " </td><td>" + m.getEdit_manga() + " </td> <td>" + m.getNote_manga());
+                    out.println(m.getTitre_manga() + " </td><td>" + m.getEdit_manga() + " </td> <td>" + m.getNote_manga() +" </td> <td>" + m.getId_manga());
                     out.println("</td>");
                     out.println("<td><a href=\"allbymanga\"> Consulter Animes</a></td>");
                     out.println("<td><a type=\"button\" class=\"btn btn-primary\" href=\"AddAnime/" + m.getId_manga() + "\">Ajouter a ma liste</a></td>");

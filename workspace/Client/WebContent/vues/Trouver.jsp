@@ -26,7 +26,7 @@
                     out.println(m.getTitre_manga() + " " + m.getEdit_manga() + "<p>" +m.getNbr_tome() + "</p>");
                    
                 }
-            }
+            }else{out.print("Chercher introuvable, Essayer à nouveau" );}
         }
     %>
     <%@ include file = "menu.jsp" %>
