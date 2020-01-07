@@ -29,14 +29,6 @@
   	<servlet-name>NewUtil</servlet-name>
   	<url-pattern>/NewUtil</url-pattern>
   </servlet-mapping>  
-  <servlet>
-  	<servlet-name>test1</servlet-name>
-  	<servlet-class>Controler.test1</servlet-class> 
-  </servlet>
-  <servlet-mapping>
-  	<servlet-name>test1</servlet-name>
-  	<url-pattern>/test1</url-pattern>
-  </servlet-mapping>  
    <servlet>
   	<servlet-name>test2</servlet-name>
   	<servlet-class>Controler.test2</servlet-class> 
@@ -94,5 +86,17 @@
   <servlet-mapping>
   	<servlet-name>GetAllAnimeByManga</servlet-name>
   	<url-pattern>/allbymanga</url-pattern>
-  </servlet-mapping> 
+  </servlet-mapping>
+   <servlet>
+  	<servlet-name>Chercher</servlet-name>
+  	<servlet-class>Controler.chercher</servlet-class> 
+  	 <init-param>
+  <param-name>findM</param-name>
+  <param-value>/vues/Trouver.jsp</param-value>
+  </init-param>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>Chercher</servlet-name>
+  	<url-pattern>/chercher</url-pattern>
+  </servlet-mapping>  
 </web-app>

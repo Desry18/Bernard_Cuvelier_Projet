@@ -94,4 +94,13 @@ public class Manga {
 		  return new MangaDAO().getById(i);
 	  }
 	  
+	  public List<Manga> trouverY(String keyword) {
+		    List<Manga> m = new MangaDAO().getAll();
+		    List<Manga> result = new ArrayList<>();
+		    for (int i = 0; i < m.size(); i++) {
+		      if (m.get(i).titre_manga.contains(keyword)) result.add(m.get(i));
+		    }
+		    return result;
+		  }
+	  
 }

@@ -10,7 +10,7 @@
 </head>
 <body>
 <h1>Tous les manga : </h1>
-
+<%@ include file = "Chercher.jsp" %>
 <table>
 <%	
 		HttpSession sessions = request.getSession(true);

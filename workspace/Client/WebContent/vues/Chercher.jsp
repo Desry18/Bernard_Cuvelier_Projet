@@ -1,7 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@ page import="be.projet.pojo.Anime" %>   
-<%@ page import="java.util.List" %>      
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,8 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-<%
-Anime a =(Anime)request.getAttribute("anime");
-%>
+<form action="chercher" method="GET">
+ <input  placeholder="Rechercher" name="keyword" id="srch-term" type="text">
+        <button  name="valider" value="valider" type="submit">OK</button>
+        </form>
 </body>
 </html>

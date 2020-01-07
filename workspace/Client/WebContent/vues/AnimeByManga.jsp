@@ -10,7 +10,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+<%@ include file = "Chercher.jsp" %>
 <table>
 <tr>
 <td> TITRE </td>
