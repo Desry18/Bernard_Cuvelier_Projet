@@ -78,7 +78,6 @@
   	<servlet-name>ConsulterAnime</servlet-name>
   	<url-pattern>/ConsulterAnime/*</url-pattern>
   </servlet-mapping> 
-  
   <servlet>
   	<servlet-name>GetAllAnimeByManga</servlet-name>
   	<servlet-class>Controler.GetAllAnimeByManga</servlet-class> 

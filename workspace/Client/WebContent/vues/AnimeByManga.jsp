@@ -20,8 +20,7 @@
 
 
 		HttpSession sessions = request.getSession();
-		Manga m = (Manga) sessions.getAttribute("manga");
-		int id = m.getId_manga();
+		int id = Integer.parseInt((String) sessions.getAttribute("id"));
 		Anime anime = new Anime();
         List<Anime> lAnime = anime.getAlAnimeByManga(id);
         if (lAnime != null) {
@@ -29,8 +28,7 @@
                 for (int i = 0; i < lAnime.size(); i++) {
                 	out.println("<tr>");
                     Anime a = lAnime.get(i);
-                    out.println("<td>"+a.getTitre_anime() + "</td><td>" + a.getStudio_anime() + " </td> <td>" + a.getNote_anime() + "</td><td>"+ a.getNbr_episode() + "</td>");
-                    out.println("<a type=\"button\" href=\"ConsulterAnime/" + a.getId_anime()+ "\">Consulter</a>");      
+                    out.println("<td>"+a.getTitre_anime() + "</td><td>" + a.getStudio_anime() + " </td> <td>" + a.getNote_anime() + "</td><td>"+ a.getNbr_episode() + "</td>");    
                     out.println("<td><a type=\" href=\"AddAnime/" + a.getId_anime() + "\">Ajouter à ma liste</a></td>");
                     out.println("<td><a type=\"button\" class=\"btn btn-primary\" href=\"/ok_bomer/AddNote?id=" + a.getId_anime() + "\">Ajouter un point!</a></td>");
                 	out.println("</tr>");
