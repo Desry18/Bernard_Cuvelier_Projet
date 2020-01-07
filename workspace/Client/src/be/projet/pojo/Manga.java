@@ -9,6 +9,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 import be.projet.dao.AnimeDAO;
 import be.projet.dao.MangaDAO;
+import be.projet.dao.UtilisateurDAO;
 
 /**
  * @author pc
@@ -69,7 +70,11 @@ public class Manga {
 	    return result;
 	  }
 	
-	public boolean createManga() {
+	public boolean createManga(String t, String e, int n, String d) {
+		this.titre_manga=t;
+		this.edit_manga=e;
+		this.nbr_tome= n;
+		this.date_parution=d;
 	    return new MangaDAO().create(this);
 	  }
 
@@ -101,6 +106,10 @@ public class Manga {
 		      if (m.get(i).titre_manga.contains(keyword)) result.add(m.get(i));
 		    }
 		    return result;
+		  }
+	  public boolean addNote(int i) {
+		    this.id_manga=i;
+		    return new MangaDAO().update(this);
 		  }
 	  
 }

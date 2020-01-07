@@ -4,6 +4,6 @@
 <ul>
 	<li><a href = "GetAllManga">Tous les mangas</a></li>
 	<li><a href = "GetAllAnime">Tous les animes</a></li>
-	<li><a href = "test1"> Votre liste de manga !</a></li>
+	<li><a href = "myList"> Votre liste de manga !</a></li>
 	<li><a href = "Index.html"> Deconnexion</a>
 </ul>

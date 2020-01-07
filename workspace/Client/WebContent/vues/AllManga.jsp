@@ -25,12 +25,20 @@
                     out.println("<td>");
                     out.println(m.getTitre_manga() + " </td><td>" + m.getEdit_manga() + " </td> <td>" + m.getNote_manga() +" </td> <td>" + m.getId_manga());
                     out.println("</td>");
+                    out.println("<td>");
                     out.println("<form action=\"allbymanga\" method=\"POST\">");
                     out.println("<input type = \"hidden\" name=\"num\" value = "+ m.getId_manga()+" />");
                     out.println("<button  name=\"valide\" value=\"valider\" type=\"submit\">Consulter</button>");
+                    out.println("</td>");
                     out.println("</form>"); 
+                    out.println("<td>");
+                    out.println("<form action=\"addNote\" method=\"POST\">");
+                    out.println("<input type = \"hidden\" name=\"val\" value = "+ m.getId_manga()+" />");
+                    out.println("<button  name=\"valid\" value=\"valider\" type=\"submit\">Like</button>");
+                    out.println("</form>"); 
+                    out.println("</td>");
                     out.println("<td><a type=\"button\" class=\"btn btn-primary\" href=\"AddAnime/" + m.getId_manga() + "\">Ajouter a ma liste</a></td>");
-                    out.println("<td><a type=\"button\" class=\"btn btn-primary\" href=\"AddNote/" + m.getId_manga() + "\">Ajouter un point!</a></td>");
+            
                 	out.println("</tr>");
                 	sessions.setAttribute("manga", m);
 

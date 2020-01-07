@@ -24,7 +24,12 @@
                 for (int i = 0; i < li.size(); i++) {
                     Manga m = li.get(i);
                     out.println(m.getTitre_manga() + " " + m.getEdit_manga() + "<p>" +m.getNbr_tome() + "</p>");
-                   
+                    out.println("<td>");
+                    out.println("<form action=\"allbymanga\" method=\"POST\">");
+                    out.println("<input type = \"hidden\" name=\"num\" value = "+ m.getId_manga()+" />");
+                    out.println("<button  name=\"valide\" value=\"valider\" type=\"submit\">Consulter</button>");
+                    out.println("</form>"); 
+                    out.println("</td>");
                 }
             }else{out.print("Chercher introuvable, Essayer à nouveau" );}
         }
