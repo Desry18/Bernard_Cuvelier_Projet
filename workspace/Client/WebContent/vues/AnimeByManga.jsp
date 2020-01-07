@@ -17,7 +17,10 @@
 <td> STUDIO </td>
 <td> NOMBRE D'EPISODES </td>
 <%
-		Manga m = (Manga) request.getAttribute("manga");
+
+
+		HttpSession sessions = request.getSession();
+		Manga m = (Manga) sessions.getAttribute("manga");
 		int id = m.getId_manga();
 		Anime anime = new Anime();
         List<Anime> lAnime = anime.getAlAnimeByManga(id);

@@ -32,15 +32,16 @@ public class GetAllAnimeByManga extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-    	//getServletContext().getRequestDispatcher("/vues\\AnimeByManga.jsp").forward(request, response);
-		response.setContentType("text/HTML");
+		/*response.setContentType("text/HTML");
 		response.setCharacterEncoding("UTF-8");
-		HttpSession sessions = request.getSession();
 		PrintWriter out = response.getWriter();
-			int id = Integer.parseInt( (String) sessions.getAttribute("id"));
-			out.println(id);	    
-	  
-		
+		HttpSession sessions = request.getSession();
+		Manga m = (Manga) sessions.getAttribute("manga");			
+		sessions.setAttribute("manga", m);    */
+
+			
+		getServletContext().getRequestDispatcher("/vues\\AnimeByManga.jsp").forward(request, response);
+
 		
 		
 	}

@@ -29,7 +29,7 @@
                     out.println("<td><a type=\"button\" class=\"btn btn-primary\" href=\"AddAnime/" + m.getId_manga() + "\">Ajouter a ma liste</a></td>");
                     out.println("<td><a type=\"button\" class=\"btn btn-primary\" href=\"AddNote/" + m.getId_manga() + "\">Ajouter un point!</a></td>");
                 	out.println("</tr>");
-                	sessions.setAttribute("id", id);
+                	sessions.setAttribute("manga", m);
 
                 }
             }
