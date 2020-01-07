@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<p>Coucou ${ util.nom_util }</p>
+<p>Bonjour ${ util.nom_util }</p>
 
 <%@ include file = "menu.jsp" %>
 

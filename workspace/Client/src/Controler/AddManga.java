@@ -13,7 +13,7 @@ import be.projet.pojo.Utilisateur;
 /**
  * Servlet implementation class AddManga
  */
-@WebServlet("/AddManga")
+//@WebServlet("/AddManga")
 public class AddManga extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

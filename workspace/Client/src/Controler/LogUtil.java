@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import be.projet.pojo.Manga;
 import be.projet.pojo.Utilisateur;
 
 /**
@@ -52,13 +53,13 @@ public class LogUtil extends HttpServlet{
 	      Utilisateur u = new Utilisateur();
 	      if (u.log(pseudo, mdp)) {
 	        HttpSession session = request.getSession();
-	        session.setAttribute("util", u);
+	        session.setAttribute("util", u);	        
 		 	//response.sendRedirect("/Test2.html");
 	        
 	    	getServletContext().getRequestDispatcher("/vues\\UtilisateurIndex.jsp").forward(request, response);
 	      } else {
 			 //response.sendRedirect("/Test2.html");
-	    	  getServletContext().getRequestDispatcher("/vues\\Index.jsp").forward(request, response);
+	    	  getServletContext().getRequestDispatcher("Index.html").forward(request, response);
 	      }
 	    }
 	}

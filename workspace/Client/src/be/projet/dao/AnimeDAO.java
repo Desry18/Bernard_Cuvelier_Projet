@@ -116,6 +116,22 @@ public class AnimeDAO extends DAO<Anime>{
 	    }
 	    return util;
 		 }
+	
+	
+	public List<Anime> findAllByManga(int i){
+		String url = "anime/getAllByIdManga/"+i;
+
+		 String response =
+	        webResource.path(url).accept(MediaType.APPLICATION_JSON).get(String.class);
+	    ObjectMapper mapper = new ObjectMapper();
+	    List<Anime> liste = new ArrayList<>();
+	    try {
+	      liste = mapper.readValue(response, new TypeReference<List<Anime>>() {});
+	    } catch (IOException e) {
+	      e.printStackTrace();
+	    }
+	    return liste;
+		 }
 
 	@Override
 	public List<Anime> getById(int i) {

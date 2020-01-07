@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sun.jersey.core.util.MultivaluedMapImpl;
 
+import be.projet.pojo.Anime;
 import be.projet.pojo.Manga;
 
 import javax.ws.rs.core.MediaType;
@@ -100,8 +101,19 @@ public class MangaDAO extends DAO<Manga>{
 
 	@Override
 	public List<Manga> getById(int i) {
-		// TODO Auto-generated method stub
-		return null;
+		String url = "anime/getById/"+i;
+
+		 String response =
+	        webResource.path(url).accept(MediaType.APPLICATION_JSON).get(String.class);
+	    ObjectMapper mapper = new ObjectMapper();
+	    List<Manga> liste = new ArrayList<>();
+	    try {
+	      liste = mapper.readValue(response, new TypeReference<List<Manga>>() {});
+	    } catch (IOException e) {
+	      e.printStackTrace();
+	    }
+	    return liste;
+		 
 	}
 
 	@Override
@@ -112,14 +124,10 @@ public class MangaDAO extends DAO<Manga>{
 
 	@Override
 	public Manga find(int id) {
-		MultivaluedMap<String, String> params = new MultivaluedMapImpl();
-	    params.add("id", String.valueOf(id));
-	    String response =
-	        webResource
-	            .queryParams(params)
-	            .path("manga/getById")
-	            .accept(MediaType.APPLICATION_JSON)
-	            .get(String.class);
+		String url = "manga/getById/"+id;
+
+		 String response =
+	        webResource.path(url).accept(MediaType.APPLICATION_JSON).get(String.class);
 	    ObjectMapper mapper = new ObjectMapper();
 	    Manga l = new Manga();
 	    try {

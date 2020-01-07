@@ -34,17 +34,8 @@ public class test1 extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	//getServletContext().getRequestDispatcher("/vues\\myManga.jsp").forward(request, response);
-		response.setContentType("text/HTML");
-		response.setCharacterEncoding("UTF-8");
-		PrintWriter out = response.getWriter();
-		HttpSession session = request.getSession();
-		ListeManga lm = new ListeManga();
-		Utilisateur u = new Utilisateur();
-		u = (Utilisateur) session.getAttribute("util");	
-		List<ListeManga> lma = lm.getAllme(u.getId_util());
-		out.println(lma.get(0).getId_manga());	
-		out.println("Va apprendre à utiliser les sessions connards de " + u.getId_util());
+    	getServletContext().getRequestDispatcher("/vues\\MaListe.jsp").forward(request, response);
+		
 	}
 
 	/**

@@ -15,7 +15,7 @@ import be.projet.pojo.Utilisateur;
 /**
  * Servlet implementation class ConsulterAnime
  */
-@WebServlet("/ConsulterAnime")
+//@WebServlet("/ConsulterAnime")
 public class ConsulterAnime extends HttpServlet {
 	private static final long serialVersionUID = 1L;
      String urlAnime=null;

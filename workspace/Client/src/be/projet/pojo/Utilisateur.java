@@ -3,6 +3,7 @@ package be.projet.pojo;
 import java.util.List;
 
 import be.projet.dao.AnimeDAO;
+import be.projet.dao.ListeMangaDAO;
 import be.projet.dao.MangaDAO;
 import be.projet.dao.UtilisateurDAO;
 
@@ -86,6 +87,7 @@ public class Utilisateur {
 		  
 		 return new MangaDAO().getAll();
 	  }
+	 
 	 public boolean ajouterAMaList(int i) {
 		Manga m= new MangaDAO().find(i);
 		return m.test();
@@ -95,5 +97,14 @@ public class Utilisateur {
 	   List<Anime> a = new AnimeDAO().findall(i);
 	   return a;
    }
+   
+   public Manga getMangaById(int id)
+   {
+	   return new MangaDAO().find(id);
+   }
+   
+   public List<ListeManga> getAllme(int i){
+		return new ListeMangaDAO().getById(i);
+	}
 
 }

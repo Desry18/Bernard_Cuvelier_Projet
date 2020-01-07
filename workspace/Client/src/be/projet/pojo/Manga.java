@@ -88,4 +88,10 @@ public class Manga {
 		  ListeManga l=new ListeManga();
 		  return l.createMangalist();
 	  }
+	  
+	  public List<Manga> getById(int i)
+	  {
+		  return new MangaDAO().getById(i);
+	  }
+	  
 }

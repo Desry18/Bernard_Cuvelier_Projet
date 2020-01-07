@@ -90,6 +90,27 @@ public class AnimeApi {
         	rep = Response .status(Response.Status.NO_CONTENT).entity(null).build();
         return rep;
 	}
+	
+	@Path("getAllByIdManga/{id}")
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response getAllIDMangaJson(@PathParam("id") int id) {
+
+        try {
+			conn = ConnectDB.getInstance().getConnection();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		List<Anime> list = new AnimeDAO(conn).findAn(id);
+       
+        if (list != null)
+        	rep = Response .status(Response.Status.OK).entity(list).build();
+        else
+        	rep = Response .status(Response.Status.NO_CONTENT).entity(null).build();
+        return rep;
+	}
+	
 	@Path("nouvelanime")
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)

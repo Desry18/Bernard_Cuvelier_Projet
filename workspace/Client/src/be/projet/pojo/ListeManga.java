@@ -46,9 +46,7 @@ public class ListeManga {
 	public boolean deleteMangalist() {
 	    return new ListeMangaDAO().delete(this);
 	  }
-	public List<ListeManga> getAllme(int i){
-		return new ListeMangaDAO().getById(i);
-	}
+	
 	
 	public List<ListeManga> getAllListeManga()
 	{

@@ -1,8 +1,8 @@
 package Controler;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
-import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,34 +10,39 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import be.projet.pojo.Manga;
+
 /**
- * Servlet implementation class LogOut
+ * Servlet implementation class GetAllAnimeByManga
  */
-//@WebServlet("/LogOut")
-public class LogOut extends HttpServlet {
+//@WebServlet("/GetAllAnimeByManga")
+public class GetAllAnimeByManga extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       String urlco=null;
+       
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LogOut() {
+    public GetAllAnimeByManga() {
         super();
         // TODO Auto-generated constructor stub
     }
-    
-    public void init() {
-    	ServletConfig config=getServletConfig();
-    	urlco=(String)config.getInitParameter("conn");
-    	 	
-    }
+
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		HttpSession session = request.getSession(false);
-	    session.invalidate();
-	    getServletContext().getRequestDispatcher(urlco).forward(request, response);
+    	//getServletContext().getRequestDispatcher("/vues\\AnimeByManga.jsp").forward(request, response);
+		response.setContentType("text/HTML");
+		response.setCharacterEncoding("UTF-8");
+		HttpSession sessions = request.getSession();
+		PrintWriter out = response.getWriter();
+			int id = Integer.parseInt( (String) sessions.getAttribute("id"));
+			out.println(id);	    
+	  
+		
+		
+		
 	}
 
 	/**

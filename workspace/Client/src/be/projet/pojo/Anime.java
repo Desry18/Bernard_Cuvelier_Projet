@@ -94,4 +94,10 @@ public class Anime {
 		  return new AnimeDAO().getAll();
 		  
 	  }
+	 
+	  public List<Anime> getAlAnimeByManga(int i)
+	  {
+		  return new AnimeDAO().findAllByManga(i);
+	  }
 }
+
