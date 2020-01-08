@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import javax.ws.rs.DELETE;
+import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -78,12 +79,12 @@ public Response getAllIDJson(@PathParam("id") int id) {
     return rep;
 }
 
-@Path("nouvelListeM/{id_manga}/{id_util}")
+@Path("nouvelListeM")
 @POST
 @Produces(MediaType.APPLICATION_JSON)
 public Response nouvelListeM(
-	@PathParam("id_manga") int im,
-	@PathParam("id_util") int ia
+	@FormParam("id_manga") int im,
+	@FormParam("id_util") int ia
 	) {
 		try {
 			conn = ConnectDB.getInstance().getConnection();
@@ -99,12 +100,12 @@ public Response nouvelListeM(
 	}
 
 
-@Path("delListM")
+	@Path("delListM/{id_manga}/{id_util}")
 	@DELETE
 	@Produces(MediaType.APPLICATION_JSON)
 public Response deletListe(
-		@QueryParam("id_manga") int im,
-		@QueryParam("id_util") int ia
+		@PathParam("id_manga") int im,
+		@PathParam("id_util") int ia
 		) {
 			 try {
 			conn = ConnectDB.getInstance().getConnection();
@@ -113,8 +114,8 @@ public Response deletListe(
 			e.printStackTrace();
 		}
 		ListeManga li = new ListeManga(im, ia);
-       boolean ajout = new ListeMangaDAO(conn).delete(li);
-			if(ajout) rep = Response.status(Status.OK).build();
+        boolean del = new ListeMangaDAO(conn).delete(li);
+			if(del) rep = Response.status(Status.OK).build();
 			else rep = Response.status(Response.Status.BAD_REQUEST).entity(li).build();	
 			return rep;
 		}

@@ -39,15 +39,13 @@ public class ListeMangaDAO  extends DAO<ListeManga> {
 	@Override
 	public boolean delete(ListeManga li) {
 		PreparedStatement stmt;
-		String query = "Delete FROM listmanga where id_manga= ? AND id_util=?" ;
+		String query = "Delete FROM listemanga where id_manga= ? AND id_util=?" ;
 		try {
-		stmt = connect.prepareStatement(query);
-		stmt.setInt(1,li.getId_manga());
-        stmt.setInt(2,li.getId_util());
-     
-        stmt.execute();
-        
-        return true;
+			stmt = connect.prepareStatement(query);
+			stmt.setInt(1,li.getId_manga());
+	        stmt.setInt(2,li.getId_util());     
+	        stmt.execute();        
+	        return true;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
