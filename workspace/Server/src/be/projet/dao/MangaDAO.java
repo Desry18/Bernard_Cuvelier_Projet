@@ -25,7 +25,7 @@ public class MangaDAO extends DAO<Manga>{
 		//Connection conn = null;
         PreparedStatement statement = null;
         ResultSet resultado = null;
-        String querry = "SELECT titre_manga, editeur_manga, nbr_tome, id_manga,date_parution FROM manga";
+        String querry = "SELECT titre_manga, editeur_manga, nbr_tome, id_manga,date_parution, note_manga FROM manga";
     	List<Manga> listeManga = new ArrayList<>();       
         try {
             statement = connect.prepareStatement(querry);
@@ -38,6 +38,7 @@ public class MangaDAO extends DAO<Manga>{
 				int nbr_t = resultado.getInt(3);
 				int id = resultado.getInt(4);
 				String date = resultado.getString(5);
+				int note = resultado.getInt(6);
 				
 				Manga m = new Manga();
 				m.setTitre_manga(titre);
@@ -45,6 +46,7 @@ public class MangaDAO extends DAO<Manga>{
 				m.setNbr_tome(nbr_t);
 				m.setId_manga(id);
 				m.setDate_parution(date);
+				m.setNote_manga(note);
 				listeManga.add(m);
 
         }
@@ -112,7 +114,7 @@ public class MangaDAO extends DAO<Manga>{
 	@Override
 	public boolean update(Manga obj) {
 		PreparedStatement statement = null;
-		String query = "UPDATE manga SET  note_manga =note_manga+1 WHERE id_manga = ?";
+		String query = "UPDATE manga SET note_manga = note_manga+1 WHERE id_manga = ?";
 		try {
 			statement = connect.prepareStatement(query);
 			statement.setInt(1, obj.getId_manga());

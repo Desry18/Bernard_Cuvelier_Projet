@@ -22,11 +22,15 @@
             	 out.println(u.getMangaById(lm.get(i).getId_manga()).getTitre_manga());
             	 out.println("<br>");
             	 out.println("<td>");
-                 out.println("<form action=\"allbymanga\" method=\"POST\">");
-                 out.println("<input type = \"hidden\" name=\"num\" value = "+ lm.get(i).getId_manga()+" />");
+            	 out.println("<form action=\"allbymanga\" method=\"POST\">");
+                 out.println("<input type = \"hidden\" name=\"num\" value = "+ lm.get(i).getId_manga() +" />");
                  out.println("<button  name=\"valide\" value=\"valider\" type=\"submit\">Consulter</button>");
-                 out.println("</from>");
+                 out.println("</form>");
                  out.println("</td>");
+                 out.println("<form action=\"deletelistemanga\" method=\"POST\">");
+                 out.println("<input type = \"hidden\" name=\"valeur\" value = "+ lm.get(i).getId_manga()+" />");
+                 out.println("<button  name=\"validerthis\" value=\"valider\" type=\"submit\">Delete</button>");
+                 out.println("</form>");
              }
          }
 	 }
