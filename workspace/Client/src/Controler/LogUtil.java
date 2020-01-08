@@ -59,7 +59,7 @@ public class LogUtil extends HttpServlet{
 	    	getServletContext().getRequestDispatcher("/vues\\UtilisateurIndex.jsp").forward(request, response);
 	      } else {
 			 //response.sendRedirect("/Test2.html");
-	    	  getServletContext().getRequestDispatcher("Index.html").forward(request, response);
+	    	  getServletContext().getRequestDispatcher("/Index.html").forward(request, response);
 	      }
 	    }
 	}
