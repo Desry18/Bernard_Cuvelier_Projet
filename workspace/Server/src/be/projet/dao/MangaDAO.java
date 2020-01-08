@@ -76,14 +76,13 @@ public class MangaDAO extends DAO<Manga>{
 	@Override
 	public boolean create(Manga obj) {
 		PreparedStatement stmt;
-		String query = "insert into manga(id_manga,titre_manga,editeur_manga, date_parution, nbr_tome,note_manga) values(manga_seq.NEXTVAL,?,?,?,?,?);" ;
+		String query = "insert into manga(id_manga,titre_manga,editeur_manga, date_parution, nbr_tome) values(manga_seq.NEXTVAL,?,?,?,?);" ;
 		try {
 		stmt = connect.prepareStatement(query);
 		stmt.setString(1,obj.getTitre_manga());
         stmt.setString(2,obj.getEdit_manga());
         stmt.setString(3,obj.getDate_parution());
         stmt.setInt(4,obj.getNbr_tome());
-        stmt.setInt(5,obj.getNote_manga());
         stmt.execute();
         
         return true;
