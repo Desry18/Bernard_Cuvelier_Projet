@@ -41,6 +41,7 @@ public class MangaDAO extends DAO<Manga>{
 		params.add("edit_manga", String.valueOf(g.getEdit_manga()));
 		params.add("nbr_tome",String.valueOf(g.getNbr_tome()));
 		params.add("date_parution", String.valueOf(g.getDate_parution()));
+		params.add("note", String.valueOf(g.getNote_manga()));
 		String response =
         webResource
             .path("manga/nouveauManga")

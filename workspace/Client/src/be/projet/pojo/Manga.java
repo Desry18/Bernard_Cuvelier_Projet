@@ -75,6 +75,7 @@ public class Manga {
 		this.edit_manga=e;
 		this.nbr_tome= n;
 		this.date_parution=d;
+		this.note_manga =  0;
 	    return new MangaDAO().create(this);
 	  }
 

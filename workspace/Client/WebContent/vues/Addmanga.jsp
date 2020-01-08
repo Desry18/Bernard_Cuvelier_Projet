@@ -30,7 +30,7 @@
 			</tr>
 			<tr>
 			    <td colspan="2" align="center"><input type="submit"
-			name="valider" id="valider" value="Valider"/></td>
+			name="validation" id="valider" value="Valider"/></td>
 			</tr>
 		</table>
 		</form>

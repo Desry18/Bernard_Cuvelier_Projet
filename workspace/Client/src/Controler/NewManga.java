@@ -31,13 +31,12 @@ public class NewManga extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
 		String titre;
 		String edit;
 		int nb_t;
 		String d;
 	   
-	    if (request.getParameter("valider") != null) {
+	    if (request.getParameter("validation") != null) {
 	      titre = request.getParameter("titre");
 	      edit = request.getParameter("edit");
 	      nb_t = Integer.parseInt((String)request.getParameter("tom"));
