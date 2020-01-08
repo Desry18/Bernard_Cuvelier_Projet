@@ -26,7 +26,7 @@ public class ListeMangaDAO extends DAO<ListeManga> {
 	public boolean delete(ListeManga g) {
 		String response =
         webResource
-            .path("listeManga/delListM/" + g.getId_manga()+"/"+g.getId_util() )
+            .path("listeManga/delListM?id_m" + g.getId_manga()+"&id_u="+g.getId_util() )
             .accept(MediaType.APPLICATION_JSON)
             .delete(String.class);
     ObjectMapper mapper = new ObjectMapper();

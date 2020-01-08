@@ -102,8 +102,6 @@ public class Utilisateur {
    public List<ListeManga> getAllme(int i){
 		return new ListeMangaDAO().getById(i);
 	}
-   
-   
    public List<Manga> trouver(String l){
 	   List<Manga> m= new MangaDAO().find(l);
 	   return m;

@@ -119,7 +119,7 @@ public Response nouveauAnime(
 		@FormParam("studio_anime") String studio,
 		@FormParam("date_sortie_anime") String date_p,
 		@FormParam("nbr_episode") int nbr_e,
-		@FormParam("note_anime") int note
+		@FormParam("id_manga") int id
 		) {
 			try {
 				conn = ConnectDB.getInstance().getConnection();
@@ -132,7 +132,7 @@ public Response nouveauAnime(
 			ma.setStudio_anime(studio);
 			ma.setDate_sortie_anime(date_p);
 			ma.setNbr_episode(nbr_e);
-			ma.setNote_anime(note);		
+			ma.setId_manga(id);		
 			boolean ajout = new AnimeDAO(conn).create(ma);
 			if(ajout) rep = Response.status(Status.OK).build();
 			else rep = Response.status(Response.Status.BAD_REQUEST).entity(ma).build();	

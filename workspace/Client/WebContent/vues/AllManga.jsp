@@ -41,11 +41,13 @@ Utilisateur  u = (Utilisateur) session.getAttribute("util");
                     out.println("</td>");
                     out.println("<td>");
                     out.println("<form action=\"addlist\" method=\"POST\">");
-                    out.println("<input type = \"hidden\" name=\"mangaid\" value = "+ m.getId_manga()+" />");
+                    out.println("<input type = \"hidden\" name=\"manga\" value = "+ m.getId_manga()+" />");
                     out.println("<button  name=\"ok\" value=\"valider\" type=\"submit\">Addlist</button>");
                     out.println("</form>");
                     out.println("</td>");
+            
                 	out.println("</tr>");
+                	sessions.setAttribute("manga", m);
 
                 }
             }
