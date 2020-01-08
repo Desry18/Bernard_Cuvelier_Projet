@@ -38,11 +38,10 @@ public class AnimeDAO extends DAO<Anime>{
 	@Override
 	public boolean create(Anime g) {
 		MultivaluedMap<String, String> params = new MultivaluedMapImpl();
-		DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");
 		params.add("titre_anime", String.valueOf(g.getTitre_anime()));
 		params.add("studio_anime", String.valueOf(g.getStudio_anime()));
 		params.add("nbr_episode", String.valueOf(g.getNbr_episode()));
-		params.add("date_sortie_anime", dateFormat.format(g.getDate_sortie_anime()));
+		params.add("date_sortie_anime", String.valueOf(g.getDate_sortie_anime()));
 		String response =
         webResource
             .path("anime/nouvelanime")
