@@ -56,10 +56,4 @@ public class ListeManga {
 		this.id_util=l;
 	    return new ListeMangaDAO().create(this);
 	}
-	
-	public boolean delete(int l, int i) {
-		this.id_manga= i;
-		this.id_util=l;
-	    return new ListeMangaDAO().delete(this);
-	}
 }

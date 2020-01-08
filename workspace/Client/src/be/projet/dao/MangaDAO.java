@@ -82,7 +82,7 @@ public class MangaDAO extends DAO<Manga>{
         webResource
             .path("manga/upDate/" + g.getId_manga())
             .accept(MediaType.APPLICATION_JSON)
-            .put(String.class);
+            .delete(String.class);
     ObjectMapper mapper = new ObjectMapper();
     Boolean done = false;
     try {

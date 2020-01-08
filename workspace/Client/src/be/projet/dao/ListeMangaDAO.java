@@ -61,6 +61,14 @@ public class ListeMangaDAO extends DAO<ListeManga> {
 
 	public List<ListeManga> getById(int i) {
 		String url = "listeManga/getAllById/"+i ;
+		/*String urlf = null;
+		try {
+			urlf = URLDecoder.decode(url,"UTF-8");
+		} catch (UnsupportedEncodingException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		*/
 		String response =
         webResource.path(url).accept(MediaType.APPLICATION_JSON).get(String.class);
     ObjectMapper mapper = new ObjectMapper();

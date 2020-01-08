@@ -164,7 +164,7 @@ public Response deletemanga(
 	}
 	
 	@Path("upDate/{id}")
-	@PUT
+	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response updateNote(
 		@PathParam("id") int id) {
@@ -176,7 +176,7 @@ public Response deletemanga(
 			e.printStackTrace();
 		}
         Manga ma= new Manga();
-        ma.setId_manga(id);
+        ma.getId_manga();
         
 		boolean mang = new MangaDAO(conn).update(ma);
        

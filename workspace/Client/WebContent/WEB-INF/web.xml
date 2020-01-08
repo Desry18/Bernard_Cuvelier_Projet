@@ -146,13 +146,4 @@
   	<url-pattern>/addlist</url-pattern>
   </servlet-mapping> 
   
-  <servlet>
-  	<servlet-name>DeleteListeManga</servlet-name>
-  	<servlet-class>Controler.DeleteListeManga</servlet-class> 
-  </servlet>
-  <servlet-mapping>
-  	<servlet-name>DeleteListeManga</servlet-name>
-  	<url-pattern>/deletelistemanga</url-pattern>
-  </servlet-mapping> 
-  
 </web-app>

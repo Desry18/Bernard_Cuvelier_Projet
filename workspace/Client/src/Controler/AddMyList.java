@@ -42,11 +42,9 @@ public class AddMyList extends HttpServlet {
 			ListeManga m= new ListeManga();
 			boolean ok=m.createMangalist(l, i);
 			if(ok==true) {
-				getServletContext().getRequestDispatcher("/vues\\AllManga.jsp").forward(request, response);
-
-			}else {
 				getServletContext().getRequestDispatcher("/vues\\menus.jsp").forward(request, response);
-
+			}else {
+				getServletContext().getRequestDispatcher("/vues\\AllAnime.jsp").forward(request, response);
 			}
 			
 			 

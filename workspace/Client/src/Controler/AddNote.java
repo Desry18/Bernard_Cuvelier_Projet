@@ -30,18 +30,14 @@ public class AddNote extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 		int i;
 		 if (request.getParameter("valid") != null) {
-			 //HttpSession sessions = request.getSession();
+			 HttpSession sessions = request.getSession();
 			 i = Integer.parseInt((String)request.getParameter("val"));
 			 Manga m = new Manga();
-			 boolean ok = m.addNote(i);
-				if(ok==true) {
-					getServletContext().getRequestDispatcher("/vues\\AllManga.jsp").forward(request, response);
-				}else {
-					getServletContext().getRequestDispatcher("/vues\\AllAnime.jsp").forward(request, response);
-
-				}
+			 m.addNote(i);
+			 getServletContext().getRequestDispatcher("/vues\\AllManga.jsp").forward(request, response);
 		 }
 	}
 
