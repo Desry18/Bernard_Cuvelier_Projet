@@ -37,10 +37,11 @@ public class MangaDAO extends DAO<Manga>{
 	@Override
 	public boolean create(Manga g) {
 		MultivaluedMap<String, String> params = new MultivaluedMapImpl();
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");
 		params.add("titre_manga", String.valueOf(g.getTitre_manga()));
-		params.add("edit_manga", String.valueOf(g.getEdit_manga()));
-		params.add("date_parution",String.valueOf(g.getDate_parution()));
+		params.add("editeur_manga", String.valueOf(g.getEdit_manga()));
 		params.add("nbr_tome",String.valueOf(g.getNbr_tome()));
+		params.add("date_parution", dateFormat.format(g.getDate_parution()));
 		String response =
         webResource
             .path("manga/nouveauManga")

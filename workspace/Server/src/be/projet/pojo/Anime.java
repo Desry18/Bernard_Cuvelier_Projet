@@ -10,16 +10,7 @@ public class Anime {
 	private int nbr_episode;
 	private int note_anime;
 	private int id_anime;
-	private int id_manga;
 	
-	public int getId_manga() {
-		return id_manga;
-	}
-
-	public void setId_manga(int id_manga) {
-		this.id_manga = id_manga;
-	}
-
 	public Anime(String titre, String stud, int nbr_e, int id, String date, int note) {
 		this.titre_anime = titre;
 		this.studio_anime = stud;

@@ -47,11 +47,11 @@ public class NewUtil extends HttpServlet {
 	          session.setAttribute("util", u);
 		        getServletContext().getRequestDispatcher("/vues\\UtilisateurIndex.jsp").forward(request, response);
 	        } else {
-	        	getServletContext().getRequestDispatcher("/vues\\Index.jsp").forward(request, response);
+	        	getServletContext().getRequestDispatcher("Index.html").forward(request, response);
 	        }
 	      }
 	        else {
-	        	getServletContext().getRequestDispatcher("/vues\\Index.jsp").forward(request, response);
+	        	getServletContext().getRequestDispatcher("Index.html").forward(request, response);
 
 	        }
 	    }

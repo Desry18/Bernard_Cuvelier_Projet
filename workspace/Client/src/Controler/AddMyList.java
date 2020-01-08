@@ -31,15 +31,14 @@ public class AddMyList extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
 		int i;
 		int l;
 		Utilisateur util;
 		 if (request.getParameter("ok") != null) {
-			 HttpSession sessions = request.getSession();
-			  util = (Utilisateur) sessions.getAttribute("util");
+			 HttpSession session = request.getSession();
+			  util = (Utilisateur) session.getAttribute("util");
 			 l= util.getId_util();
-			 i = Integer.parseInt((String)request.getParameter("ok"));
+			 i = Integer.parseInt((String)request.getParameter("mangaid"));
 			ListeManga m= new ListeManga();
 			boolean ok=m.createMangalist(l, i);
 			if(ok==true) {

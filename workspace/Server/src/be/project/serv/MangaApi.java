@@ -96,7 +96,8 @@ public Response nouveauManga(
 		@FormParam("titre_manga") String titre,
 		@FormParam("edit_manga") String edit,
 		@FormParam("date_parution") String date_p,
-		@FormParam("nbr_tome") int nbr_t
+		@FormParam("nbr_tome") int nbr_t,
+		@FormParam("note_manga") int note
 		) {
 			try {
 				conn = ConnectDB.getInstance().getConnection();
@@ -108,7 +109,8 @@ public Response nouveauManga(
 			ma.setTitre_manga(titre);
 			ma.setEdit_manga(edit);
 			ma.setDate_parution(date_p);
-			ma.setNbr_tome(nbr_t);	
+			ma.setNbr_tome(nbr_t);
+			ma.setNote_manga(note);		
 			boolean ajout = new MangaDAO(conn).create(ma);
 			if(ajout) rep = Response.status(Status.OK).build();
 			else rep = Response.status(Response.Status.BAD_REQUEST).entity(ma).build();	

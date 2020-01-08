@@ -69,14 +69,14 @@ public class AnimeDAO extends DAO<Anime>{
 	@Override
 	public boolean create(Anime obj) {
 		PreparedStatement stmt;
-		String query = "insert into anime(id_anime,titre_anime,studio_anime, date_sortie_anime, nbr_episode,id_manga) values(anime_seq.NEXTVAL,?,?,?,?,?);" ;
+		String query = "insert into anime(id_anime,titre_anime,studio_anime, date_sortie_anime, nbr_episode,note_anime) values(anime_seq.NEXTVAL,?,?,?,?,?);" ;
 		try {
 		stmt = connect.prepareStatement(query);
 		stmt.setString(1,obj.getTitre_anime());
         stmt.setString(2,obj.getStudio_anime());
         stmt.setString(3,obj.getDate_sortie_anime());
         stmt.setInt(4,obj.getNbr_episode());
-        stmt.setInt(5,obj.getId_manga());
+        stmt.setInt(5,obj.getId_anime());
         stmt.execute();
         
         return true;
