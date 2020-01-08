@@ -39,9 +39,7 @@ public class ListeManga {
 		this.titre_manga = titre_manga;
 	}
 	
-	public boolean createMangalist() {
-	    return new ListeMangaDAO().create(this);
-	  }
+
 	
 	public boolean deleteMangalist() {
 	    return new ListeMangaDAO().delete(this);
@@ -51,5 +49,11 @@ public class ListeManga {
 	public List<ListeManga> getAllListeManga()
 	{
 		return new ListeMangaDAO().getAll();
+	}
+
+	public boolean createMangalist(int l, int i) {
+		this.id_manga= i;
+		this.id_util=l;
+	    return new ListeMangaDAO().create(this);
 	}
 }

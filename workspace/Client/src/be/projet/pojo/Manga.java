@@ -89,11 +89,6 @@ public class Manga {
 		  
 	  }
 	  
-	  public boolean test() {
-		  ListeManga l=new ListeManga();
-		  return l.createMangalist();
-	  }
-	  
 	  public List<Manga> getById(int i)
 	  {
 		  return new MangaDAO().getById(i);

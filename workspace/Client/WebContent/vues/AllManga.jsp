@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ page import="be.projet.pojo.Manga" %>  
+<%@ page import="be.projet.pojo.Utilisateur" %>  
 <%@ page import="java.util.List" %>      
 <!DOCTYPE html>
 <html>
@@ -14,6 +15,7 @@
 <table>
 <%	
 		HttpSession sessions = request.getSession(true);
+Utilisateur  u = (Utilisateur) session.getAttribute("util");
 		Manga mang = new Manga();
         List<Manga> lmanga = mang.getAllManga();
         if (lmanga != null) {
@@ -29,15 +31,20 @@
                     out.println("<form action=\"allbymanga\" method=\"POST\">");
                     out.println("<input type = \"hidden\" name=\"num\" value = "+ m.getId_manga()+" />");
                     out.println("<button  name=\"valide\" value=\"valider\" type=\"submit\">Consulter</button>");
+                    out.println("</from>");
                     out.println("</td>");
-                    out.println("</form>"); 
                     out.println("<td>");
                     out.println("<form action=\"addNote\" method=\"POST\">");
                     out.println("<input type = \"hidden\" name=\"val\" value = "+ m.getId_manga()+" />");
                     out.println("<button  name=\"valid\" value=\"valider\" type=\"submit\">Like</button>");
                     out.println("</form>"); 
                     out.println("</td>");
-                    out.println("<td><a type=\"button\" class=\"btn btn-primary\" href=\"AddAnime/" + m.getId_manga() + "\">Ajouter a ma liste</a></td>");
+                    out.println("<td>");
+                    out.println("<form action=\"addlist\" method=\"POST\">");
+                    out.println("<input type = \"hidden\" name=\"manga\" value = "+ m.getId_manga()+" />");
+                    out.println("<button  name=\"ok\" value=\"valider\" type=\"submit\">Addlist</button>");
+                    out.println("</form>");
+                    out.println("</td>");
             
                 	out.println("</tr>");
                 	sessions.setAttribute("manga", m);

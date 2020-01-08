@@ -88,10 +88,6 @@ public class Utilisateur {
 		 return new MangaDAO().getAll();
 	  }
 	 
-	 public boolean ajouterAMaList(int i) {
-		Manga m= new MangaDAO().find(i);
-		return m.test();
-	 }
    public List<Anime> consulterA(int i){
 	   
 	   List<Anime> a = new AnimeDAO().findall(i);

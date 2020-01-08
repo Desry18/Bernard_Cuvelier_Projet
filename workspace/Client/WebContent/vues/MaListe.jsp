@@ -25,6 +25,7 @@
                  out.println("<form action=\"allbymanga\" method=\"POST\">");
                  out.println("<input type = \"hidden\" name=\"num\" value = "+ lm.get(i).getId_manga()+" />");
                  out.println("<button  name=\"valide\" value=\"valider\" type=\"submit\">Consulter</button>");
+                 out.println("</from>");
                  out.println("</td>");
              }
          }

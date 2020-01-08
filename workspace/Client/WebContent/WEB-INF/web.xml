@@ -137,5 +137,13 @@
   	<servlet-name>ok</servlet-name>
   	<url-pattern>/creeManga</url-pattern>
   </servlet-mapping> 
+         <servlet>
+  	<servlet-name>AddMyList</servlet-name>
+  	<servlet-class>Controler.AddMyList</servlet-class> 
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>AddMyList</servlet-name>
+  	<url-pattern>/addlist</url-pattern>
+  </servlet-mapping> 
   
 </web-app>
